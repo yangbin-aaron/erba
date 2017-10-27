@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--自动投注模式名称的对话框布局-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80000000"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/dialog_util_loading_layout"
+        android:layout_width="230dp"
+        android:layout_height="150dp"
+        android:background="@drawable/dialog_rectangle_style"
+        android:padding="1dp">
+
+        <!--标题-->
+        <TextView
+            android:id="@+id/dialog_title_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="@string/mode_edit_dialog_title"
+            android:textColor="@color/black_text"
+            android:textStyle="bold"/>
+
+        <View
+            style="@style/StyleHorizontalLineView"
+            android:layout_below="@+id/dialog_title_textView"/>
+
+        <RelativeLayout
+            android:id="@+id/dialog_center_trendlimit_rl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/dialog_btn_latout"
+            android:layout_below="@+id/dialog_title_textView"
+            android:padding="10dp">
+
+
+            <EditText
+                android:id="@+id/et_dialog_mode_name"
+                style="@style/LoginBaseEditText"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/textView2"
+                android:layout_toRightOf="@+id/textView1"
+                android:background="@drawable/radio_white_bg"/>
+
+
+        </RelativeLayout>
+
+        <View
+            style="@style/StyleHorizontalLineView"
+            android:layout_above="@+id/dialog_btn_latout"/>
+
+        <!--按钮部分-->
+        <LinearLayout
+            android:id="@+id/dialog_btn_latout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/dialog_left_textview"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/app_cancel"
+                android:textColor="@color/blue"/>
+
+            <View
+                android:id="@+id/dialog_center_line"
+                style="@style/StyleVerticalLineView"/>
+
+            <TextView
+                android:id="@+id/dialog_right_textview"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/app_confirm"
+                android:textColor="@color/blue"/>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

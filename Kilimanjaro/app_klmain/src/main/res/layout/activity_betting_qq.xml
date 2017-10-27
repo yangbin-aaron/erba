@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.teb.kilimanjaro.views.MyActionBar
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_bet1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        android:layout_below="@id/actionBar">
+
+        <TextView
+            android:id="@+id/ll_change_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/btn_login_selector_bg"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/betting_clear"
+            android:textColor="@color/white"/>
+
+        <include layout="@layout/addview_betting_header"/>
+
+        <View
+            style="@style/StyleHorizontalLineView"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <GridView
+            android:id="@+id/gv_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="9dp"
+            android:listSelector="@null"
+            android:numColumns="7"
+            android:scrollbars="none"/>
+
+        <GridView
+            android:id="@+id/gv_nums"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gv_mode"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="60dp"
+            android:listSelector="@null"
+            android:numColumns="7"
+            android:scrollbars="none"
+            android:verticalSpacing="4dp"/>
+        <!--底部按钮-->
+        <View
+            style="@style/StyleHorizontalLineView"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="60dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/btn_last_issue"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/btn_login_selector_bg"
+                android:gravity="center"
+                android:minWidth="60dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/qq_betting_last_bet"
+                android:textColor="@color/white"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+                <!--余额-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/betting_amount"
+                        android:textColor="@color/gray_xx"
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/gray_xx"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+
+                <!--投注额-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/qq_lottery_d_amount"
+                        android:textColor="@color/red_text"/>
+
+                    <TextView
+                        android:id="@+id/tv_bet_coin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/red_text"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btn_betting"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/btn_login_selector_bg"
+                android:gravity="center"
+                android:minWidth="60dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/betting_str"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

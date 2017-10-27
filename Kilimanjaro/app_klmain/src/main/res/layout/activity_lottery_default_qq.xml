@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.teb.kilimanjaro.views.MyActionBar
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"/>
+
+    <!-- ****************开奖号码和期数-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/radio_white_bg"
+        android:orientation="vertical">
+
+        <!--第一排-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/revenue_linearlayout_height">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lottery_d_issue"
+                    android:textColor="@color/gray_xx"
+                    android:textSize="12sp"/>
+
+                <!--期数-->
+                <TextView
+                    android:id="@+id/tv_issue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:text="000000"
+                    android:textColor="@color/main_background"
+                    android:textSize="12sp"/>
+
+                <!--开奖时间-->
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:text="00:00"
+                    android:textColor="@color/gray_xx"
+                    android:textSize="10sp"/>
+            </LinearLayout>
+
+            <View style="@style/StyleVerticalLineView"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lottery_d_result"
+                    android:textColor="@color/gray_xx"
+                    android:textSize="12sp"/>
+
+                <!--中奖说明-->
+                <TextView
+                    android:id="@+id/tv_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:text="0+0+0="
+                    android:textColor="@color/main_background"
+                    android:textSize="10sp"/>
+
+                <!--中奖数字-->
+                <TextView
+                    android:id="@+id/tv_result"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="2dp"
+                    android:background="@drawable/circle_red_bg"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--第二排-->
+
+        <RelativeLayout
+            android:id="@+id/rl_mybet"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/revenue_linearlayout_height">
+
+            <View style="@style/StyleHorizontalLineView"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lottery_d_mybet"
+                    android:textColor="@color/gray_xx"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@color/gray_xx"
+                    android:textSize="12sp"/>
+
+                <!--投注数量-->
+                <TextView
+                    android:id="@+id/tv_bet_coin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/gray_xx"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:text="@string/revenue"
+                    android:textColor="@color/gray_xx"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@color/gray_xx"
+                    android:textSize="12sp"/>
+
+                <!--亏盈-->
+                <TextView
+                    android:id="@+id/tv_pure_profit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/green"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:text="@string/loss_and_profit_proportion"
+                    android:textColor="@color/gray_xx"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@color/gray_xx"
+                    android:textSize="12sp"/>
+
+                <!--亏盈比例-->
+                <TextView
+                    android:id="@+id/tv_income_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-100%"
+                    android:textColor="@color/green"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="* 原始开奖号码来自于北京福彩网第null期"
+        android:textColor="@color/red_text"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/gray_line"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:text="@string/lottery_d_mybet"
+        android:textColor="@color/gray_xx"/>
+
+    <View
+        style="@style/StyleHorizontalLineView"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_add_betting">
+
+        <ListView
+            android:id="@+id/lv_bettinglist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:scrollbars="none"/>
+
+        <TextView
+            android:id="@+id/tv_no_beted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="本期你没有投注 !"
+            android:textColor="@color/red_text"
+            android:textSize="24sp"
+            android:visibility="gone"/>
+    </RelativeLayout>
+</LinearLayout>

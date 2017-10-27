@@ -1,0 +1,5 @@
+<resources>
+    <!--actionBar的高度-->
+    <dimen name="actionbar_height">48dp</dimen>
+    <dimen name="bottom_tab_height">50dp</dimen>
+</resources>

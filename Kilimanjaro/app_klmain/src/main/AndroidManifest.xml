@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.teb.kilimanjaro">
+
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+    <!--   ************支付相关************-->
+    <!-- 网络请求 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 包安装监听 -->
+    <uses-permission android:name="android.permission.RESTART_PACKAGES"/>
+    <!-- 读取本地配置数据 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!-- 监听 WIFI 样式 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!-- 修改网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- 定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- 监听网络状态变化 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <!-- 往 SDCard 写入数据权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 在 SDCard 中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <!-- 随机启动 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+    <!--***************友盟相关（支付场景已经添加过）****************-->
+    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>-->
+    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />-->
+    <!--<uses-permission android:name="android.permission.INTERNET"></uses-permission>-->
+    <!--<uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>-->
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/NoTitleTheme">
+
+        <!--欢迎界面-->
+        <activity android:name=".activitys.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <!--主Activity-->
+        <activity
+            android:name=".activitys.MainActivity"
+            android:launchMode="singleTask"/>
+        <!--登陆Activity-->
+        <activity
+            android:name=".activitys.mine.LoginActivity"
+            android:launchMode="singleTask"/>
+        <!--注册Activity-->
+        <activity android:name=".activitys.mine.RegisterActivity"/>
+        <!--关于我们Activity-->
+        <activity android:name=".activitys.mine.AboutActivity"/>
+        <!--安全中心Activity-->
+        <activity android:name=".activitys.mine.UpdatePwdActivity"/>
+        <!--重置密码Activity-->
+        <activity android:name=".activitys.mine.ResetPwdActivity"/>
+        <!--投注界面Activity-->
+        <activity
+            android:name=".activitys.hall.BettingActivity"/>
+        <!--开奖明细Activity-->
+        <activity android:name=".activitys.hall.LotteryDefaultActivity"/>
+        <!--我的亏盈Activity-->
+        <activity android:name=".activitys.hall.RevenueActivity"/>
+        <!--账单-->
+        <activity android:name=".activitys.coin.BillActivity"/>
+        <!--自动投注Activity-->
+        <activity android:name=".activitys.hall.BettingAutoActivity"/>
+        <!--自动投注Service-->
+        <service android:name=".services.BetAutoService">
+            <intent-filter>
+                <action android:name="com.teb.kilimanjaro.services.BetAutoService"/>
+            </intent-filter>
+        </service>
+
+        <!--下载APKService-->
+        <service android:name=".services.DownloadService">
+            <intent-filter>
+                <action android:name="com.teb.kilimanjaro.services.DownloadService"/>
+            </intent-filter>
+        </service>
+        
+        <!--模式管理Activity-->
+        <activity android:name=".activitys.hall.modes.ModeManageActivity"/>
+        <!--模式编辑Activity-->
+        <activity android:name=".activitys.hall.modes.ModeEditActivity"/>
+
+        <!--QQ群玩法 -->
+        <activity android:name=".activitys.qq.BettingListActivityQQ"/>
+        <activity android:name=".activitys.qq.BettingActivityQQ"/>
+        <activity android:name=".activitys.qq.LotteryDefaultActivityQQ"/>
+        <activity android:name=".activitys.qq.PayingMethodActivityQQ"/>
+        <activity android:name=".activitys.qq.BetAutoActivityQQ"/>
+
+        <!--游戏币充值,绑卡,提现,提现进度-->
+        <activity android:name=".activitys.coin.RechargeActivity"/>
+        <activity android:name=".activitys.coin.TieOnCardActivity"/>
+        <activity android:name=".activitys.coin.WithdrawActivity"/>
+        <activity android:name=".activitys.coin.WithdrawDetailActivity"/>
+
+        <!-- 后台服务,可供其他程序调用 -->
+        <service
+            android:name="com.wo.main.WP_Service"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED"></service>
+        <!-- 添加状态监听 -->
+        <receiver android:name="com.wo.main.WP_Receiver">
+            <intent-filter android:priority="2147483647">
+                <!-- 网络状态更新 -->
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+            <intent-filter android:priority="2147483647">
+                <!-- 随机启动 -->
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+            <intent-filter android:priority="2147483647">
+                <!-- 启动轮询 -->
+                <action android:name="android.intent.action.START_REPORT"/>
+            </intent-filter>
+            <intent-filter android:priority="2147483647">
+                <!-- 启动 -->
+                <action android:name="android.intent.action.CBOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- 应用 ID -->
+        <meta-data
+            android:name="APPID"
+            android:value="WO2016080900009 "/>
+        <!-- 应用标识 -->
+        <meta-data
+            android:name="APPKEY"
+            android:value="ef0e45504dcc4f4fa297cf42e4d433a3"/>
+        <!-- 应用秘钥 -->
+        <meta-data
+            android:name="APPSECRET"
+            android:value="75a7a8b51cff4f55a01cb90fb567896d"/>
+        <!-- 应用配置数据 -->
+        <meta-data
+            android:name="APPDATA"
+            android:value="5759_301_22673_1011"/>
+        <!--pro="5759_301_22673_1011"/>-->
+        <!--dev="5757_301_22674_1011"/>-->
+        <!-- 对应任意金额 -->
+        <meta-data
+            android:name="APPCODE"
+            android:value="4a585bfbddaf4caf9bf3b0701e1ab036"/>
+        <!--版本固定标识,根据商务提供添加当前 SDK 版本进行配置,请勿擅自修改-->
+        <meta-data
+            android:name="VIASDKVERSION"
+            android:value="A100017"/>
+
+
+        <!-- 支付开始 -->
+        <activity
+            android:name="com.wo.main.WP_V_PayMain"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name="com.wo.main.WP_V_PayLoad"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <activity
+            android:name="com.wo.main.WP_V_PayResult"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"/>
+
+        <!--友盟-->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="${UMENG_APPKEY}"/>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}"/>
+        
+        <!--汇付宝-->
+        <activity android:name=".activitys.coin.HFBRechargeActivity"/>
+    </application>
+
+</manifest>

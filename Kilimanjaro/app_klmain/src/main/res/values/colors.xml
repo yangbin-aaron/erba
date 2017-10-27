@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--主色调-->
+    <color name="main_background">#D44E4D</color>
+    <color name="main_background_x">#CD3700</color>
+
+    <!--白色-->
+    <color name="white">#FFFFFF</color>
+    <!--黑色-->
+    <color name="black">#000000</color>
+    <!--黑色_l-->
+    <color name="black_l">#242424</color>
+    <!--透明-->
+    <color name="transparent">#00000000</color>
+    <!-- 半透明 -->
+    <color name="translucent">#0a000000</color>
+    <!--灰色xxx-->
+    <color name="gray_xxx">#333333</color>
+    <!--灰色xx-->
+    <color name="gray_xx">#5C5C5C</color>
+    <!--灰色x-->
+    <color name="gray_x">#D4D4D4</color>
+    <!--橙色-->
+    <color name="orange">#FFA500</color>
+    <!--橙色_x-->
+    <color name="orange_x">#FF7F24</color>
+    <!--绿色-->
+    <color name="green">#66CD00</color>
+    <color name="green_x">#008B00</color>
+    <!--蓝色-->
+    <color name="blue">#1E90FF</color>
+    <!-- 深蓝色-->
+    <color name="blue_xx">#334F8D</color>
+
+    <!--字体灰色-->
+    <color name="gray_text">#A8A8A8</color>
+    <!--字体红色-->
+    <color name="red_text">#FF0000</color>
+    <!--字体橙色-->
+    <color name="orange_text">#FFA500</color>
+    <!--字体黑色-->
+    <color name="black_text">#000000</color>
+
+    <!--灰色线条，分割线-->
+    <color name="gray_line">#EDEDED</color>
+    <!--BottomBar选中和未选中的颜色-->
+    <color name="bottom_tab_select">#D44E4D</color>
+    <color name="bottom_tab_unselect">#999999</color>
+
+    <!--登录按钮点击效果颜色-->
+    <color name="login_btn_select">#FF0000</color>
+    <color name="login_btn_unselect">#FF4040</color>
+
+    <!--游客登录按钮点击效果颜色-->
+    <color name="visitor_login_btn_select">#458B00</color>
+    <color name="visitor_login_btn_unselect">#66CD00</color>
+
+    <!--GameList选择按钮点击效果颜色-->
+    <color name="gamelist_btn_selected">#CA6869</color>
+    <color name="gamelist_btn_select">#D48687</color>
+    <color name="gamelist_btn_unselect">#D44E4D</color>
+
+</resources>

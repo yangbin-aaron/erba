@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tv_adapter_modename"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/revenue_linearlayout_height"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/radio_white_bg"
+        android:gravity="center"
+        android:text="自定义模式"
+        android:textColor="@color/black_text"/>
+</LinearLayout>

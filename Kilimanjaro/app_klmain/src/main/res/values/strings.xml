@@ -1,0 +1,336 @@
+<resources>
+    <string name="app_name">爱玩28</string>
+
+    <!--APP-->
+    <string name="have_not_net">网络异常!</string>
+    <string name="have_not_service">服务器连接异常</string>
+    <string name="can_not_connect">连接超时!</string>
+    <string name="msg_error">显示异常</string>
+    <string name="have_login_wrong">登录异常，请重新登录！</string>
+    <string name="app_confirm">确定</string>
+    <string name="app_cancel">取消</string>
+    <string name="app_loading">加载中...</string>
+    <string name="app_please_wait">敬请期待</string>
+    <string name="app_updateapp_must">发现新的版本，请先更新！</string>
+    <string name="app_updateapp_">发现新的版本，是否更新？</string>
+    <string name="app_call_phone">确定要拨打%s?</string>
+
+    <!--返回键双击提醒-->
+    <string name="app_back_hint">再按一次退出程序</string>
+
+    <!--BottomTab三个按钮文字-->
+    <string name="bottom_tab_hall">大厅</string>
+    <string name="bottom_tab_trend">趋势</string>
+    <string name="bottom_tab_mine">我的</string>
+
+    <!--我的-->
+    <string name="nickname_str">昵称：</string>
+    <string name="gamecoin_str">金豆</string>
+    <string name="experience_str">积分</string>
+
+    <string name="game_coin_add_str">金豆充值</string>
+    <string name="game_coin_withdraw_str">金豆提现</string>
+    <string name="notice_str">消息通知</string>
+    <string name="modifypwd_str">密码修改</string>
+    <string name="about_str">关于我们</string>
+    <string name="logout_str">退出登录</string>
+    <string name="hint_logout_str">退出当前用户？</string>
+
+    <string name="auto_str">自动投注</string>
+    <string name="model_str">模式编辑</string>
+    <string name="revenue">亏盈</string>
+    <string name="loss_and_profit_proportion">比例</string>
+
+    <!--登陆-->
+    <string name="input_phone_or_email">手机号码</string>
+    <string name="input_password">请输入密码</string>
+    <string name="login_btn">登录</string>
+    <string name="forget_pwd">忘记密码？</string>
+    <string name="visitor_login">以访客身份登录，随便玩玩</string>
+    <string name="register">没有账号？马上注册</string>
+    <string name="phone_pwd_cannot_null">账号或密码不能为空</string>
+    <string name="phone_email_is_error">请输入正确的手机号码</string>
+    <string name="activeaccount_success">发送成功，请前往邮箱激活！</string>
+    <string name="re_send_email">重新发送？</string>
+    <string name="pwd_lenth">密码长度应在6至16位之间</string>
+
+    <!--注册-->
+    <string name="regist_btn">注册</string>
+    <string name="submit_btn">提交</string>
+    <string name="re_send_sms">重发验证码</string>
+    <string name="complete_btn">完成注册</string>
+    <string name="goto_login_btn">去登录</string>
+    <string name="free_regist">免费注册</string>
+    <string name="input_phone">请输入您的手机号码</string>
+    <string name="send_sms_hint">我们将发送验证码到这个号码，该条信息免费</string>
+    <string name="has_send_sms">已发送验证码短信到手机</string>
+    <string name="input_verify_code">请输入验证码</string>
+    <string name="input_email">QQ邮箱</string>
+    <string name="input_email_hint">* 请填写正确的QQ邮箱地址，我们需要通过该邮箱进行账号激活</string>
+    <string name="input_pwd">设置密码</string>
+    <string name="input_repwd">确认密码</string>
+    <string name="input_pay_pwd">设置提现密码</string>
+    <string name="input_repay_pwd">确认提现密码</string>
+    <string name="agreen_mdp_hint">同意用户服务协议</string>
+    <string name="phone_cannot_null">手机号码不能为空</string>
+    <string name="virify_cannot_null">验证码不能为空</string>
+    <string name="phone_is_error">请输入正确的手机号码</string>
+    <string name="input_cannot_null">输入内容不能为空</string>
+    <string name="email_is_error">请输入正确的QQ邮箱</string>
+    <string name="loginpwd_and_repwd_not_same">两次登录密码不一样</string>
+    <string name="paypwd_and_repwd_not_same">两次提现密码不一样</string>
+    <string name="pwd_and_paypwd_cannot_same">登录和支提现密码不能一样</string>
+
+    <!--关于我们-->
+    <string name="bar_about_us">关于我们</string>
+    <string name="visition">当前版本号：</string>
+    <string name="kefu_qq">客服QQ</string>
+    <string name="kefu_qq_num_default">765770000</string>
+    <string name="kefu_phone">客服电话</string>
+    <string name="update_app">检测更新</string>
+    <string name="update_app_newest">已经是最新版本!</string>
+    <string name="call_phone_str">拨打客户电话 </string>
+    <string name="call_phone_default">13537683844</string>
+
+    <!--修改密码-->
+    <string name="bar_updatepwd">安全中心</string>
+    <string name="old_pwd">旧密码</string>
+    <string name="new_pwd">新密码</string>
+    <string name="repwd">确认密码</string>
+    <string name="update_login_pwd_str">修改登录密码</string>
+    <string name="update_pay_pwd_str">修改提现密码</string>
+    <string name="update_login_pwd">确认修改登录密码</string>
+    <string name="update_pay_pwd">确认修改提现密码</string>
+    <string name="forget_pay_pwd">忘记提现密码？</string>
+    <string name="send_new_pay_pwd">发送随机密码到邮箱？</string>
+    <string name="old_and_newpwd_cannot_same">新旧密码不能一样</string>
+    <string name="pwd_and_repwd_not_same">新密码和确认密码不一样</string>
+    <string name="update_loginpwd_success">登录密码修改成功</string>
+    <string name="update_paypwd_success">提现密码修改成功</string>
+    <string name="resetpaypwd_success">发送成功，请前往邮箱重置！</string>
+
+    <!--重置密码-->
+    <string name="authentication">验证身份</string>
+    <string name="input_your_registed_phone">请输入您已注册的手机号码</string>
+    <string name="get_captcha">获取验证码</string>
+    <string name="call_apply_reset_loginpwd">若手机无法收到验证码，请联系客服QQ 765770000 申诉更改登录密码</string>
+    <string name="reset_hint0">已发送验证码到：</string>
+    <string name="input_new_password">请输入新密码</string>
+    <string name="input_re_new_password">请再次输入新密码</string>
+    <string name="new_pwd_set_success">新密码设置成功</string>
+    <string name="remember_your_pwd">请牢记您设置的新密码</string>
+    <string name="back_login">返回登录</string>
+    <string name="pwd_reset_success">重置密码成功</string>
+    <string name="input_captcha">请填写短信验证码</string>
+
+    <!--趋势-->
+    <string name="trend_dialog_title">趋势查询</string>
+    <string name="trend_dialog_message1">统计范围：</string>
+    <string name="trend_dialog_message2">期</string>
+    <string name="trend_dialog_right_btn">查询</string>
+    <string name="trend_dialog_hint">想要查询最近多少期数据呢？(1-200)</string>
+
+    <!--开奖明细-->
+    <string name="lottery_d_bar">开奖明细</string>
+    <string name="lottery_d_issue">开奖期数</string>
+    <string name="lottery_d_result">开奖号码</string>
+    <string name="lottery_d_roster">中奖名单</string>
+    <string name="lottery_d_mybet">我的投注</string>
+    <string name="lottery_d_ys_id">* 原始开奖号码来自于%s</string>
+    <string name="lottery_d_ys_id1">第 %d 期</string>
+    <string name="lottery_d_userid">用户ID</string>
+    <string name="lottery_d_amount">投注额</string>
+    <string name="lottery_d_get">获得金豆</string>
+    <string name="lottery_d_getscore">获得积分</string>
+    <string name="lottery_d_num">号码</string>
+    <string name="lottery_d_odds">赔率</string>
+    <string name="lottery_default_no_more_data">已无更多数据</string>
+
+    <!--投注界面-->
+    <string name="betting_str">投注</string>
+    <string name="betting_mode">模式</string>
+    <string name="betting_times">倍数</string>
+    <string name="betting_change0">投注界面</string>
+    <string name="betting_change1">极速投注界面</string>
+    <string name="betting_di">第</string>
+    <string name="betting_qi">期</string>
+    <string name="betting_amount">余额：</string>
+    <string name="betting_total_bet">总投注：</string>
+    <string name="betting_endbet">结束投注</string>
+    <string name="betting_hasbet">已投注</string>
+    <string name="betting_open_result">开奖中</string>
+    <string name="betting_open_com">已开奖</string>
+    <string name="betting_refresh">刷新</string>
+    <string name="betting_save_bet">保存投注</string>
+    <string name="betting_goto_recharge">去充值</string>
+    <string name="betting_confirm_bet">确定投注%d吗？</string>
+    <string name="betting_expect_result">若中奖：奖金约 </string>
+    <string name="betting_expect_result1"> 到 </string>
+    <string name="betting_random">随机</string>
+    <string name="betting_01_times">0.1倍</string>
+    <string name="betting_05_times">0.5倍</string>
+    <string name="betting_08_times">0.8倍</string>
+    <string name="betting_12_times">1.2倍</string>
+    <string name="betting_15_times">1.5倍</string>
+    <string name="betting_20_times">2倍</string>
+    <string name="betting_100_times">10倍</string>
+    <string name="betting_500_times">50倍</string>
+    <string name="betting_clear">清除</string>
+    <string name="betting_last_bet">上期投注</string>
+    <string name="betting_bet_turn">反选</string>
+    <string name="betting_betall">梭哈</string>
+    <string name="betting_quanbao">全包</string>
+    <string name="betting_dan">单</string>
+    <string name="betting_shuang">双</string>
+    <string name="betting_zhong">中</string>
+    <string name="betting_bian">边</string>
+    <string name="betting_da">大</string>
+    <string name="betting_xiao">小</string>
+    <string name="betting_betall_coin">梭哈总额</string>
+
+    <!--大厅-->
+    <string name="gamecoin">金豆</string>
+    <string name="gamescore">积分</string>
+    <string name="hall_jackpot">奖池</string>
+    <string name="hall_paying_method">玩法介绍</string>
+
+    <!--模式管理-->
+    <string name="mode_manage_bar">模式管理</string>
+    <string name="mode_manage_addmode">新建模式</string>
+    <string name="mode_manage_modata_hint">空空如也，快去建个吧</string>
+    <string name="mode_manage_modename">模式名称</string>
+    <string name="mode_manage_delete">删除</string>
+    <string name="mode_manage_updatename">改名</string>
+    <string name="mode_manage_total_coin">投注总额</string>
+
+    <!--模式编辑-->
+    <string name="mode_edit_bar">模式编辑</string>
+    <string name="mode_edit_input_modename">请输入模式名称</string>
+    <string name="mode_edit_modename_had"> 已经存在</string>
+    <string name="mode_edit_my_mode">自定义模式</string>
+    <string name="mode_edit_save_other">另存为</string>
+    <string name="mode_edit_save">保存</string>
+    <string name="mode_edit_dialog_title">模式另存为</string>
+
+    <!--积分-->
+    <string name="coin_nohave_residual">金豆不足以支付本次投注\n请前往充值！</string>
+    <string name="coin_bet">投注总额</string>
+    <string name="coin_input">输入投注金豆</string>
+    <string name="coin_residual">金豆：</string>
+    <string name="coin_max">本期可投注：</string>
+    <string name="coin_not_has_more">金豆不足</string>
+
+    <!--自动投注-->
+    <string name="betauto_bar">自动投注</string>
+    <string name="betauto_start">开始自动投注</string>
+    <string name="betauto_stop">停止自动投注</string>
+    <string name="betauto_current_issue">当前已是 %d 期</string>
+    <string name="betauto_start_issue_hine">开始期号最少应为 %d </string>
+    <string name="betauto_min_issue_count">自动投注期数不能少于 %d 期</string>
+    <string name="betauto_coin_max">您当前的余额已有 %d </string>
+    <string name="betauto_coin_min">您当前的余额只有 %d </string>
+    <string name="betauto_goto_addmode">请前往添加投注模式</string>
+    <string name="betauto_no_select">未选择</string>
+    <string name="betauto_start_setting">开始参数设置</string>
+    <string name="betauto_start_mode">开始模式</string>
+    <string name="betauto_bet_issue">投注期号</string>
+    <string name="betauto_stop_setting">停止参数设置</string>
+    <string name="betauto_auto_issue_count">自动期数</string>
+    <string name="betauto_coin_max_res">金豆达到</string>
+    <string name="betauto_coin_min_res">金豆不足</string>
+    <string name="betauto_coin_m">时</string>
+    <string name="betauto_continue_after_win">中奖后继续投注</string>
+    <string name="betauto_select_mode">选择模式</string>
+
+    <!--我的亏盈-->
+    <string name="revenue_bar_base">我的亏盈</string>
+    <string name="revenue_bar">亏盈</string>
+    <string name="revenue_today_str">今日参与</string>
+    <string name="revenue_win_lv">胜率</string>
+    <string name="revenue_today">今日</string>
+    <string name="revenue_yesterday">昨日</string>
+    <string name="revenue_this_week">本周</string>
+    <string name="revenue_last_week">上周</string>
+    <string name="revenue_this_month">本月</string>
+    <string name="revenue_last_month">上月</string>
+    <string name="revenue_this_year">今年</string>
+    <string name="revenue_last_year">去年</string>
+    <string name="revenue_byperoid">按期亏盈</string>
+    <string name="revenue_bydays">按日亏盈</string>
+    <string name="revenue_issue">投注期号</string>
+    <string name="revenue_result">结果</string>
+    <string name="revenue_date">日期</string>
+
+    <!--侧边栏-->
+    <string name="drawer_left_game_list">游戏场次</string>
+
+    <!--QQ群玩法  BettingListActivity-->
+    <string name="qq_bettinglist_bar">投注列表</string>
+    <string name="qq_bettinglist_addbet">加注</string>
+
+    <!--QQ群玩法  BettingActivity-->
+    <string name="qq_betting_bar">投注</string>
+    <string name="qq_betting_last_bet">上次投注</string>
+    <string name="qq_lottery_d_amount">投注额：</string>
+    <string name="qq_payingmethod_bar">%s玩法介绍</string>
+    <string name="qq_betting_2">请以2的倍数的金额进行投注</string>
+    <!--<string name="qq_lottery_d_maxcoin">投注额不能超过 </string>-->
+
+    <!--QQ群玩法  LotteryDefaultActivityQQ-->
+    <string name="qq_lottery_default_bar">开奖明细</string>
+    <string name="qq_lottery_default_jine">金额：</string>
+    <string name="qq_lottery_default_benli">本利：</string>
+    <string name="qq_lottery_default_haoma">号码：</string>
+
+    <!--充值界面  RechargeActivity-->
+    <string name="recharge_bar">充值金豆</string>
+    <string name="recharge_amount">充值金额（元）</string>
+    <string name="recharge_success">充值成功!</string>
+    <string name="recharge_fail">充值失败!</string>
+    <string name="recharge_rmb_cannot_null">金额不能为空</string>
+    <string name="recharge_hasnot_weixin">请先安装微信!</string>
+    <string name="recharge_hasnot_qq">请先安装QQ!</string>
+    <string name="recharge_dbxe">单笔限额 %d 元</string>
+    <string name="recharge_min">最少充值 %d 元</string>
+
+    <!--绑卡界面  TieOnCardActivity-->
+    <string name="tieoncard_bar">绑定银行卡</string>
+    <string name="tieoncard_success">绑定银行卡成功！</string>
+    <string name="tieoncard_qq">QQ：</string>
+    <string name="tieoncard_phone">手机：</string>
+    <string name="tieoncard_name">姓名：</string>
+    <string name="tieoncard_idno">身份证：</string>
+    <string name="tieoncard_cardno">银行卡：</string>
+    <string name="tieoncard_fee_desc">1.请认真填写信息，错误信息可能造成提现失败或钱财损失；\n2.绑定后，若发现有误，可联系客服进行修改；\n3.若有任何疑问，请前往 我的->关于我们->联系客服。\n</string>
+
+    <!--提现 WithdrawActivity-->
+    <string name="withdraw_dialog_pwd">请输入提现密码</string>
+    <string name="withdraw_bar">提现申请</string>
+    <string name="withdraw_cardno">银行卡号：</string>
+    <string name="withdraw_cardno_error">银行卡号位数错误</string>
+    <string name="withdraw_card_hint">* 如果不是该银行卡，请及时</string>
+    <string name="withdraw_call_kefu">联系客服</string>
+    <string name="withdraw_amount">提现金额（元）</string>
+    <string name="withdraw_can_amount">可提现金额： %d 元</string>
+    <string name="withdraw_all">全部提现</string>
+    <string name="withdraw_mobie_captcha">请输入手机验证码</string>
+    <string name="withdraw_mobie_hint">* 将发送验证码短信到 %s 手机上</string>
+    <string name="withdraw_hint_str">提示：</string>
+    <string name="withdraw_submit_with">提交申请</string>
+    <string name="withdraw_success">提现申请成功！</string>
+    <string name="withdraw_fee_desc">1.消费用户提款免手续费，为防止恶意提款，每日提款申请次数最多为2次，超过次日处理；\n2.周一至周五09:00-17:00的提款申请当天处理，17:00以后的提款申请延至第二天处理。周五17:00后提款，延至下个工作日处理。提现到账时间最快2小时，最晚2个工作日；\n3.周六周日提款延迟到周一处理，若节假日提款，一律节后第一个工作日处理。4.若有任何疑问，请前往 我的->关于我们->联系客服。</string>
+
+    <!--账单明细   BillActivity-->
+    <string name="bill_bar">账单明细</string>
+    <string name="bill_rechager_list">充值记录</string>
+    <string name="bill_withdraw_list">提现记录</string>
+    <string name="bill_time">时间</string>
+    <string name="bill_amount">金额</string>
+    <string name="bill_recharge_type">充值方式</string>
+    <string name="bill_withdraw_pross">处理进度</string>
+
+    <!--提现进度  WithdrawDetailActivity-->
+    <string name="withdetail_bar">提现进度</string>
+    <string name="withdetail_no">订单编号：%s</string>
+
+</resources>

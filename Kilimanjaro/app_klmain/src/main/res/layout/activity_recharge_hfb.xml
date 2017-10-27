@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.teb.kilimanjaro.views.MyActionBar
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"/>
+
+    <!--输入框-->
+    <TextView
+        android:id="@+id/tv_demo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/actionBar"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:text="@string/recharge_amount"
+        android:textColor="@color/black_text"/>
+
+    <LinearLayout
+        android:id="@+id/ll_demo"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_below="@id/tv_demo"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/radio_gray_white_bg"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="￥"
+            android:textColor="@color/black_text"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/et_rmb"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:inputType="number"
+            android:maxLength="8"
+            android:text="50"
+            android:textColor="@color/black_text"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <!--小提示-->
+    <RelativeLayout
+        android:id="@+id/rl_hint"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/ll_demo">
+
+        <TextView
+            android:id="@+id/tv_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="14dp"
+            android:text="，1 RMB = 1 金豆"
+            android:textColor="@color/red_text"/>
+
+        <TextView
+            android:id="@+id/tv_dbxe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="4dp"
+            android:layout_toLeftOf="@id/tv_3"
+            android:text="单笔限额 3000 元"
+            android:textColor="@color/red_text"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_2"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/rl_hint"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="14dp"
+        android:text="请选择支付方式"
+        android:textColor="@color/black_text"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/tv_onpay"
+        android:layout_below="@id/tv_2"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:id="@+id/rg_pay_way"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp">
+
+                <!--HeepayDemo_SDK-->
+                <RadioButton
+                    android:id="@+id/rb_wechat_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:focusable="false"
+                    android:text="微信支付"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/rb_alipay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:text="支付宝支付"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/rb_jcard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:text="骏卡支付"
+                    android:textColor="@color/black"
+                    android:visibility="gone"/>
+
+                <!--HeepayDemo_SDK-->
+                <RadioButton
+                    android:id="@+id/rb_fast_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:focusable="false"
+                    android:text="快捷支付"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/rb_phone_bank_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:focusable="false"
+                    android:text="手机银行"
+                    android:textColor="@color/black"
+                    android:visibility="gone"/>
+
+                <RadioButton
+                    android:id="@+id/rb_credit_card_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:focusable="false"
+                    android:text="信用卡无卡支付"
+                    android:textColor="@color/black"
+                    android:visibility="gone"/>
+
+                <RadioButton
+                    android:id="@+id/rb_jcard_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:focusable="false"
+                    android:text="骏卡支付"
+                    android:textColor="@color/black"
+                    android:visibility="gone"/>
+
+                <RadioButton
+                    android:id="@+id/rb_phone_card_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:focusable="false"
+                    android:text="话费卡支付"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/rb_accout_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:focusable="false"
+                    android:text="汇付宝余额支付"
+                    android:textColor="@color/black"
+                    android:visibility="gone"/>
+
+                <RadioButton
+                    android:id="@+id/rb_else_card_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:focusable="false"
+                    android:text="其他卡支付"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/rb_all_card_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:focusable="false"
+                    android:text="全部"
+                    android:textColor="@color/black"/>
+            </RadioGroup>
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tv_onpay"
+        style="@style/LoginBtnStyle"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/btn_green_selector_bg5"
+        android:text="确定支付"/>
+</RelativeLayout>

@@ -1,0 +1,179 @@
+<resources>
+
+    <style name="NoTitleTheme" parent="android:Theme.NoTitleBar">
+        <!-- <item name="android:windowNoTitle">true</item>除去title android:Theme.Dialog-->
+    </style>
+
+    <!-- 最好所有TextView使用此统一样式 -->
+    <style name="AppTheme.Widget.TextView" parent="@android:style/Widget.TextView"></style>
+
+    <!--横线-->
+    <style name="StyleHorizontalLineView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/mine_adapter_line_d</item>
+        <item name="android:background">@color/gray_line</item>
+    </style>
+
+    <!--竖线-->
+    <style name="StyleVerticalLineView">
+        <item name="android:layout_width">@dimen/mine_adapter_line_d</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/gray_line</item>
+    </style>
+
+    <!-- Bottom tab: hall,trend,mine-->
+    <style name="BottomTab" parent="AppTheme.Widget.TextView">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/bottom_tab_text_color</item>
+        <item name="android:clickable">true</item>
+        <item name="android:drawablePadding">-2dp</item>
+    </style>
+
+    <!-- 登陆ActivityBaseView-->
+    <style name="LoginBaseStyle">
+        <item name="android:layout_marginTop">@dimen/login_btn_mar_top</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/login_btn_height</item>
+        <item name="android:layout_marginLeft">@dimen/login_btn_mar_leftright</item>
+        <item name="android:layout_marginRight">@dimen/login_btn_mar_leftright</item>
+    </style>
+    <!--登陆界面按钮-->
+    <style name="LoginBtnStyle" parent="LoginBaseStyle">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!--登陆界面输入框-->
+    <style name="LoginBaseEditText" parent="LoginBaseStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:textColor">@color/gray_text</item>
+        <item name="android:background">@drawable/login_edittext_border</item>
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+
+    <!--注册界面  进度数字-->
+    <style name="RegisterTextView">
+        <item name="android:layout_width">14dp</item>
+        <item name="android:layout_height">14dp</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!--修改密码界面 linearLayout-->
+    <style name="UpdatePwdLinearLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">2dp</item>
+    </style>
+
+    <!--修改密码界面 TextView-->
+    <style name="UpdatePwdTextView">
+        <item name="android:layout_width">70dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">right</item>
+        <item name="android:textColor">@color/gray_text</item>
+    </style>
+
+    <!--修改密码界面 EditText-->
+    <style name="UpdatePwdEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/radio_white_bg</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:textColor">@color/gray_text</item>
+        <item name="android:inputType">textPassword</item>
+    </style>
+
+    <!-- 自定义loading dialog -->
+    <style name="StylesDialog" parent="android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog的windowFrame框为无 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 设置dialog的背景 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 是否显示title -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 是否半透明 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 也是个drawable，定义contentoverlay的背景 -->
+        <item name="android:backgroundDimEnabled">false</item>
+        <!-- 背景是否模糊显示 -->
+    </style>
+
+    <!--投注界面：选择倍数时的按钮  基本style-->
+    <style name="StylesBetTimesBtnBase" parent="AppTheme.Widget.TextView">
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_height">38dp</item>
+        <item name="android:background">@drawable/btn_bet_times_selector_bg</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!--投注界面：选择倍数时的按钮-->
+    <style name="StylesBetTimesBtn0" parent="StylesBetTimesBtnBase">
+        <item name="android:textColor">@color/orange</item>
+    </style>
+
+    <!--投注界面：选择倍数时的按钮(大 小 全包   等等)-->
+    <style name="StylesBetTimesBtn1" parent="StylesBetTimesBtnBase">
+        <item name="android:textColor">@color/gray_xx</item>
+    </style>
+
+    <!--我的可以界面textview式样-->
+    <style name="StyleRevenueTextView" parent="AppTheme.Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:textColor">@color/gray_xx</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <!--自定义键盘TextView样式-->
+    <style name="StyleMyKeyboardTextView" parent="AppTheme.Widget.TextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black_text</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:background">@drawable/gray_white_selector_bg</item>
+    </style>
+    
+    <!--自动投注界面的编辑框样式-->
+    <style name="StyleBetAutoEditText">
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/gray_xx</item>
+        <item name="android:background">@drawable/radio_white_bg</item>
+        <item name="android:inputType">number</item>
+    </style>
+
+    <style name="dialogWindowAnim1" parent="android:Animation" mce_bogus="1">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter_hall_barright</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit_hall_barright</item>
+    </style>
+
+    <style name="dialogWindowAnim2" parent="android:Animation" mce_bogus="1">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter_betall</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit_betall</item>
+    </style>
+</resources>

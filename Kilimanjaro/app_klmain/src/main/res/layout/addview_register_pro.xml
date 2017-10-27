@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="20dp"
+              android:layout_marginLeft="60dp"
+              android:layout_marginRight="60dp"
+              android:layout_marginTop="10dp">
+    <!--进度-->
+
+    <!--1-->
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <View
+            android:id="@+id/view_1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_centerVertical="true"
+            android:background="@color/main_background"/>
+
+        <TextView
+            android:id="@+id/tv_1"
+            style="@style/RegisterTextView"
+            android:background="@drawable/circle_red_bg"
+            android:text="1"/>
+    </RelativeLayout>
+
+    <!--2-->
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <View
+            android:id="@+id/view_2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_centerVertical="true"
+            android:background="@color/black"/>
+
+        <TextView
+            android:id="@+id/tv_2"
+            style="@style/RegisterTextView"
+            android:background="@drawable/circle_black_bg"
+            android:text="2"/>
+    </RelativeLayout>
+
+    <!--3-->
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <View
+            android:id="@+id/view_3"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_centerVertical="true"
+            android:background="@color/black"/>
+
+        <TextView
+            android:id="@+id/tv_3"
+            style="@style/RegisterTextView"
+            android:background="@drawable/circle_black_bg"
+            android:text="3"/>
+    </RelativeLayout>
+
+    <!--4-->
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <View
+            android:id="@+id/view_4"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_centerVertical="true"
+            android:background="@color/black"/>
+
+        <TextView
+            android:id="@+id/tv_4"
+            style="@style/RegisterTextView"
+            android:background="@drawable/circle_black_bg"
+            android:text="4"/>
+    </RelativeLayout>
+
+</LinearLayout>
