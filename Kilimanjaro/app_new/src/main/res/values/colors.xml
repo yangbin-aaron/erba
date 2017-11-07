@@ -48,17 +48,4 @@
     <color name="bottom_tab_select">#D44E4D</color>
     <color name="bottom_tab_unselect">#999999</color>
 
-    <!--登录按钮点击效果颜色-->
-    <color name="login_btn_select">#FF0000</color>
-    <color name="login_btn_unselect">#FF4040</color>
-
-    <!--游客登录按钮点击效果颜色-->
-    <color name="visitor_login_btn_select">#458B00</color>
-    <color name="visitor_login_btn_unselect">#66CD00</color>
-
-    <!--GameList选择按钮点击效果颜色-->
-    <color name="gamelist_btn_selected">#CA6869</color>
-    <color name="gamelist_btn_select">#D48687</color>
-    <color name="gamelist_btn_unselect">#D44E4D</color>
-
 </resources>
