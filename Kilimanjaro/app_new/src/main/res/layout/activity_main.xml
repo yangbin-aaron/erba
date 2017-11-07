@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--页面内容-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!--页面容器-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/bottom_tab_height">
+
+        <FrameLayout
+            android:id="@+id/kl_framelayout0"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <FrameLayout
+            android:id="@+id/kl_framelayout1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+
+        <FrameLayout
+            android:id="@+id/kl_framelayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <!--按钮区域分割线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/bottom_tab_height"
+        android:background="@color/gray_line"/>
+
+    <!--按钮BottomTab-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_tab_height"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="2dp">
+
+        <TextView
+            android:id="@+id/tv_hall"
+            style="@style/BottomTab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/bottom_tab_hall"
+            android:text="@string/bottom_tab_hall"/>
+
+        <TextView
+            android:id="@+id/tv_trend"
+            style="@style/BottomTab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/bottom_tab_trend"
+            android:text="@string/bottom_tab_trend"/>
+
+        <TextView
+            android:id="@+id/tv_mine"
+            style="@style/BottomTab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/bottom_tab_mine"
+            android:text="@string/bottom_tab_mine"/>
+    </LinearLayout>
+</RelativeLayout>

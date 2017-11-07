@@ -1,0 +1,85 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion '21.1.2'
+
+    defaultConfig {
+        applicationId "com.teb.kilimanjaro"
+        minSdkVersion 14
+        targetSdkVersion 21
+        buildConfigField "boolean", "SALES_PACKAGE", "true"
+        multiDexEnabled true
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("../../kilimanjaro.keystore")
+            storePassword "123456kl"
+            keyAlias "kilimanjaro"
+            keyPassword "123456kl"
+        }
+        release {
+            storeFile file("../../kilimanjaro.keystore")
+            storePassword "123456kl"
+            keyAlias "kilimanjaro"
+            keyPassword "123456kl"
+        }
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+
+            // eg. name sample is Kilimanjaro_android_1.0_0_yyyyMMdd.apk
+            def file = output.outputFile
+            def date = new Date();
+            def formattedDate = date.format('yyMMdd')
+            def fileName = "${variant.productFlavors[0].name}_${variant.productFlavors[1].name}_${variant.versionName}_${formattedDate}.apk"
+            output.outputFile = new File(file.parent, fileName)
+        }
+    }
+
+    productFlavors {
+
+        flavorDimensions "package", "channel"
+
+        kilimanjaro {
+            dimension "package"
+            applicationId "com.teb.play"
+            versionCode 101
+            versionName "1.0.1"
+            manifestPlaceholders = [
+                    UMENG_APPKEY: "57bc13d267e58eeeae002718"
+            ]
+        }
+
+        android {
+            dimension "channel"
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "kl_android"]
+        }
+    }
+}
+
+dependencies {
+    compile project(':lib_pullToRefreshLib')
+//    compile project(':lib_hfb_pay')
+    compile 'com.squareup.okhttp:okhttp:2.5.0'
+    compile 'com.google.code.gson:gson:2.4'
+    compile 'com.android.support:support-v4:21.0.3'
+    compile files('libs/universal-image-loader-1.9.4-with-sources.jar')
+//    compile files('libs/alipaySdk-20160825.jar')
+//    compile files('libs/via_pay_sdk_v1.jar')
+    compile files('libs/umeng-analytics-v6.0.1.jar')
+}

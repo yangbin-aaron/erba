@@ -9,9 +9,9 @@ import com.teb.kilimanjaro.App;
 public class ApiConfig {
 
 
-    private static final String SCHEME_HOST_DEV = "http://112.74.185.7/spouting/1.0";// dev域名
+    private static final String SCHEME_HOST_DEV = "http://iplay28.chenfu3991.com/spouting";// dev域名
 //    private static final String SCHEME_HOST_PRO = "http://www.iplay28.com/spouting/1.0";// pro
-    private static final String SCHEME_HOST_PRO = "http://iplay28.chenfu3991.com";// pro
+    private static final String SCHEME_HOST_PRO = "http://iplay28.chenfu3991.com/spouting";// pro
 
     public static String getFullUrl(String url) {
         if (App.IS_DEV) {

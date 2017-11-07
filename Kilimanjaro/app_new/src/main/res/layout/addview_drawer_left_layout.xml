@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="240dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="left"
+    android:background="@color/main_background">
+
+    <!--用户头像信息-->
+    <RelativeLayout
+        android:id="@+id/rl_user"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingLeft="@dimen/drawer_padding"
+        android:paddingRight="@dimen/drawer_padding">
+
+        <RelativeLayout
+            android:id="@+id/user_photo_rl"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/circle_white_bg"
+            android:padding="1dp">
+
+            <com.teb.kilimanjaro.views.CircleImageView
+                android:id="@+id/user_photo_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/ic_launcher"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/user_photo_rl"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="游客"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/tv_uid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="UID 36454"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        style="@style/StyleHorizontalLineView"
+        android:layout_below="@id/rl_user"/>
+
+    <!--游戏场次-->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_user"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="@dimen/drawer_padding"
+        android:layout_marginTop="10dp"
+        android:text="@string/drawer_left_game_list"
+        android:textColor="@color/gray_text"/>
+
+    <ListView
+        android:id="@+id/drawer_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/textView"
+        android:layout_marginBottom="10dp"
+        android:divider="@null"
+        android:scrollbars="none"/>
+
+
+</RelativeLayout>

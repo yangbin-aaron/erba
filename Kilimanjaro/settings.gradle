@@ -1,1 +1,1 @@
-include ':app_klmain', ':lib_pullToRefreshLib', ':lib_hfb_pay'
+include ':app_klmain', ':lib_pullToRefreshLib', ':lib_hfb_pay', ':app_new'

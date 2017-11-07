@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_line">
+
+    <com.teb.kilimanjaro.views.MyActionBar
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"/>
+
+    <LinearLayout
+        android:id="@+id/ll_new_mode_hasmode"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_btn_height"
+        android:layout_below="@id/actionBar"
+        android:layout_margin="16dp"
+        android:background="@drawable/radio_white_bg"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/mode_manage_addmode"
+            android:textColor="@color/main_background"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_mode"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ll_new_mode_hasmode"
+        android:background="@color/white"
+        android:divider="@null"
+        android:scrollbars="none"/>
+
+    <!--没有模式，新建模式按钮-->
+    <RelativeLayout
+        android:id="@+id/rl_new_mode_nohasmode"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/ll_new_mode_nohasmode"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/login_btn_height"
+            android:layout_centerInParent="true"
+            android:layout_margin="16dp"
+            android:background="@drawable/radio_white_bg"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add_icon"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="@string/mode_manage_addmode"
+                android:textColor="@color/main_background"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_new_mode_nohasmode"
+            android:layout_centerHorizontal="true"
+            android:text="@string/mode_manage_modata_hint"
+            android:textColor="@color/gray_xx"
+            android:textSize="18sp"/>
+    </RelativeLayout>
+</RelativeLayout>
