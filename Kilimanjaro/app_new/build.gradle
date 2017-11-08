@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.qp.app_new"
-        minSdkVersion 14
+        minSdkVersion 19
         targetSdkVersion 21
         buildConfigField "boolean", "SALES_PACKAGE", "true"
         multiDexEnabled true

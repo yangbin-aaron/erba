@@ -6,18 +6,12 @@
         android:radius="4dp"/>
 
     <!-- 填充 -->
-    <solid android:color="@color/white"/>
+    <solid android:color="@color/gray_dialog_bg"/>
 
     <stroke
         android:width="0.6dp"
-        android:color="@color/gray_xx"/>
+        android:color="@color/gray_line"/>
 
-    <gradient
-        android:angle="270"
-        android:centerColor="@color/white"
-        android:endColor="@color/white"
-        android:startColor="@color/white"
-        />
 
 </shape>
 

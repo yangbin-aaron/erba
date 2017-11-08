@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -66,18 +65,15 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        Log.e("onPageScrolled", "position = " + position);
     }
 
     @Override
     public void onPageSelected(int position) {
-        Log.e("onPageSelected", "position = " + position);
         updateBottomBarState(position);
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
-        Log.e("StateChanged", "state = " + state);
     }
 
     @Override

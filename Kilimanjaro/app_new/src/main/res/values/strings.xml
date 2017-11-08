@@ -7,6 +7,7 @@
     <string name="can_not_connect">连接超时!</string>
     <string name="msg_error">显示异常</string>
     <string name="have_login_wrong">登录异常，请重新登录！</string>
+    <string name="please_login">请先登录!</string>
     <string name="app_confirm">确定</string>
     <string name="app_cancel">取消</string>
     <string name="app_loading">加载中...</string>
@@ -42,7 +43,7 @@
     <string name="loss_and_profit_proportion">比例</string>
 
     <!--登陆-->
-    <string name="please_login">点击登录！</string>
+    <string name="click_login">点击登录！</string>
     <string name="input_phone_or_email">手机号码</string>
     <string name="input_password">请输入密码</string>
     <string name="login_btn">登录</string>
@@ -54,6 +55,7 @@
     <string name="activeaccount_success">发送成功，请前往邮箱激活！</string>
     <string name="re_send_email">重新发送？</string>
     <string name="pwd_lenth">密码长度应在6至16位之间</string>
+    <string name="text_yk">游客</string>
 
     <!--注册-->
     <string name="regist_btn">注册</string>

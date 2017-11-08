@@ -44,6 +44,7 @@
 
     <!--灰色线条，分割线-->
     <color name="gray_line">#EDEDED</color>
+    <color name="gray_dialog_bg">#F0FDFD</color>
     <!--BottomBar选中和未选中的颜色-->
     <color name="bottom_tab_select">#DBB76C</color>
     <color name="bottom_tab_unselect">#999999</color>

@@ -41,6 +41,10 @@ public abstract class BaseFragment extends Fragment {
 
     public abstract void initView();
 
+    /**
+     * ActionBar   BEGIN
+     */
+
     private View mActionBar, mLeftView, mRightView;
     private TextView mTitleTV, mRightTV;
     private ImageView mBackIV, mRightIV;
@@ -104,4 +108,8 @@ public abstract class BaseFragment extends Fragment {
         mRightTV.setVisibility(View.VISIBLE);
         mRightTV.setText(resId);
     }
+
+    /**
+     * ActionBar   END
+     */
 }
