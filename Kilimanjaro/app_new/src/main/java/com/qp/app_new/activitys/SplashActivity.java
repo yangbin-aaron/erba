@@ -38,7 +38,7 @@ public class SplashActivity extends Activity {
             @Override
             public void run () {
                 // 是否登录
-                if (!AppPrefsContent.isLogined ()) {// 未登录跳到登录界面
+                if (AppPrefsContent.isLogined ()) {
                     // 调登录接口，先登录
                     NetWorkManager.getInstance ().login ("", null, new NetListener () {
                         @Override

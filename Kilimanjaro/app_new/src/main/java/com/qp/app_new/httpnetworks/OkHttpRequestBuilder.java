@@ -39,12 +39,12 @@ public class OkHttpRequestBuilder {
                                 .can_not_connect));
                         listener.onErrorResponse (NetStatusConfig.STATUS_NET_ERROR, App.mContext.getResources ().getString (R.string
                                 .can_not_connect));
-                        dialog.dismiss ();
+                        if (dialog != null) dialog.dismiss ();
                     }
 
                     @Override
                     public void onResponse (String response) {
-                        dialog.dismiss ();
+                        if (dialog != null) dialog.dismiss ();
                         Log.e (TAG, "response = " + response);
                         listener.onResponse (response);
                         try {
