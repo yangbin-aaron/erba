@@ -3,9 +3,9 @@ package com.qp.app_new.httpnetworks;
 import android.app.Dialog;
 import android.os.Handler;
 
+import com.qp.app_new.configs.ApiConfig;
 import com.qp.app_new.interfaces.NetListener;
 import com.qp.app_new.utils.StringUtil;
-import com.qp.app_new.configs.ApiConfig;
 
 import java.util.HashMap;
 
@@ -15,19 +15,19 @@ import java.util.HashMap;
  */
 public class NetWorkManager {
 
-    private static final String TAG = NetWorkManager.class.getSimpleName() + ">>>";
+    private static final String TAG = NetWorkManager.class.getSimpleName () + ">>>";
 
     private static NetWorkManager mNetWorkManager;
 
-    public static NetWorkManager getInstance() {
+    public static NetWorkManager getInstance () {
         if (mNetWorkManager == null) {
-            mNetWorkManager = new NetWorkManager();
+            mNetWorkManager = new NetWorkManager ();
         }
         return mNetWorkManager;
     }
 
-    public HashMap getSession() {
-        HashMap session = new HashMap();
+    public HashMap getSession () {
+        HashMap session = new HashMap ();
 //        LoginModel model = LoginModel.getUserInfo();
 //        if (model != null) {
 //            if (model.getToken() != null && !TextUtils.isEmpty(model.getToken())) {
@@ -46,7 +46,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void updateApp(String json, final Handler handler) {
+    public void updateApp (String json, final Handler handler) {
 //        final String url = ApiConfig.getFullUrl(ApiConfig.MineApi.UPDATE_APP);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -62,16 +62,16 @@ public class NetWorkManager {
     /**
      * 登录API
      *
-     * @param json    手机号码和密码的json数据
-     * @param handler
+     * @param json     手机号码和密码的json数据
+     * @param listener
      */
-    public void login(String json, final Handler handler) {
-//        final String url = ApiConfig.getFullUrl(ApiConfig.MineApi.LOGIN);
-//        Log.e("aaron", TAG + "***request***" + url + ">>>" + json);
+    public void login (String json, Dialog dialog, NetListener listener) {
+        final String url = ApiConfig.getFullUrl (ApiConfig.MineApi.LOGIN);
+        new OkHttpRequestBuilder ().create (url, dialog, json, listener);
 //        new OkHttpRequest.Builder()
 //                .url(url)
 //                .content(json)
-//                .post(new ResultCallback<String>() {
+//                .post(new ResultCallback<String> () {
 //
 //                    @Override
 //                    public void onBefore(Request request) {
@@ -87,7 +87,7 @@ public class NetWorkManager {
 //                    public void onResponse(String response) {
 //                        Log.e("result", TAG + "---response---" + url + ">>>" + response);
 //                        try {
-//                            LoginModel result = new Gson().fromJson(response, LoginModel.class);
+//                            LoginModel result = new Gson ().fromJson(response, LoginModel.class);
 //                            if (result.isSuccess()) {
 //                                MobclickAgent.onProfileSignIn(result.getData().getPhone());// 统计用户,友盟在统计用户时以设备为标准，如果需要统计应用自身的账号
 //                                AppPrefs.getInstance().saveUserJson(response);
@@ -123,7 +123,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void emailActiveAccount(String json, final Handler handler) {
+    public void emailActiveAccount (String json, final Handler handler) {
 //        final String url = ApiConfig.getFullUrl(ApiConfig.MineApi.EMAILACTIVEACCOUNT);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -141,7 +141,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void emailResetPayPassword(String json, final Handler handler) {
+    public void emailResetPayPassword (String json, final Handler handler) {
 //        final String url = ApiConfig.getFullUrl(ApiConfig.MineApi.EMAILRESETPAYPASSWORD);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -159,7 +159,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void sendRegistSMS(String json, final Handler handler) {
+    public void sendRegistSMS (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.MineApi.REGISTER_SEND_SMS);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -178,7 +178,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void getCaptcha(String json, final Handler handler) {
+    public void getCaptcha (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.MineApi.GET_CAPTCHA);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -197,7 +197,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void verityCaptcha(String json, final Handler handler) {
+    public void verityCaptcha (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.MineApi.VERITY_CAPTCHA);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -217,7 +217,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void compaleRegist(String json, final Handler handler) {
+    public void compaleRegist (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.MineApi.REGISTER_COMLPAE);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -236,7 +236,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void updateLoginPwd(String json, final Handler handler) {
+    public void updateLoginPwd (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.MineApi.LOGIN_PWD_MODIFY);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -255,7 +255,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void updatePayPwd(String json, final Handler handler) {
+    public void updatePayPwd (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.MineApi.PAY_PWD_MODIFY);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -273,7 +273,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void resetPwd(String json, final Handler handler) {
+    public void resetPwd (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.MineApi.LOGIN_PWD_RESET);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -292,10 +292,10 @@ public class NetWorkManager {
      * @param dialog
      * @param listener
      */
-    public void getGameList(Dialog dialog, NetListener listener) {
-        String url = ApiConfig.getFullUrl(ApiConfig.MineApi.GAME_LIST);
-        String json = StringUtil.getNullJson();
-        new OkHttpRequestBuilder().create(url, dialog, json, listener);
+    public void getGameList (Dialog dialog, NetListener listener) {
+        String url = ApiConfig.getFullUrl (ApiConfig.MineApi.GAME_LIST);
+        String json = StringUtil.getNullJson ();
+        new OkHttpRequestBuilder ().create (url, dialog, json, listener);
     }
 
     /**
@@ -304,7 +304,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void getHistoryLotteryList(String json, final Handler handler) {
+    public void getHistoryLotteryList (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.HallApi.GET_HISTORY_LOTTERY_LIST);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -323,7 +323,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void getNoLotteryList(String json, final Handler handler) {
+    public void getNoLotteryList (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.HallApi.GET_NO_LOTTERY_LIST);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -354,7 +354,7 @@ public class NetWorkManager {
      * @param handler
      * @param isBig   是否是大图
      */
-    public void getChart(String json, boolean isBig, final Handler handler) {
+    public void getChart (String json, boolean isBig, final Handler handler) {
 //        Log.e("aaron", "----------------------getChart>>>" + json);
 //        String url = ApiConfig.getFullUrl(ApiConfig.TrendApi.GET_BIG_CHART);
 //        if (!isBig) {
@@ -393,7 +393,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void getOddsList(String json, final Handler handler) {
+    public void getOddsList (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.HallApi.GAME_ODDS);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -412,7 +412,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void orderBet(String json, final Handler handler) {
+    public void orderBet (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.HallApi.ORDER_BET);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -430,7 +430,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void orderWinnersList(String json, final Handler handler) {
+    public void orderWinnersList (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.HallApi.ORDER_WINNERSLIST);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -449,7 +449,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void orderHadLotteryBets(String json, final Handler handler) {
+    public void orderHadLotteryBets (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.HallApi.ORDER_HADLOTTERYBETS);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -468,7 +468,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void orderNolotteryBets(String json, final Handler handler) {
+    public void orderNolotteryBets (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.HallApi.ORDER_NOLOTTERYBETS);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -487,7 +487,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void getRevenueGeneral(String json, final Handler handler) {
+    public void getRevenueGeneral (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.HallApi.REVENUE_GENERAL);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -506,7 +506,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void getRevenueByDays(String json, final Handler handler) {
+    public void getRevenueByDays (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.HallApi.REVENUE_DAYS);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -525,7 +525,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void getRevenueByPeriods(String json, final Handler handler) {
+    public void getRevenueByPeriods (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.HallApi.REVENUE_PERIODS);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -546,7 +546,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void getBettingListOfNoLotteryQQ(String json, final Handler handler) {
+    public void getBettingListOfNoLotteryQQ (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.BetApiQQ.ORDER_NOLOTTERYBETS_QQ);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -565,7 +565,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void getBettingListOfHadLotteryQQ(String json, final Handler handler) {
+    public void getBettingListOfHadLotteryQQ (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.BetApiQQ.ORDER_HADLOTTERYBETS_QQ);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -584,7 +584,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void orderBetQQ(String json, final Handler handler) {
+    public void orderBetQQ (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.BetApiQQ.ORDER_BET_QQ);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -602,7 +602,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void getBetPatternsListQQ(String json, final Handler handler) {
+    public void getBetPatternsListQQ (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.BetApiQQ.GAME_BETPATTERNS_QQ);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -624,7 +624,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void getRechargeList(String json, final Handler handler) {
+    public void getRechargeList (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.CoinApi.RECHARGE_LIST);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -643,7 +643,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void verifyPayPwd(String json, final Handler handler) {
+    public void verifyPayPwd (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.CoinApi.VERIFY_PAYPWD);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -661,7 +661,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void getWithdrawList(String json, final Handler handler) {
+    public void getWithdrawList (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.CoinApi.WITHDRAW_LIST);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -680,7 +680,7 @@ public class NetWorkManager {
      * @param json
      * @param handler
      */
-    public void getWithdrawDetail(String json, final Handler handler) {
+    public void getWithdrawDetail (String json, final Handler handler) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.CoinApi.WITHDRAW_DETAIL);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, handler)
@@ -700,7 +700,7 @@ public class NetWorkManager {
      *
      * @param json
      */
-    public void getBasicInfo(String json) {
+    public void getBasicInfo (String json) {
 //        String url = ApiConfig.getFullUrl(ApiConfig.MineApi.BASIC_INFO);
 //        new OkHttpRequestBuilder()
 //                .create(url, json, new Handler())
