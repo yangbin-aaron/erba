@@ -6,6 +6,8 @@
     android:background="@color/white"
     android:orientation="vertical">
 
+    <include layout="@layout/incule_actionbar"/>
+
     <!--客服QQ等信息-->
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,10 +17,30 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:src="@drawable/ic_home_top1"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/top_3"
+            android:text="WIN ￥$"
+            android:textColor="@color/main_background_x"
+            android:textSize="18sp"/>
+
         <ImageView
+            android:id="@+id/top_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:layout_marginRight="50dp"
+            android:layout_toLeftOf="@+id/top_2"
+            android:src="@mipmap/ic_launcher"/>
+
+        <ImageView
+            android:id="@+id/top_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

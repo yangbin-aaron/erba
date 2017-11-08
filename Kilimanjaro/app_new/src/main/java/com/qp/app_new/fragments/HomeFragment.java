@@ -34,6 +34,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public void initView() {
+        initActionBar ();
+
         findViewById(R.id.qq_btn).setOnClickListener(this);
 
         mGameListLV = (ListView) findViewById(R.id.game_list_lv);
