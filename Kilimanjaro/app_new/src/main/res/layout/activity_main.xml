@@ -34,26 +34,29 @@
             android:id="@+id/tv_hall"
             style="@style/BottomTab"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawablePadding="2dp"
             android:drawableTop="@drawable/bottom_tab_hall"
-            android:text="@string/bottom_tab_hall"/>
+            android:text="@string/bottom_tab_home"/>
 
         <TextView
             android:id="@+id/tv_trend"
             style="@style/BottomTab"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawablePadding="2dp"
             android:drawableTop="@drawable/bottom_tab_trend"
-            android:text="@string/bottom_tab_trend"/>
+            android:text="@string/bottom_tab_order"/>
 
         <TextView
             android:id="@+id/tv_mine"
             style="@style/BottomTab"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawablePadding="2dp"
             android:drawableTop="@drawable/bottom_tab_mine"
             android:text="@string/bottom_tab_mine"/>
     </LinearLayout>

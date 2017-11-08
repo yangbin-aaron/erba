@@ -2,8 +2,8 @@
 <resources>
 
     <!--主色调-->
-    <color name="main_background">#D44E4D</color>
-    <color name="main_background_x">#CD3700</color>
+    <color name="main_background">#DBB76C</color>
+    <color name="main_background_x">#C89614</color>
 
     <!--白色-->
     <color name="white">#FFFFFF</color>
@@ -45,7 +45,7 @@
     <!--灰色线条，分割线-->
     <color name="gray_line">#EDEDED</color>
     <!--BottomBar选中和未选中的颜色-->
-    <color name="bottom_tab_select">#D44E4D</color>
+    <color name="bottom_tab_select">#DBB76C</color>
     <color name="bottom_tab_unselect">#999999</color>
 
 </resources>

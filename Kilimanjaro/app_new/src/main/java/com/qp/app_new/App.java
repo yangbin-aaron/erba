@@ -9,10 +9,11 @@ import android.content.Context;
 
 public class App extends Application {
     public static Context mContext;
+    public static final boolean IS_DEV = true;// 是否是测试环境
 
     @Override
-    public void onCreate () {
-        super.onCreate ();
+    public void onCreate() {
+        super.onCreate();
         mContext = this;
     }
 }

@@ -5,7 +5,7 @@ android {
     buildToolsVersion '21.1.2'
 
     defaultConfig {
-        applicationId "com.teb.kilimanjaro"
+        applicationId "com.qp.app_new"
         minSdkVersion 14
         targetSdkVersion 21
         buildConfigField "boolean", "SALES_PACKAGE", "true"
@@ -57,7 +57,7 @@ android {
 
         kilimanjaro {
             dimension "package"
-            applicationId "com.teb.play"
+            applicationId "com.qp.app_new"
             versionCode 101
             versionName "1.0.1"
             manifestPlaceholders = [

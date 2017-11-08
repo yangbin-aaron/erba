@@ -19,9 +19,9 @@
     <string name="app_back_hint">再按一次退出程序</string>
 
     <!--BottomTab三个按钮文字-->
-    <string name="bottom_tab_hall">首页</string>
-    <string name="bottom_tab_trend">明细</string>
-    <string name="bottom_tab_mine">我的</string>
+    <string name="bottom_tab_home">首页</string>
+    <string name="bottom_tab_order">排行榜</string>
+    <string name="bottom_tab_mine">个人中心</string>
 
     <!--我的-->
     <string name="nickname_str">昵称：</string>
@@ -42,6 +42,7 @@
     <string name="loss_and_profit_proportion">比例</string>
 
     <!--登陆-->
+    <string name="please_login">点击登录！</string>
     <string name="input_phone_or_email">手机号码</string>
     <string name="input_password">请输入密码</string>
     <string name="login_btn">登录</string>
@@ -85,7 +86,8 @@
     <string name="bar_about_us">关于我们</string>
     <string name="visition">当前版本号：</string>
     <string name="kefu_qq">客服QQ</string>
-    <string name="kefu_qq_num_default">765770000</string>
+    <string name="call_kefu_qq">确定进入客服QQ:%s？</string>
+    <string name="kefu_qq_num_default">121965871</string>
     <string name="kefu_phone">客服电话</string>
     <string name="update_app">检测更新</string>
     <string name="update_app_newest">已经是最新版本!</string>
@@ -332,5 +334,6 @@
     <!--提现进度  WithdrawDetailActivity-->
     <string name="withdetail_bar">提现进度</string>
     <string name="withdetail_no">订单编号：%s</string>
+    s
 
 </resources>

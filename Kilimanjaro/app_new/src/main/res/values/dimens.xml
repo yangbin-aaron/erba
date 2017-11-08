@@ -37,4 +37,10 @@
 
     <!--用户信息的字体大小-->
     <dimen name="userinfo_textsize">12sp</dimen>
+
+    <dimen name="dp_10">10dp</dimen>
+    <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_60">60dp</dimen>
+    <dimen name="dp_16">16dp</dimen>
+    <dimen name="sp_14">14sp</dimen>
 </resources>
