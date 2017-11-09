@@ -13,6 +13,7 @@ public class AppPrefs {
     private interface Key {
         String USER_PHONE = "user_phone";// 登录账户
         String USER_JSON = "user_json";// 登录完成保持json数据
+        String TOKEN = "token";// token
         String GAME_LIST_JSON = "game_list_json";// 游戏列表的json数据
         String GAME_SELECTED_ID = "game_selected_id";// 被选中的游戏ID
         String BET_MODE = "bet_mode";// 习惯的投注模式（极速还是普通）
@@ -80,5 +81,31 @@ public class AppPrefs {
      */
     public String getUserJson () {
         return mPrefs.getString (Key.USER_JSON, null);
+    }
+
+    public void saveToken (String token) {
+        getEditor ().putString (Key.TOKEN, token).commit ();
+    }
+
+    public String getToken () {
+        return mPrefs.getString (Key.TOKEN, "");
+    }
+
+    /**
+     * 修改 自动下线的 状态
+     *
+     * @param tokenState
+     */
+    public void saveTokenState(boolean tokenState) {
+        getEditor().putBoolean(Key.TOKEN_WRONG, tokenState).commit();
+    }
+
+    /**
+     * 获取  自动下线的 状态
+     *
+     * @return
+     */
+    public boolean getTokenState() {
+        return mPrefs.getBoolean(Key.TOKEN_WRONG, false);
     }
 }

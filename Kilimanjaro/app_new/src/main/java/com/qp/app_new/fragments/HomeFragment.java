@@ -31,12 +31,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     private ListView mGameListLV;
     private GameListAdapter mGameListAdapter;
-    private Dialog mDialogLogin;
+    private Dialog mDialogQQ;
 
     @Override
     public void initView () {
         initActionBar ();
-        setTitle (R.string.text_yk);
 
         findViewById (R.id.qq_btn).setOnClickListener (this);
 
@@ -48,15 +47,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
                 Log.e ("HomeFragment", "setOnItemClickListener >> " + mGameListAdapter.getItem (position).toString ());
-                if (!AppPrefsContent.isLogined ()) {
-                    // 去登陆
-                    if (mDialogLogin == null) {
-                        mDialogLogin = DialogHelp.createToLoginDialog (getActivity ());
-                    }
-                    mDialogLogin.show ();
-                    return;
+                if (judgeLogin ()) {
+                    // 去游戏页面
+
                 }
-                // 去游戏页面
             }
         });
     }
@@ -64,6 +58,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onResume () {
         super.onResume ();
+        if (AppPrefsContent.isLogined ()) {
+            setTitle (AppPrefsContent.getUser ().optString ("nickName"));
+        } else {
+            setTitle (R.string.text_yk);
+        }
         if (mGameListAdapter.getCount () == 0) {
             getGameList ();
         }
@@ -88,26 +87,24 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         });
     }
 
-    private Dialog mDialogQQ;
-
     @Override
     public void onClick (View v) {
         switch (v.getId ()) {
             case R.id.qq_btn:
-                // 先登录
-
-                final String kefu_qq_num_default = getString (R.string.kefu_qq_num_default);
-                String call_kefu_qq = getString (R.string.call_kefu_qq, kefu_qq_num_default);
-                if (mDialogQQ == null) {
-                    mDialogQQ = DialogHelp.createOkDialog (getActivity (), call_kefu_qq, new NormalDialogListener1 () {
-                        @Override
-                        public void onOkClickListener () {
-                            String url = "mqqwpa://im/chat?chat_type=wpa&uin=" + kefu_qq_num_default;
-                            startActivity (new Intent (Intent.ACTION_VIEW, Uri.parse (url)));
-                        }
-                    });
+                if (judgeLogin ()) {
+                    final String kefu_qq_num_default = getString (R.string.kefu_qq_num_default);
+                    String call_kefu_qq = getString (R.string.call_kefu_qq, kefu_qq_num_default);
+                    if (mDialogQQ == null) {
+                        mDialogQQ = DialogHelp.createOkDialog (getActivity (), call_kefu_qq, new NormalDialogListener1 () {
+                            @Override
+                            public void onOkClickListener () {
+                                String url = "mqqwpa://im/chat?chat_type=wpa&uin=" + kefu_qq_num_default;
+                                startActivity (new Intent (Intent.ACTION_VIEW, Uri.parse (url)));
+                            }
+                        });
+                    }
+                    mDialogQQ.show ();
                 }
-                mDialogQQ.show ();
                 break;
         }
     }

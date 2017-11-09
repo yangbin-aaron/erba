@@ -34,7 +34,7 @@ public class GameListAdapter extends BaseAdapter {
     public void setJSONArray (JSONArray jsonArray) {
         for (int i = 0; i < jsonArray.length (); i++) {
             JSONObject jsonObject = jsonArray.optJSONObject (i);
-            if (jsonObject.optInt ("id") != 3 && jsonObject.optInt ("visible") == 1) {// 去掉模拟场数据
+            if (jsonObject.optInt ("visible") == 1) {
                 mJSONArray.put (jsonObject);
             }
         }

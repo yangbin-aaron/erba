@@ -68,53 +68,6 @@ public class NetWorkManager {
     public void login (String json, Dialog dialog, NetListener listener) {
         final String url = ApiConfig.getFullUrl (ApiConfig.MineApi.LOGIN);
         new OkHttpRequestBuilder ().create (url, dialog, json, listener);
-//        new OkHttpRequest.Builder()
-//                .url(url)
-//                .content(json)
-//                .post(new ResultCallback<String> () {
-//
-//                    @Override
-//                    public void onBefore(Request request) {
-//                        super.onBefore(request);
-//                    }
-//
-//                    @Override
-//                    public void onError(Request request, Exception e) {
-//                        handler.obtainMessage(HandlerConfig.WHAT_NET_ERROR).sendToTarget();
-//                    }
-//
-//                    @Override
-//                    public void onResponse(String response) {
-//                        Log.e("result", TAG + "---response---" + url + ">>>" + response);
-//                        try {
-//                            LoginModel result = new Gson ().fromJson(response, LoginModel.class);
-//                            if (result.isSuccess()) {
-//                                MobclickAgent.onProfileSignIn(result.getData().getPhone());// 统计用户,友盟在统计用户时以设备为标准，如果需要统计应用自身的账号
-//                                AppPrefs.getInstance().saveUserJson(response);
-//                                AppPrefs.getInstance().saveUserPhone(result.getData().getPhone());
-//                                AppPrefs.getInstance().saveTokenState(true);// 能够访问
-////                                AppPrefs.getInstance().saveGameCoin(result.getData().getCoin());
-//                                handler.obtainMessage(HandlerConfig.WHAT_POST_SUCCESS).sendToTarget();
-//                            } else {
-//                                if (result.isUpdateToken()) {
-//                                    handler.obtainMessage(HandlerConfig.WHAT_TOKEN_IS_UPDATED).sendToTarget();
-//                                } else if (result.getStatus() == 10002) {
-//                                    handler.obtainMessage(10002, result.getMessage()).sendToTarget();
-//                                } else {
-//                                    handler.obtainMessage(HandlerConfig.WHAT_POST_FAIL, result.getMessage()).sendToTarget();
-//                                }
-//                            }
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                            handler.obtainMessage(HandlerConfig.WHAT_DATA_WRONG).sendToTarget();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onAfter() {
-//                        super.onAfter();
-//                    }
-//                });
     }
 
     /**

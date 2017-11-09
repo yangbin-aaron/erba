@@ -1,9 +1,11 @@
 package com.qp.app_new.httpnetworks;
 
 import android.app.Dialog;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.qp.app_new.App;
+import com.qp.app_new.AppPrefs;
 import com.qp.app_new.R;
 import com.qp.app_new.configs.NetStatusConfig;
 import com.qp.app_new.interfaces.NetListener;
@@ -50,8 +52,10 @@ public class OkHttpRequestBuilder {
                         try {
                             JSONObject jsonObject = new JSONObject (response);
                             int status = jsonObject.optInt ("status");
+                            String token = jsonObject.optString ("token");
 
                             if (status == NetStatusConfig.STATUS_POST_SUCCESS) {// 成功
+                                if (!TextUtils.isEmpty (token)) AppPrefs.getInstance ().saveToken (token);
                                 JSONObject object = jsonObject.optJSONObject ("data");
                                 if (object != null) {
                                     listener.onSuccessResponse (jsonObject.optString ("message"), object);

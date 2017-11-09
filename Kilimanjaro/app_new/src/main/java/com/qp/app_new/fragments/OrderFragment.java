@@ -1,13 +1,16 @@
 package com.qp.app_new.fragments;
 
 import android.view.View;
-import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.qp.app_new.R;
 import com.qp.app_new.contents.AppPrefsContent;
+import com.qp.app_new.dialogs.DialogHelp;
+import com.qp.app_new.interfaces.PopupWindowItemListener;
+import com.qp.app_new.utils.ActivityStartUtils;
 import com.qp.app_new.utils.ToastUtil;
 
 import java.util.HashMap;
@@ -24,35 +27,66 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener 
         layoutId = R.layout.fragment_order;
     }
 
-    private PullToRefreshListView mOrderLV;
-    private View mErrorView;
+    private PullToRefreshListView mOrderDLV, mOrderWLV, mOrderMLV;
+    private View mPullView, mErrorView;
     private TextView mErrorTV;
     private int mPageNum = 1;
     private static final int PAGE_SIZE = 15;
+    private String[] mPopList;
+    private int mPosition = 0;
+
+    private PopupWindow mPopupWindow;
 
     @Override
     public void initView () {
+        mPopList = new String[]{getString (R.string.bottom_tab_order_d),
+                getString (R.string.bottom_tab_order_w),
+                getString (R.string.bottom_tab_order_m)};
         initActionBar ();
-        setTitle (R.string.bottom_tab_order);
-        mOrderLV = (PullToRefreshListView) findViewById (R.id.order_lv);
-        mOrderLV.setMode (PullToRefreshBase.Mode.BOTH);
-        mOrderLV.setOnRefreshListener (new PullToRefreshBase.OnRefreshListener2<ListView> () {
+        setRightIV (R.drawable.ic_menu);
+        mPopupWindow = DialogHelp.createPopupWindow (getActivity (), mPopList, new PopupWindowItemListener () {
             @Override
-            public void onPullDownToRefresh (PullToRefreshBase<ListView> refreshView) {
-                mPageNum = 1;
-                getOrderList ();
-            }
-
-            @Override
-            public void onPullUpToRefresh (PullToRefreshBase<ListView> refreshView) {
-                getOrderList ();
+            public void onPopItemClick (View v, int position) {
+                mPosition = position;
+                getData ();
+                mPopupWindow.dismiss ();
             }
         });
+
+        mPullView = findViewById (R.id.order_rl);
+
+        mOrderDLV = (PullToRefreshListView) findViewById (R.id.order_d_lv);
+        mOrderDLV.setMode (PullToRefreshBase.Mode.BOTH);
+        mOrderDLV.setOnRefreshListener (mOnRefreshListener2);
+        mOrderWLV = (PullToRefreshListView) findViewById (R.id.order_w_lv);
+        mOrderWLV.setMode (PullToRefreshBase.Mode.BOTH);
+        mOrderWLV.setOnRefreshListener (mOnRefreshListener2);
+        mOrderMLV = (PullToRefreshListView) findViewById (R.id.order_m_lv);
+        mOrderMLV.setMode (PullToRefreshBase.Mode.BOTH);
+        mOrderMLV.setOnRefreshListener (mOnRefreshListener2);
 
         mErrorView = findViewById (R.id.error_ly);
         mErrorView.setOnClickListener (this);
         mErrorTV = (TextView) findViewById (R.id.error_tv);
+    }
 
+    private PullToRefreshBase.OnRefreshListener2 mOnRefreshListener2 = new PullToRefreshBase.OnRefreshListener2 () {
+        @Override
+        public void onPullDownToRefresh (PullToRefreshBase refreshView) {
+            mPageNum = 1;
+            getOrderList ();
+        }
+
+        @Override
+        public void onPullUpToRefresh (PullToRefreshBase refreshView) {
+            getOrderList ();
+        }
+    };
+
+    @Override
+    public void onResume () {
+        super.onResume ();
+        // 如果没有数据，才加载
         getData ();
     }
 
@@ -60,17 +94,23 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener 
      * 另外登陆完成之后需要发广播 调此方法
      */
     private void getData () {
+        setTitle (mPopList[mPosition]);
+        mOrderDLV.setVisibility (mPosition == 0 ? View.VISIBLE : View.GONE);
+        mOrderWLV.setVisibility (mPosition == 1 ? View.VISIBLE : View.GONE);
+        mOrderMLV.setVisibility (mPosition == 2 ? View.VISIBLE : View.GONE);
         // 判断是否有登录
-        boolean isLogin = AppPrefsContent.isLogined ();// 需要判断  TODO
-        if (!isLogin) {
+        if (!AppPrefsContent.isLogined ()) {
             mErrorTV.setText (R.string.click_login);
             return;
         }
+
+        mPullView.setVisibility (View.VISIBLE);
+        mErrorView.setVisibility (View.GONE);
         getOrderList ();
     }
 
     // ************************************
-    private void getOrderList () {
+    private void getOrderList () {// 在此方法中需要顺便判断Token是否过期
         HashMap<String, Object> hashMap = new HashMap<> ();
         hashMap.put ("pageNum", mPageNum);
         hashMap.put ("pageSize", PAGE_SIZE);
@@ -83,13 +123,18 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener 
     public void onClick (View v) {
         switch (v.getId ()) {
             case R.id.error_ly:
-                if (mErrorTV.getText ().toString ().equals (getString (R.string.please_login))) {
-                    ToastUtil.showToast ("去登录");
+                if (mErrorTV.getText ().toString ().equals (getString (R.string.click_login))) {
+                    ActivityStartUtils.startLoginActivity (getActivity ());
                 } else {// 无数据  刷新
                     mPageNum = 1;
                     getOrderList ();
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onRightClick (View v) {
+        if (!mPopupWindow.isShowing ()) mPopupWindow.showAsDropDown (v, 0, 0);
     }
 }

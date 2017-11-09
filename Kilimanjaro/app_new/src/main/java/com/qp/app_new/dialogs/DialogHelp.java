@@ -4,18 +4,22 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.text.TextUtils;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.qp.app_new.R;
 import com.qp.app_new.interfaces.NormalDialogListener1;
 import com.qp.app_new.interfaces.NormalDialogListener2;
+import com.qp.app_new.interfaces.PopupWindowItemListener;
 import com.qp.app_new.utils.ActivityStartUtils;
 
 /**
@@ -175,6 +179,7 @@ public class DialogHelp {
 
     /**
      * 请先登录
+     *
      * @param context
      * @return
      */
@@ -187,5 +192,38 @@ public class DialogHelp {
                         ActivityStartUtils.startLoginActivity ((Activity) context);
                     }
                 }, null);
+    }
+
+    public static PopupWindow createPopupWindow (Context context, String[] list, final PopupWindowItemListener listener) {
+        int padding = (int) context.getResources ().getDimension (R.dimen.dp_14);
+        View popView = LayoutInflater.from (context).inflate (R.layout.popwindow_list, null);
+        LinearLayout pop_ly = (LinearLayout) popView.findViewById (R.id.pop_ly);
+        pop_ly.removeAllViews ();
+        if (list != null && list.length > 0) {
+            for (int i = 0; i < list.length; i++) {
+                View v = LayoutInflater.from (context).inflate (R.layout.popwindow_list_item, null);
+                TextView textView = (TextView) v.findViewById (R.id.pop_tv);
+                View line = v.findViewById (R.id.pop_line);
+                textView.setText (list[i]);
+                final int finalI = i;
+                textView.setOnClickListener (new View.OnClickListener () {
+                    @Override
+                    public void onClick (View v) {
+                        listener.onPopItemClick (v, finalI);
+                    }
+                });
+                line.setVisibility (View.VISIBLE);
+                if (i == list.length - 1) {
+                    line.setVisibility (View.GONE);
+                }
+                pop_ly.addView (v);
+            }
+        }
+        PopupWindow popupWindow = new PopupWindow (popView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow.setBackgroundDrawable (new ColorDrawable (0x00000000));
+        popupWindow.setOutsideTouchable (true);
+        popupWindow.setFocusable (true);
+
+        return popupWindow;
     }
 }

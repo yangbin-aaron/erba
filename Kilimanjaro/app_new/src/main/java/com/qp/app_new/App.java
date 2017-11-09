@@ -33,6 +33,7 @@ public class App extends Application {
     private static void initImageLoad(Context context) {
         File cacheDir = StorageUtils.getOwnCacheDirectory(context, "TEImage/Cache");
         initImageLoader(context, cacheDir);
+        AppPrefs.getInstance().saveTokenState(true);// 默认能够访问网络
     }
 
     /**

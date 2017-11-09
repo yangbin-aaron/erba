@@ -3,7 +3,7 @@
 
     <!-- 圆角 -->
     <corners
-        android:radius="4dp"/>
+        android:radius="1dp"/>
 
     <!-- 填充 -->
     <solid android:color="@color/gray_dialog_bg"/>

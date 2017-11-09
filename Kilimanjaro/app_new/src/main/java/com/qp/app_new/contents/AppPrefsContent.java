@@ -2,6 +2,7 @@ package com.qp.app_new.contents;
 
 import com.qp.app_new.AppPrefs;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -19,12 +20,25 @@ public class AppPrefsContent {
         return AppPrefs.getInstance ().getUserJson () == null ? false : true;
     }
 
+    public static JSONObject getUser () {
+        JSONObject user = null;
+        String userJson = AppPrefs.getInstance ().getUserJson ();
+        try {
+            user = new JSONObject (userJson);
+        } catch (JSONException e) {
+            e.printStackTrace ();
+        }
+        return user;
+    }
+
     /**
      * 处理登录数据
      *
      * @param jsonObject
      */
     public static void handlerLoginData (JSONObject jsonObject) {
-
+        AppPrefs.getInstance ().saveUserJson (jsonObject.toString ());
+        AppPrefs.getInstance ().saveUserPhone (jsonObject.optString ("phone"));
+        AppPrefs.getInstance ().saveTokenState (true);// 能够访问
     }
 }

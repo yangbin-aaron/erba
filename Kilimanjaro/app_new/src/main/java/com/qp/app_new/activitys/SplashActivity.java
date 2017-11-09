@@ -6,13 +6,9 @@ import android.os.Handler;
 import android.view.KeyEvent;
 
 import com.qp.app_new.R;
-import com.qp.app_new.contents.AppPrefsContent;
 import com.qp.app_new.httpnetworks.NetWorkManager;
-import com.qp.app_new.interfaces.NetListener;
 import com.qp.app_new.utils.ActivityStartUtils;
 import com.qp.app_new.utils.StringUtil;
-
-import org.json.JSONObject;
 
 /**
  * Created by yangbin on 16/7/1.
@@ -37,27 +33,7 @@ public class SplashActivity extends Activity {
 
             @Override
             public void run () {
-                // 是否登录
-                if (AppPrefsContent.isLogined ()) {
-                    // 调登录接口，先登录
-                    NetWorkManager.getInstance ().login ("", null, new NetListener () {
-                        @Override
-                        public void onSuccessResponse (String msg, JSONObject jsonObject) {
-                            super.onSuccessResponse (msg, jsonObject);
-                            // 处理登录数据
-                            AppPrefsContent.handlerLoginData (jsonObject);
-                            ActivityStartUtils.startMainActivity (SplashActivity.this);
-                        }
-
-                        @Override
-                        public void onErrorResponse (int errorWhat, String message) {
-                            // 登录失败
-                            ActivityStartUtils.startMainActivity (SplashActivity.this);
-                        }
-                    });
-                } else {// 已经登录跳到主界面
-                    ActivityStartUtils.startMainActivity (SplashActivity.this);
-                }
+                ActivityStartUtils.startMainActivity (SplashActivity.this);
                 finish ();
             }
         }, SPLASH_DELAY);

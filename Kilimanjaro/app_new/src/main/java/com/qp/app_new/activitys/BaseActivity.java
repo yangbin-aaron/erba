@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.qp.app_new.R;
+import com.qp.app_new.contents.AppPrefsContent;
 import com.qp.app_new.dialogs.DialogHelp;
 
 /**
@@ -19,6 +20,7 @@ import com.qp.app_new.dialogs.DialogHelp;
 
 public abstract class BaseActivity extends Activity {
     public Dialog mLoadingDialog;// 加载对话框
+    private Dialog mDialogLogin;
     public int layoutId = R.layout.activity_main;
 
     @Override
@@ -37,6 +39,21 @@ public abstract class BaseActivity extends Activity {
     public abstract void setContentView ();
 
     public abstract void initView ();
+
+    /**
+     * 判断是否登录
+     */
+    public boolean judgeLogin () {
+        if (!AppPrefsContent.isLogined ()) {
+            // 去登陆
+            if (mDialogLogin == null) {
+                mDialogLogin = DialogHelp.createToLoginDialog (this);
+            }
+            mDialogLogin.show ();
+            return false;
+        }
+        return true;
+    }
 
     /**
      * ActionBar   BEGIN
@@ -59,23 +76,23 @@ public abstract class BaseActivity extends Activity {
         mLeftView.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick (View v) {
-                onLeftClick ();
+                onLeftClick (v);
             }
         });
         mRightView = findViewById (R.id.right_btn);
         mRightView.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick (View v) {
-                onRightClick ();
+                onRightClick (v);
             }
         });
     }
 
-    public void onLeftClick () {
+    public void onLeftClick (View v) {
         Log.e ("BaseActivity", "onLeftClick");
     }
 
-    public void onRightClick () {
+    public void onRightClick (View v) {
         Log.e ("BaseActivity", "onRightClick");
     }
 
@@ -103,6 +120,10 @@ public abstract class BaseActivity extends Activity {
         mRightView.setVisibility (View.VISIBLE);
         mRightTV.setVisibility (View.VISIBLE);
         mRightTV.setText (resId);
+    }
+
+    public void setActionBarBackgroundResource (int colorId) {
+        mActionBar.setBackgroundResource (colorId);
     }
 
     /**

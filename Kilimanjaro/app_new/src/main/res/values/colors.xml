@@ -49,4 +49,7 @@
     <color name="bottom_tab_select">#DBB76C</color>
     <color name="bottom_tab_unselect">#999999</color>
 
+    <color name="red_select">#FF0000</color>
+    <color name="red_unselect">#FF4040</color>
+
 </resources>

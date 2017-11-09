@@ -6,13 +6,33 @@
 
     <include layout="@layout/incule_actionbar"/>
 
-    <com.handmark.pulltorefresh.library.PullToRefreshListView
-        android:id="@+id/order_lv"
+    <RelativeLayout
+        android:id="@+id/order_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/action_bar"
-        android:divider="@null"
-        android:visibility="gone"/>
+        android:visibility="gone">
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/order_d_lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"/>
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/order_w_lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:visibility="gone"/>
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/order_m_lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:visibility="gone"/>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/error_ly"
