@@ -22,6 +22,7 @@ import java.io.File;
 public class App extends Application {
     public static Context mContext;
     public static final boolean IS_DEV = true;// 是否是测试环境
+    public boolean haveNewVersion = false;
 
     @Override
     public void onCreate() {

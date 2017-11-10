@@ -14,7 +14,7 @@
     <string name="app_please_wait">敬请期待</string>
     <string name="app_updateapp_must">发现新的版本，请先更新！</string>
     <string name="app_updateapp_">发现新的版本，是否更新？</string>
-    <string name="app_call_phone">确定要拨打%s?</string>
+    <string name="app_call_phone">确定要拨打：%s?</string>
 
     <!--返回键双击提醒-->
     <string name="app_back_hint">再按一次退出程序</string>
@@ -31,12 +31,13 @@
 
     <!--我的-->
     <string name="nickname_str">昵称：</string>
-    <string name="gamecoin_str">金豆</string>
+    <string name="gamecoin_str">金豆：%s</string>
     <string name="experience_str">积分</string>
 
     <string name="game_coin_add_str">金豆充值</string>
     <string name="game_coin_withdraw_str">金豆提现</string>
     <string name="notice_str">消息通知</string>
+    <string name="trand_list_str">交易明细</string>
     <string name="modifypwd_str">密码修改</string>
     <string name="about_str">关于我们</string>
     <string name="logout_str">退出登录</string>
@@ -92,11 +93,14 @@
 
     <!--关于我们-->
     <string name="bar_about_us">关于我们</string>
-    <string name="visition">当前版本号：</string>
+    <string name="visition">当前版本号：%s</string>
     <string name="kefu_qq">客服QQ</string>
+    <string name="kefu_qq_">客服QQ：%s</string>
     <string name="call_kefu_qq">确定进入客服QQ:%s？</string>
     <string name="kefu_qq_num_default">121965871</string>
     <string name="kefu_phone">客服电话</string>
+    <string name="kefu_phone_">客服电话：%s</string>
+    <string name="kefu_phone_default">13530155972</string>
     <string name="update_app">检测更新</string>
     <string name="update_app_newest">已经是最新版本!</string>
     <string name="call_phone_str">拨打客户电话 </string>

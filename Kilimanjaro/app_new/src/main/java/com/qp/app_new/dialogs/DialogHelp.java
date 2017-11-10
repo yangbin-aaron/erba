@@ -130,6 +130,18 @@ public class DialogHelp {
     }
 
     /**
+     * 不能关闭的确定对话框
+     *
+     * @param context
+     * @param msg
+     * @param listener
+     * @return
+     */
+    public static Dialog createMustDialog (Context context, String msg, NormalDialogListener1 listener) {
+        return createNormalDialog (context, msg, false, "", "", false, false, listener, null);
+    }
+
+    /**
      * 两个按钮，只有确定按钮有用
      *
      * @param context

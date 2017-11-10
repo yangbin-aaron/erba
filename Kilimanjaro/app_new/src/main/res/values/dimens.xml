@@ -14,7 +14,7 @@
 
     <!--用户界面三个资金按钮的padding-->
     <dimen name="userinfo_btn_padding">8dp</dimen>
-    <dimen name="mine_adapter_height">40dp</dimen>
+    <dimen name="mine_adapter_height">50dp</dimen>
     <dimen name="mine_adapter_padding_leftright">10dp</dimen>
     <dimen name="mine_adapter_padding_topbottom">4dp</dimen>
     <dimen name="mine_adapter_line_d">0.8dp</dimen>

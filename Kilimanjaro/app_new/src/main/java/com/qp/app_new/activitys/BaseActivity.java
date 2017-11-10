@@ -30,6 +30,7 @@ public abstract class BaseActivity extends Activity {
         getWindow ().addFlags (WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);// 屏幕保持常亮
 //        getWindow ().setSoftInputMode (WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);// 强制为竖屏
+        getIntentData ();
         setContentView ();
         setContentView (layoutId);
         mLoadingDialog = DialogHelp.createLoadingDialog (this, true);
@@ -39,6 +40,9 @@ public abstract class BaseActivity extends Activity {
     public abstract void setContentView ();
 
     public abstract void initView ();
+
+    public void getIntentData () {
+    }
 
     /**
      * 判断是否登录
@@ -90,6 +94,7 @@ public abstract class BaseActivity extends Activity {
 
     public void onLeftClick (View v) {
         Log.e ("BaseActivity", "onLeftClick");
+        finish ();
     }
 
     public void onRightClick (View v) {

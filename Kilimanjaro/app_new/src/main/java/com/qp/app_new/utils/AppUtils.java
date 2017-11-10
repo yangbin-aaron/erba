@@ -1,12 +1,16 @@
 package com.qp.app_new.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.util.Log;
 
 import com.qp.app_new.App;
+import com.qp.app_new.dialogs.DownApkDialog;
+import com.qp.app_new.services.DownloadService;
 
 import java.security.MessageDigest;
 import java.util.List;
@@ -16,21 +20,21 @@ import java.util.List;
  * Created by Andy on 15/7/23.
  */
 public class AppUtils {
-    private AppUtils() {
-        throw new UnsupportedOperationException("AppUtil cannot instantiated");
+    private AppUtils () {
+        throw new UnsupportedOperationException ("AppUtil cannot instantiated");
     }
 
     /**
      * 获取应用程序版本信息
      */
-    public static PackageInfo getAppPackageInfo(Context context) {
+    public static PackageInfo getAppPackageInfo (Context context) {
         try {
-            PackageManager packageManager = context.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(
-                    context.getPackageName(), 0);
+            PackageManager packageManager = context.getPackageManager ();
+            PackageInfo packageInfo = packageManager.getPackageInfo (
+                    context.getPackageName (), 0);
             return packageInfo;
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            e.printStackTrace ();
         }
         return null;
     }
@@ -38,14 +42,14 @@ public class AppUtils {
     /**
      * 获取app版本名
      */
-    public static String getAppVersionName() {
-        PackageManager pm = App.mContext.getPackageManager();
+    public static String getAppVersionName () {
+        PackageManager pm = App.mContext.getPackageManager ();
         PackageInfo pi;
         try {
-            pi = pm.getPackageInfo(App.mContext.getPackageName(), 0);
+            pi = pm.getPackageInfo (App.mContext.getPackageName (), 0);
             return pi.versionName;
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            e.printStackTrace ();
         }
         return "";
     }
@@ -53,14 +57,14 @@ public class AppUtils {
     /**
      * 获取app版本号
      */
-    public static int getAppVersionCode(Context context) {
-        PackageManager pm = context.getPackageManager();
+    public static int getAppVersionCode (Context context) {
+        PackageManager pm = context.getPackageManager ();
         PackageInfo pi;
         try {
-            pi = pm.getPackageInfo(context.getPackageName(), 0);
+            pi = pm.getPackageInfo (context.getPackageName (), 0);
             return pi.versionCode;
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            e.printStackTrace ();
         }
         return 0;
     }
@@ -71,30 +75,30 @@ public class AppUtils {
      * @param context
      * @param pkgName
      */
-    public static String getSign(Context context, String pkgName) {
+    public static String getSign (Context context, String pkgName) {
         try {
-            PackageInfo pis = context.getPackageManager().getPackageInfo(
+            PackageInfo pis = context.getPackageManager ().getPackageInfo (
                     pkgName, PackageManager.GET_SIGNATURES);
-            return hexdigest(pis.signatures[0].toByteArray());
+            return hexdigest (pis.signatures[0].toByteArray ());
         } catch (PackageManager.NameNotFoundException e) {
-            throw new RuntimeException("AppUtils  the " + pkgName + "'s application not found");
+            throw new RuntimeException ("AppUtils  the " + pkgName + "'s application not found");
         }
     }
 
     /**
      * 将签名字符串转换成需要的32位签名
      */
-    private static String hexdigest(byte[] paramArrayOfByte) {
+    private static String hexdigest (byte[] paramArrayOfByte) {
         final char[] hexDigits = {48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 97,
                 98, 99, 100, 101, 102};
         try {
-            MessageDigest localMessageDigest = MessageDigest.getInstance("MD5");
-            localMessageDigest.update(paramArrayOfByte);
-            byte[] arrayOfByte = localMessageDigest.digest();
+            MessageDigest localMessageDigest = MessageDigest.getInstance ("MD5");
+            localMessageDigest.update (paramArrayOfByte);
+            byte[] arrayOfByte = localMessageDigest.digest ();
             char[] arrayOfChar = new char[32];
             for (int i = 0, j = 0; ; i++, j++) {
                 if (i >= 16) {
-                    return new String(arrayOfChar);
+                    return new String (arrayOfChar);
                 }
                 int k = arrayOfByte[i];
                 arrayOfChar[j] = hexDigits[(0xF & k >>> 4)];
@@ -112,13 +116,13 @@ public class AppUtils {
      * @param packageName
      * @return
      */
-    public static boolean isAppAvilible(Context context, String packageName) {
-        final PackageManager packageManager = context.getPackageManager();// 获取packagemanager
-        List<PackageInfo> pinfo = packageManager.getInstalledPackages(0);// 获取所有已安装程序的包信息
+    public static boolean isAppAvilible (Context context, String packageName) {
+        final PackageManager packageManager = context.getPackageManager ();// 获取packagemanager
+        List<PackageInfo> pinfo = packageManager.getInstalledPackages (0);// 获取所有已安装程序的包信息
         if (pinfo != null) {
-            for (int i = 0; i < pinfo.size(); i++) {
-                String pn = pinfo.get(i).packageName;
-                if (pn.equals(packageName)) {
+            for (int i = 0; i < pinfo.size (); i++) {
+                String pn = pinfo.get (i).packageName;
+                if (pn.equals (packageName)) {
                     return true;
                 }
             }
@@ -132,8 +136,8 @@ public class AppUtils {
      * @param context
      * @return
      */
-    public static boolean isWeixinAvilible(Context context) {
-        return isAppAvilible(context, "com.tencent.mm");
+    public static boolean isWeixinAvilible (Context context) {
+        return isAppAvilible (context, "com.tencent.mm");
     }
 
     /**
@@ -142,8 +146,8 @@ public class AppUtils {
      * @param context
      * @return
      */
-    public static boolean isQQClientAvailable(Context context) {
-        return isAppAvilible(context, "com.tencent.mobileqq");
+    public static boolean isQQClientAvailable (Context context) {
+        return isAppAvilible (context, "com.tencent.mobileqq");
     }
 
     /**
@@ -153,14 +157,58 @@ public class AppUtils {
      * @param metaDataKey
      * @param metaDataValue
      */
-    public static void setManifestMetaDataValue(Context context, String metaDataKey, String metaDataValue) {
+    public static void setManifestMetaDataValue (Context context, String metaDataKey, String metaDataValue) {
         ApplicationInfo appi;
         try {
-            appi = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
-            appi.metaData.putString(metaDataKey, metaDataValue);
+            appi = context.getPackageManager ().getApplicationInfo (context.getPackageName (), PackageManager.GET_META_DATA);
+            appi.metaData.putString (metaDataKey, metaDataValue);
         } catch (PackageManager.NameNotFoundException e1) {
-            Log.e("exp", e1.getMessage());
-            e1.printStackTrace();
+            Log.e ("exp", e1.getMessage ());
+            e1.printStackTrace ();
         }
+    }
+
+    /**
+     * 进入QQ
+     *
+     * @param context
+     * @param qq
+     */
+    public static void intoQQ (Context context, String qq) {
+        String url = "mqqwpa://im/chat?chat_type=wpa&uin=" + qq;
+        context.startActivity (new Intent (Intent.ACTION_VIEW, Uri.parse (url)));
+    }
+
+    /**
+     * 拨打电话
+     *
+     * @param context
+     * @param tel
+     */
+    public static void call (Context context, String tel) {
+        Intent intent = new Intent ();
+        intent.setAction (Intent.ACTION_CALL);
+        //uri:统一资源标示符（更广）
+        intent.setData (Uri.parse ("tel:" + tel));
+        //开启系统拨号器
+        context.startActivity (intent);
+    }
+
+    public static void downLoadApk (String url) {
+        Intent intent = new Intent (App.mContext, DownloadService.class);
+        intent.putExtra ("apk_url", url);
+        App.mContext.startService (intent);
+    }
+
+    /**
+     * 开始下载apk
+     *
+     * @param context
+     * @param url
+     */
+    public static void startDownApk (Context context, String url) {
+        // 开始下载更新
+        AppUtils.downLoadApk (url);
+        new DownApkDialog (context).show ();
     }
 }

@@ -23,7 +23,7 @@ import java.util.HashMap;
 public class OrderFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
-    public void setContentView() {
+    public void setContentView () {
         layoutId = R.layout.fragment_order;
     }
 
@@ -38,107 +38,100 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener 
     private PopupWindow mPopupWindow;
 
     @Override
-    public void initView() {
-        mPopList = new String[]{getString(R.string.bottom_tab_order_d),
-                getString(R.string.bottom_tab_order_w),
-                getString(R.string.bottom_tab_order_m)};
-        initActionBar();
-        setRightIV(R.drawable.ic_menu);
-        mPopupWindow = DialogHelp.createPopupWindow(getActivity(), mPopList, new PopupWindowItemListener() {
+    public void initView () {
+        mPopList = new String[]{getString (R.string.bottom_tab_order_d),
+                getString (R.string.bottom_tab_order_w),
+                getString (R.string.bottom_tab_order_m)};
+        initActionBar ();
+        setRightIV (R.drawable.ic_menu);
+        mPopupWindow = DialogHelp.createPopupWindow (getActivity (), mPopList, new PopupWindowItemListener () {
             @Override
-            public void onPopItemClick(View v, int position) {
+            public void onPopItemClick (View v, int position) {
                 mPosition = position;
-                getData();
-                mPopupWindow.dismiss();
+                updateData ();
+                mPopupWindow.dismiss ();
             }
         });
 
-        mPullView = findViewById(R.id.order_rl);
+        mPullView = findViewById (R.id.order_rl);
 
-        mOrderDLV = (PullToRefreshListView) findViewById(R.id.order_d_lv);
-        mOrderDLV.setMode(PullToRefreshBase.Mode.BOTH);
-        mOrderDLV.setOnRefreshListener(mOnRefreshListener2);
-        mOrderWLV = (PullToRefreshListView) findViewById(R.id.order_w_lv);
-        mOrderWLV.setMode(PullToRefreshBase.Mode.BOTH);
-        mOrderWLV.setOnRefreshListener(mOnRefreshListener2);
-        mOrderMLV = (PullToRefreshListView) findViewById(R.id.order_m_lv);
-        mOrderMLV.setMode(PullToRefreshBase.Mode.BOTH);
-        mOrderMLV.setOnRefreshListener(mOnRefreshListener2);
+        mOrderDLV = (PullToRefreshListView) findViewById (R.id.order_d_lv);
+        mOrderDLV.setMode (PullToRefreshBase.Mode.BOTH);
+        mOrderDLV.setOnRefreshListener (mOnRefreshListener2);
+        mOrderWLV = (PullToRefreshListView) findViewById (R.id.order_w_lv);
+        mOrderWLV.setMode (PullToRefreshBase.Mode.BOTH);
+        mOrderWLV.setOnRefreshListener (mOnRefreshListener2);
+        mOrderMLV = (PullToRefreshListView) findViewById (R.id.order_m_lv);
+        mOrderMLV.setMode (PullToRefreshBase.Mode.BOTH);
+        mOrderMLV.setOnRefreshListener (mOnRefreshListener2);
 
-        mErrorView = findViewById(R.id.error_ly);
-        mErrorView.setOnClickListener(this);
-        mErrorTV = (TextView) findViewById(R.id.error_tv);
+        mErrorView = findViewById (R.id.error_ly);
+        mErrorView.setOnClickListener (this);
+        mErrorTV = (TextView) findViewById (R.id.error_tv);
     }
 
-    private PullToRefreshBase.OnRefreshListener2 mOnRefreshListener2 = new PullToRefreshBase.OnRefreshListener2() {
+    private PullToRefreshBase.OnRefreshListener2 mOnRefreshListener2 = new PullToRefreshBase.OnRefreshListener2 () {
         @Override
-        public void onPullDownToRefresh(PullToRefreshBase refreshView) {
+        public void onPullDownToRefresh (PullToRefreshBase refreshView) {
             mPageNum = 1;
-            getOrderList();
+            getOrderList ();
         }
 
         @Override
-        public void onPullUpToRefresh(PullToRefreshBase refreshView) {
-            getOrderList();
+        public void onPullUpToRefresh (PullToRefreshBase refreshView) {
+            getOrderList ();
         }
     };
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onResume () {
+        super.onResume ();
+        updateData ();
+    }
+
+    public void updateData () {
         // 如果没有数据，才加载
-        getData();
-    }
-
-    public void setUserInfo() {
-        getData();
-    }
-
-    /**
-     * 另外登陆完成之后需要发广播 调此方法
-     */
-    private void getData() {
-        setTitle(mPopList[mPosition]);
-        mOrderDLV.setVisibility(mPosition == 0 ? View.VISIBLE : View.GONE);
-        mOrderWLV.setVisibility(mPosition == 1 ? View.VISIBLE : View.GONE);
-        mOrderMLV.setVisibility(mPosition == 2 ? View.VISIBLE : View.GONE);
+        setTitle (mPopList[mPosition]);
+        mOrderDLV.setVisibility (mPosition == 0 ? View.VISIBLE : View.GONE);
+        mOrderWLV.setVisibility (mPosition == 1 ? View.VISIBLE : View.GONE);
+        mOrderMLV.setVisibility (mPosition == 2 ? View.VISIBLE : View.GONE);
         // 判断是否有登录
-        if (!AppPrefsContent.isLogined()) {
-            mErrorTV.setText(R.string.click_login);
+        if (!AppPrefsContent.isLogined ()) {
+            mErrorTV.setText (R.string.click_login);
             return;
         }
 
-        mPullView.setVisibility(View.VISIBLE);
-        mErrorView.setVisibility(View.GONE);
-        getOrderList();
+        mPullView.setVisibility (View.VISIBLE);
+        mErrorView.setVisibility (View.GONE);
+        getOrderList ();
     }
 
     // ************************************
-    private void getOrderList() {// 在此方法中需要顺便判断Token是否过期
-        HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("pageNum", mPageNum);
-        hashMap.put("pageSize", PAGE_SIZE);
-        ToastUtil.showToast("getOrderList()");
+    private void getOrderList () {// 在此方法中需要顺便判断Token是否过期
+        HashMap<String, Object> hashMap = new HashMap<> ();
+        hashMap.put ("pageNum", mPageNum);
+        hashMap.put ("pageSize", PAGE_SIZE);
+        ToastUtil.showToast ("getOrderList()");
 
         // 判断网络返回数据
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
+    public void onClick (View v) {
+        switch (v.getId ()) {
             case R.id.error_ly:
-                if (mErrorTV.getText().toString().equals(getString(R.string.click_login))) {
-                    ActivityStartUtils.startLoginActivity(getActivity());
+                if (mErrorTV.getText ().toString ().equals (getString (R.string.click_login))) {
+                    ActivityStartUtils.startLoginActivity (getActivity ());
                 } else {// 无数据  刷新
                     mPageNum = 1;
-                    getOrderList();
+                    getOrderList ();
                 }
                 break;
         }
     }
 
     @Override
-    public void onRightClick(View v) {
-        if (!mPopupWindow.isShowing()) mPopupWindow.showAsDropDown(v, 0, 0);
+    public void onRightClick (View v) {
+        if (!mPopupWindow.isShowing ()) mPopupWindow.showAsDropDown (v, 0, 0);
     }
 }

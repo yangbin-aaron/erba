@@ -43,20 +43,13 @@ public class NetWorkManager {
     /**
      * 检查更新
      *
-     * @param json
-     * @param handler
+     * @param dialog
+     * @param listener
      */
-    public void updateApp (String json, final Handler handler) {
-//        final String url = ApiConfig.getFullUrl(ApiConfig.MineApi.UPDATE_APP);
-//        new OkHttpRequestBuilder()
-//                .create(url, json, handler)
-//                .callBack(new OkHttpRequestBuilder.OkHttpRequestBuilderCallBack() {
-//                    @Override
-//                    public void onRespone(String response) {
-//                        VersionStatusModel result = new Gson().fromJson(response, VersionStatusModel.class);
-//                        handler.obtainMessage(HandlerConfig.WHAT_POST_SUCCESS, result.getData()).sendToTarget();
-//                    }
-//                });
+    public void updateApp (Dialog dialog, NetListener listener) {
+        final String url = ApiConfig.getFullUrl (ApiConfig.MineApi.UPDATE_APP);
+        String json = StringUtil.getVersionJson ();
+        new OkHttpRequestBuilder ().create (url, dialog, json, listener);
     }
 
     /**

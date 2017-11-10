@@ -8,12 +8,20 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.qp.app_new.App;
 import com.qp.app_new.R;
 import com.qp.app_new.adapters.MainViewPagerAdapter;
+import com.qp.app_new.dialogs.DialogHelp;
 import com.qp.app_new.fragments.HomeFragment;
 import com.qp.app_new.fragments.MineFragment;
 import com.qp.app_new.fragments.OrderFragment;
+import com.qp.app_new.httpnetworks.NetWorkManager;
+import com.qp.app_new.interfaces.NetListener;
+import com.qp.app_new.interfaces.NormalDialogListener1;
+import com.qp.app_new.utils.AppUtils;
 import com.qp.app_new.utils.ToastUtil;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,70 +41,71 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
     private MineFragment mMineFragment;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(layoutId);
-        initViewPager();
-        initBottomTabs();
+    protected void onCreate (Bundle savedInstanceState) {
+        super.onCreate (savedInstanceState);
+        setContentView (layoutId);
+        getUpdateAppInfo ();
+        initViewPager ();
+        initBottomTabs ();
     }
 
-    private void initViewPager() {
-        List<Fragment> fragmentList = new ArrayList<>();
-        mHomeFragment = new HomeFragment();
-        mOrderFragment = new OrderFragment();
-        mMineFragment = new MineFragment();
-        fragmentList.add(mHomeFragment);
-        fragmentList.add(mOrderFragment);
-        fragmentList.add(mMineFragment);
-        mMainViewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager(), fragmentList);
-        mViewPager = (ViewPager) findViewById(R.id.viewPager);
-        mViewPager.setAdapter(mMainViewPagerAdapter);
-        mViewPager.setCurrentItem(0);
-        mViewPager.setOffscreenPageLimit(3);
-        mViewPager.setOnPageChangeListener(this);
+    private void initViewPager () {
+        List<Fragment> fragmentList = new ArrayList<> ();
+        mHomeFragment = new HomeFragment ();
+        mOrderFragment = new OrderFragment ();
+        mMineFragment = new MineFragment ();
+        fragmentList.add (mHomeFragment);
+        fragmentList.add (mOrderFragment);
+        fragmentList.add (mMineFragment);
+        mMainViewPagerAdapter = new MainViewPagerAdapter (getSupportFragmentManager (), fragmentList);
+        mViewPager = (ViewPager) findViewById (R.id.viewPager);
+        mViewPager.setAdapter (mMainViewPagerAdapter);
+        mViewPager.setCurrentItem (0);
+        mViewPager.setOffscreenPageLimit (3);
+        mViewPager.setOnPageChangeListener (this);
     }
 
     private TextView[] mBottomTabs;// BottomBar集合:0大厅按钮索引,1趋势按钮索引,2我的按钮索引
     private int mCurrentTabIndex = 0;// 当前选择的按钮索引
 
-    private void initBottomTabs() {
+    private void initBottomTabs () {
         mBottomTabs = new TextView[3];// 初始化3个按钮
         int[] tabIds = {R.id.tv_hall, R.id.tv_trend, R.id.tv_mine};
         for (int i = 0; i < tabIds.length; i++) {
-            mBottomTabs[i] = (TextView) findViewById(tabIds[i]);
-            mBottomTabs[i].setOnClickListener(this);
+            mBottomTabs[i] = (TextView) findViewById (tabIds[i]);
+            mBottomTabs[i].setOnClickListener (this);
         }
         // 默认第一项被选中
-        mBottomTabs[mCurrentTabIndex].setSelected(true);
+        mBottomTabs[mCurrentTabIndex].setSelected (true);
     }
 
     @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    public void onPageScrolled (int position, float positionOffset, int positionOffsetPixels) {
     }
 
     @Override
-    public void onPageSelected(int position) {
-        updateBottomBarState(position);
+    public void onPageSelected (int position) {
+        updateBottomBarState (position);
     }
 
     @Override
-    public void onPageScrollStateChanged(int state) {
+    public void onPageScrollStateChanged (int state) {
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
+    public void onClick (View v) {
+        switch (v.getId ()) {
             case R.id.tv_hall:
-                updateBottomBarState(0);
+                updateBottomBarState (0);
                 break;
             case R.id.tv_trend:
-                updateBottomBarState(1);
+                updateBottomBarState (1);
                 break;
             case R.id.tv_mine:// 我的
-                updateBottomBarState(2);
+                updateBottomBarState (2);
                 break;
         }
-        mViewPager.setCurrentItem(mCurrentTabIndex);
+        mViewPager.setCurrentItem (mCurrentTabIndex);
     }
 
     /**
@@ -104,13 +113,13 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
      *
      * @param index 选择的按钮索引
      */
-    private void updateBottomBarState(int index) {
+    private void updateBottomBarState (int index) {
         if (index == mCurrentTabIndex) return;
         // 将点击前的按钮设为未选中状态
-        mBottomTabs[mCurrentTabIndex].setSelected(false);
+        mBottomTabs[mCurrentTabIndex].setSelected (false);
         // 将当前点击的按钮设为选中状态
         mCurrentTabIndex = index;
-        mBottomTabs[mCurrentTabIndex].setSelected(true);
+        mBottomTabs[mCurrentTabIndex].setSelected (true);
     }
 
     private long mExitTime;// 点击返回键的时间
@@ -123,22 +132,71 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
      * @return
      */
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyDown (int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if ((System.currentTimeMillis() - mExitTime) > 2000) {
-                ToastUtil.showToast(R.string.app_back_hint);
-                mExitTime = System.currentTimeMillis();
+            if ((System.currentTimeMillis () - mExitTime) > 2000) {
+                ToastUtil.showToast (R.string.app_back_hint);
+                mExitTime = System.currentTimeMillis ();
             } else {
-                finish();
+                finish ();
             }
             return true;
         }
-        return super.onKeyDown(keyCode, event);
+        return super.onKeyDown (keyCode, event);
     }
 
-    public void logoutCallback() {
-        mHomeFragment.setUserInfo();
-        mOrderFragment.setUserInfo();
-        mMineFragment.setUserInfo();
+    /**
+     * 登录  退出时调用此方法
+     */
+    public void updateData () {
+        mHomeFragment.updateData ();
+        mOrderFragment.updateData ();
+        mMineFragment.updateData ();
+    }
+
+    /**
+     * 检测版本
+     */
+    private void getUpdateAppInfo () {
+        NetWorkManager.getInstance ().updateApp (null, new NetListener () {
+            @Override
+            public void onSuccessResponse (String msg, JSONObject jsonObject) {
+                super.onSuccessResponse (msg, jsonObject);
+                updateVersion (jsonObject);
+            }
+
+            @Override
+            public void onErrorResponse (int errorWhat, String message) {
+            }
+        });
+    }
+
+    private void updateVersion (final JSONObject jsonObject) {
+        // 如果成功则继续获取其他信息(判断是否需要更新，再执行下面的操作)
+        int status = jsonObject.optInt ("versionStatus", 0);
+        final App app = (App) getApplication ();
+        app.haveNewVersion = true;// 有新版本
+        switch (status) {
+            case 0:
+                app.haveNewVersion = false;
+                break;
+            case -1:// 强制更新
+                DialogHelp.createMustDialog (this, getString (R.string.app_updateapp_must), new NormalDialogListener1 () {
+                    @Override
+                    public void onOkClickListener () {
+                        AppUtils.startDownApk (MainActivity.this,jsonObject.optString ("url"));
+                    }
+                }).show ();
+                break;
+            case 1:
+                DialogHelp.createOkDialog (this, getString (R.string.app_updateapp_), new NormalDialogListener1 () {
+                    @Override
+                    public void onOkClickListener () {
+                        // 开始下载更新
+                        AppUtils.startDownApk (MainActivity.this,jsonObject.optString ("url"));
+                    }
+                }).show ();
+                break;
+        }
     }
 }

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/color_bg"
     android:orientation="vertical">
 
     <include layout="@layout/incule_actionbar"/>
@@ -11,13 +11,8 @@
     <!--客服QQ等信息-->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="120dp"
         android:background="@drawable/ic_home_top_bg">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_home_top1"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -26,14 +21,6 @@
             android:text="WIN ￥$"
             android:textColor="@color/main_background_x"
             android:textSize="18sp"/>
-
-        <ImageView
-            android:id="@+id/top_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_home_top2"/>
 
 
     </RelativeLayout>
@@ -51,8 +38,9 @@
 
         <TextView
             android:id="@+id/qq_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:drawableLeft="@drawable/ic_about_qq"
             android:drawablePadding="4dp"
             android:gravity="center_vertical"
@@ -60,11 +48,24 @@
             android:text="@string/kefu_qq"
             android:textColor="@color/gray_xxx"
             android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/phone_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_about_phone"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
+            android:padding="4dp"
+            android:text="@string/kefu_phone"
+            android:textColor="@color/gray_xxx"
+            android:textSize="12sp"/>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1px"
+        android:layout_height="4dp"
         android:background="@color/gray_line"/>
     <!--游戏列表-->
     <ListView
