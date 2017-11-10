@@ -31,6 +31,9 @@
 
     <!--我的-->
     <string name="nickname_str">昵称：</string>
+    <string name="qq_str">QQ：</string>
+    <string name="tel_str">Tel：</string>
+    <string name="email_str">Email：</string>
     <string name="gamecoin_str">金豆：%s</string>
     <string name="experience_str">积分</string>
 

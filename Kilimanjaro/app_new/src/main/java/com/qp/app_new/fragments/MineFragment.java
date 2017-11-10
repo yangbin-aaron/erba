@@ -30,10 +30,10 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         layoutId = R.layout.fragment_mine;
     }
 
-    // 退出登录、交易明细、修改密码、关于我们
-    private View mLogoutView, mTrandListView, mModifyPwdView, mAboutUsView;
+    // 登录、退出登录、交易明细、修改密码、关于我们
+    private View mLoginView, mInfoView, mLogoutView, mTrandListView, mModifyPwdView, mAboutUsView;
     private CircleImageView mHeadCIV;
-    private TextView mNickNameTV, mCoinTV;
+    private TextView mNickNameTV, mQQTV, mTelTV, mEmailTV, mCoinTV;
 
     private Dialog mDialogLogout;
 
@@ -43,8 +43,14 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         setTitle (R.string.bottom_tab_mine);
         mHeadCIV = (CircleImageView) findViewById (R.id.iv_head);
         mNickNameTV = (TextView) findViewById (R.id.tv_nickName);
+        mQQTV = (TextView) findViewById (R.id.tv_qq);
+        mTelTV = (TextView) findViewById (R.id.tv_tel);
+        mEmailTV = (TextView) findViewById (R.id.tv_email);
         mCoinTV = (TextView) findViewById (R.id.tv_coin);
 
+        mLoginView = findViewById (R.id.tv_login_register);
+        mLoginView.setOnClickListener (this);
+        mInfoView = findViewById (R.id.ly_userinfo);
         mTrandListView = findViewById (R.id.rl_trand_list);
         mTrandListView.setOnClickListener (this);
         mModifyPwdView = findViewById (R.id.rl_modify_pwd);
@@ -70,7 +76,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 }
                 mDialogLogout.show ();
                 break;
-            case R.id.tv_nickName:
+            case R.id.tv_login_register:
                 ActivityStartUtils.startLoginActivity (getActivity ());
                 break;
             case R.id.rl_modify_pwd:
@@ -109,16 +115,25 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 mHeadCIV.setTag (uri);
                 ImageLoader.getInstance ().displayImage (uri, imageAware);
             }
-            mNickNameTV.setText (AppPrefsContent.getUser ().optString ("nickName"));
-            mNickNameTV.setEnabled (false);
+            mNickNameTV.setText (userJsonObject.optString ("nickName"));
+            mTelTV.setText (userJsonObject.optString ("phone"));
+            String email = userJsonObject.optString ("email");
+            String qq = "";
+            mEmailTV.setText (email);
+            if (!TextUtils.isEmpty (email) && email.contains ("@")) {
+                qq = email.substring (0, email.indexOf ("@"));
+            }
+            mQQTV.setText (qq);
+            mLoginView.setVisibility (View.GONE);
+            mInfoView.setVisibility (View.VISIBLE);
         } else {// 未登录
             mLogoutView.setVisibility (View.GONE);
             mModifyPwdView.setVisibility (View.GONE);
             mCoinTV.setVisibility (View.GONE);
             mHeadCIV.setImageResource (R.mipmap.ic_launcher);
-            mNickNameTV.setText (R.string.login_register);
-            mNickNameTV.setEnabled (true);
-            mNickNameTV.setOnClickListener (this);
+            mNickNameTV.setText ("");
+            mLoginView.setVisibility (View.VISIBLE);
+            mInfoView.setVisibility (View.GONE);
         }
     }
 }
