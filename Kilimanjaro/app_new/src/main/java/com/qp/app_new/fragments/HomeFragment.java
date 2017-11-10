@@ -58,6 +58,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onResume () {
         super.onResume ();
+        setUserInfo();
+    }
+
+    public void setUserInfo(){
         if (AppPrefsContent.isLogined ()) {
             setTitle (AppPrefsContent.getUser ().optString ("nickName"));
         } else {

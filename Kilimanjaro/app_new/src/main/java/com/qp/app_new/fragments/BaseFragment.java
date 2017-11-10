@@ -62,9 +62,9 @@ public abstract class BaseFragment extends Fragment {
      * ActionBar   BEGIN
      */
 
-    private View mActionBar, mLeftView, mRightView;
-    private TextView mTitleTV, mRightTV;
-    private ImageView mBackIV, mRightIV;
+    public View mActionBar, mLeftView, mRightView;
+    public TextView mTitleTV, mRightTV;
+    public ImageView mBackIV, mRightIV;
 
     public void initActionBar () {
         if (mView == null) return;

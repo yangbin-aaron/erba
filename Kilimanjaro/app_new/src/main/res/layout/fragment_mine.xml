@@ -2,7 +2,125 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@color/white"
               android:orientation="vertical">
 
     <include layout="@layout/incule_actionbar"/>
+
+    <com.qp.app_new.views.CircleImageView
+        android:id="@+id/iv_head"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_40"
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:id="@+id/tv_nickName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_16"
+        android:text="@string/text_yk"
+        android:textColor="@color/black_text"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="@dimen/dp_16"
+        android:background="@color/gray_line"/>
+
+    <!--密码修改-->
+    <RelativeLayout
+        android:id="@+id/rl_modify_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mine_adapter_height"
+        android:layout_marginTop="@dimen/mine_adapter_line_d"
+        android:background="@drawable/selector_r0_gray_str0"
+        android:paddingBottom="@dimen/mine_adapter_padding_topbottom"
+        android:paddingLeft="@dimen/mine_footer_padding_leftright"
+        android:paddingRight="@dimen/mine_footer_padding_leftright"
+        android:paddingTop="@dimen/mine_adapter_padding_topbottom">
+
+        <ImageView
+            android:id="@+id/image_modify_pwd"
+            android:layout_width="@dimen/mine_footer_img_w_h"
+            android:layout_height="@dimen/mine_footer_img_w_h"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_mine_modify_pwd"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/mine_footer_text_marg_left"
+            android:layout_toRightOf="@id/image_modify_pwd"
+            android:text="@string/modifypwd_str"
+            android:textColor="@color/black_text"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/right_navigation"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/gray_line"/>
+
+    <!--关于我们-->
+    <RelativeLayout
+        android:id="@+id/rl_about"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mine_adapter_height"
+        android:layout_marginTop="@dimen/mine_adapter_line_d"
+        android:background="@drawable/selector_r0_gray_str0"
+        android:paddingBottom="@dimen/mine_adapter_padding_topbottom"
+        android:paddingLeft="@dimen/mine_footer_padding_leftright"
+        android:paddingRight="@dimen/mine_footer_padding_leftright"
+        android:paddingTop="@dimen/mine_adapter_padding_topbottom">
+
+        <ImageView
+            android:id="@+id/image_about"
+            android:layout_width="@dimen/mine_footer_img_w_h"
+            android:layout_height="@dimen/mine_footer_img_w_h"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_mine_about"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/mine_footer_text_marg_left"
+            android:layout_toRightOf="@id/image_about"
+            android:text="@string/about_str"
+            android:textColor="@color/black_text"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/right_navigation"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/gray_line"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/btn_logout"
+        style="@style/BaseBtnStyle"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/shape_r5_main_str0"
+        android:text="@string/logout_str"/>
 </LinearLayout>

@@ -55,6 +55,7 @@
     <string name="forget_pwd">忘记密码？</string>
     <string name="visitor_login">以访客身份登录，随便玩玩</string>
     <string name="register">没有账号？马上注册</string>
+    <string name="login_register">登录/注册</string>
     <string name="phone_pwd_cannot_null">账号或密码不能为空</string>
     <string name="phone_email_is_error">请输入正确的手机号码</string>
     <string name="activeaccount_success">发送成功，请前往邮箱激活！</string>

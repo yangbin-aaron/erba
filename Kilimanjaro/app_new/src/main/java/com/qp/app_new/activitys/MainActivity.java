@@ -28,6 +28,10 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
     private ViewPager mViewPager;
     private MainViewPagerAdapter mMainViewPagerAdapter;
 
+    private HomeFragment mHomeFragment;
+    private OrderFragment mOrderFragment;
+    private MineFragment mMineFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +42,12 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
 
     private void initViewPager() {
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new HomeFragment());
-        fragmentList.add(new OrderFragment());
-        fragmentList.add(new MineFragment());
+        mHomeFragment = new HomeFragment();
+        mOrderFragment = new OrderFragment();
+        mMineFragment = new MineFragment();
+        fragmentList.add(mHomeFragment);
+        fragmentList.add(mOrderFragment);
+        fragmentList.add(mMineFragment);
         mMainViewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager(), fragmentList);
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
         mViewPager.setAdapter(mMainViewPagerAdapter);
@@ -127,5 +134,11 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    public void logoutCallback() {
+        mHomeFragment.setUserInfo();
+        mOrderFragment.setUserInfo();
+        mMineFragment.setUserInfo();
     }
 }

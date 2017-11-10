@@ -10,7 +10,7 @@ import com.teb.kilimanjaro.models.entry.BaseJsonModel;
  */
 public class LoginModel extends BaseJsonModel {
 
-        private String token;
+    private String token;
     private LoginData data;
 
     public String getToken() {
@@ -105,7 +105,7 @@ public class LoginModel extends BaseJsonModel {
     }
 
     // ------------------对外开放的方法--------------------
-    
+
     /**
      * 是否已经登录
      *

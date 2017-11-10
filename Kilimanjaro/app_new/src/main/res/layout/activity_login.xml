@@ -94,7 +94,7 @@
         android:id="@+id/btn_login"
         style="@style/BaseBtnStyle"
         android:layout_below="@id/rl_password"
-        android:background="@drawable/shape_r5_red_str0"
+        android:background="@drawable/shape_r5_main_str0"
         android:text="@string/login_btn"/>
 
     <TextView
