@@ -149,8 +149,9 @@
 
     <!--开奖明细-->
     <string name="lottery_d_bar">开奖明细</string>
-    <string name="lottery_d_issue">开奖期数</string>
-    <string name="lottery_d_result">开奖号码</string>
+    <string name="lottery_d_issue">开奖期数：</string>
+    <string name="lottery_d_result">开奖号码：</string>
+    <string name="lottery_d_time">开奖时间：</string>
     <string name="lottery_d_roster">中奖名单</string>
     <string name="lottery_d_mybet">我的投注</string>
     <string name="lottery_d_ys_id">* 原始开奖号码来自于%s</string>
@@ -294,7 +295,7 @@
     <!--<string name="qq_lottery_d_maxcoin">投注额不能超过 </string>-->
 
     <!--QQ群玩法  LotteryDefaultActivityQQ-->
-    <string name="qq_lottery_default_bar">开奖明细</string>
+    <string name="qq_lottery_default_bar">%s 开奖明细</string>
     <string name="qq_lottery_default_jine">金额：</string>
     <string name="qq_lottery_default_benli">本利：</string>
     <string name="qq_lottery_default_haoma">号码：</string>

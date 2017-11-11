@@ -48,7 +48,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
                 if (judgeLogin ()) {
                     // 去游戏页面
-                    ActivityStartUtils.startGameActivity (getActivity (), mGameListAdapter.getItem (position).toString ());
+                    ActivityStartUtils.startGameActivity (getActivity (), mGameListAdapter.getItem (position));
                 }
             }
         });

@@ -2,7 +2,6 @@ package com.qp.app_new.contents;
 
 import com.qp.app_new.AppPrefs;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -16,17 +15,18 @@ public class AppPrefsContent {
      *
      * @return
      */
-    public static boolean isLogined () {
-        return AppPrefs.getInstance ().getUserJson () == null ? false : true;
+    public static boolean isLogined() {
+        return AppPrefs.getInstance().getUserJson() == null ? false : true;
     }
 
-    public static JSONObject getUser () {
+    public static JSONObject getUser() {
         JSONObject user = null;
-        String userJson = AppPrefs.getInstance ().getUserJson ();
+        String userJson = AppPrefs.getInstance().getUserJson();
         try {
-            user = new JSONObject (userJson);
-        } catch (JSONException e) {
-            e.printStackTrace ();
+            user = new JSONObject(userJson);
+            user.put("token", AppPrefs.getInstance().getToken());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return user;
     }
@@ -36,9 +36,9 @@ public class AppPrefsContent {
      *
      * @param jsonObject
      */
-    public static void handlerLoginData (JSONObject jsonObject) {
-        AppPrefs.getInstance ().saveUserJson (jsonObject.toString ());
-        AppPrefs.getInstance ().saveUserPhone (jsonObject.optString ("phone"));
-        AppPrefs.getInstance ().saveTokenState (true);// 能够访问
+    public static void handlerLoginData(JSONObject jsonObject) {
+        AppPrefs.getInstance().saveUserJson(jsonObject.toString());
+        AppPrefs.getInstance().saveUserPhone(jsonObject.optString("phone"));
+        AppPrefs.getInstance().saveTokenState(true);// 能够访问
     }
 }

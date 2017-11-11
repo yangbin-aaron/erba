@@ -130,7 +130,7 @@
         android:id="@+id/rl_trand_list"
         android:layout_width="match_parent"
         android:layout_height="@dimen/mine_adapter_height"
-        android:background="@drawable/selector_r0_gray_str0">
+        android:background="@drawable/selector_r0_bg_grayx_str0">
 
         <ImageView
             android:id="@+id/image_trand_list"
@@ -180,7 +180,7 @@
         android:id="@+id/rl_modify_pwd"
         android:layout_width="match_parent"
         android:layout_height="@dimen/mine_adapter_height"
-        android:background="@drawable/selector_r0_gray_str0">
+        android:background="@drawable/selector_r0_bg_grayx_str0">
 
         <ImageView
             android:id="@+id/image_modify_pwd"
@@ -220,7 +220,7 @@
         android:id="@+id/rl_about"
         android:layout_width="match_parent"
         android:layout_height="@dimen/mine_adapter_height"
-        android:background="@drawable/selector_r0_gray_str0">
+        android:background="@drawable/selector_r0_bg_grayx_str0">
 
         <ImageView
             android:id="@+id/image_about"

@@ -47,9 +47,10 @@ public class StringUtil {
 
     /**
      * 获取版本信息的时候使用
+     *
      * @return
      */
-    public static String getVersionJson(){
+    public static String getVersionJson() {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("versionName", AppUtils.getAppVersionName());
         hashMap.put("type", 0);
@@ -149,5 +150,23 @@ public class StringUtil {
             e.printStackTrace();
         }
         return text;
+    }
+
+    /**
+     * DATA_FORMAT_YMDHMS
+     * @param time
+     * @return
+     */
+    public static String getShowTime14(String time) {
+        return StringUtil.stringToString(StringUtil.DATA_FORMAT_YMDHMSZZZZZ, StringUtil.DATA_FORMAT_YMDHMS, time);
+    }
+
+    /**
+     * DATA_FORMAT_HM
+     * @param time
+     * @return
+     */
+    public static String getShowTime4(String time) {
+        return StringUtil.stringToString(StringUtil.DATA_FORMAT_YMDHMSZZZZZ, StringUtil.DATA_FORMAT_HM, time);
     }
 }
