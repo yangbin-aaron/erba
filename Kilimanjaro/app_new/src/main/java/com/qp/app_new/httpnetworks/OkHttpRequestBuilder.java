@@ -39,16 +39,17 @@ public class OkHttpRequestBuilder {
                     public void onError (Request request, Exception e) {
                         Log.e (TAG, "错误编码:" + NetStatusConfig.STATUS_NET_ERROR + ", 错误信息:" + App.mContext.getResources ().getString (R.string
                                 .can_not_connect));
-                        listener.onErrorResponse (NetStatusConfig.STATUS_NET_ERROR, App.mContext.getResources ().getString (R.string
-                                .can_not_connect));
+                        if (listener != null)
+                            listener.onErrorResponse (NetStatusConfig.STATUS_NET_ERROR, App.mContext.getResources ().getString (R.string
+                                    .can_not_connect));
                         if (dialog != null) dialog.dismiss ();
                     }
 
                     @Override
                     public void onResponse (String response) {
                         if (dialog != null) dialog.dismiss ();
-                        Log.e (TAG, "response = " + response);
-                        listener.onResponse (response);
+                        Log.e (TAG, "apiUrl = " + apiUrl + "\nresponse = " + response);
+                        if (listener != null) listener.onResponse (response);
                         try {
                             JSONObject jsonObject = new JSONObject (response);
                             int status = jsonObject.optInt ("status");
@@ -58,11 +59,15 @@ public class OkHttpRequestBuilder {
                                 if (!TextUtils.isEmpty (token)) AppPrefs.getInstance ().saveToken (token);
                                 JSONObject object = jsonObject.optJSONObject ("data");
                                 if (object != null) {
-                                    listener.onSuccessResponse (jsonObject.optString ("message"), object);
+                                    if (listener != null) listener.onSuccessResponse (jsonObject.optString ("message"), object);
                                 }
                                 JSONArray array = jsonObject.optJSONArray ("data");
-                                if (array != null) {
-                                    listener.onSuccessResponse (jsonObject.optString ("message"), array);
+                                if (array != null && array.length () > 0) {
+                                    if (listener != null) listener.onSuccessResponse (jsonObject.optString ("message"), array);
+                                }
+
+                                if (object == null && (array == null || array.length () == 0)) {
+                                    listener.onErrorResponse (NetStatusConfig.STATUS_HAVE_NO_DATA, App.mContext.getString (R.string.app_no_data));
                                 }
                             } else {// 失败
                                 if (status == NetStatusConfig.STATUS_TOKEN_IS_UPDATED) {
@@ -72,15 +77,17 @@ public class OkHttpRequestBuilder {
                                             .string.have_login_wrong));
                                 } else {
                                     Log.e (TAG, "错误编码:" + NetStatusConfig.STATUS_POST_FAIL + ", 错误信息:" + jsonObject.optString ("message"));
-                                    listener.onErrorResponse (NetStatusConfig.STATUS_POST_FAIL, jsonObject.optString ("message"));
+                                    if (listener != null)
+                                        listener.onErrorResponse (NetStatusConfig.STATUS_POST_FAIL, jsonObject.optString ("message"));
                                 }
                             }
                         } catch (Exception e) {
                             e.printStackTrace ();
                             Log.e (TAG, "错误编码:" + NetStatusConfig.STATUS_DATA_WRONG + ", 错误信息:" + App.mContext.getResources ().getString (R.string
                                     .have_not_service));
-                            listener.onErrorResponse (NetStatusConfig.STATUS_DATA_WRONG, App.mContext.getResources ().getString (R.string
-                                    .have_not_service));
+                            if (listener != null)
+                                listener.onErrorResponse (NetStatusConfig.STATUS_DATA_WRONG, App.mContext.getResources ().getString (R.string
+                                        .have_not_service));
                         }
                     }
 

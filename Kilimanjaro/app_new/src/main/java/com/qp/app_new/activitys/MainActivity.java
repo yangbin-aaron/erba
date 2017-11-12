@@ -14,7 +14,7 @@ import com.qp.app_new.adapters.MainViewPagerAdapter;
 import com.qp.app_new.dialogs.DialogHelp;
 import com.qp.app_new.fragments.HomeFragment;
 import com.qp.app_new.fragments.MineFragment;
-import com.qp.app_new.fragments.OrderFragment;
+import com.qp.app_new.fragments.RankingFragment;
 import com.qp.app_new.httpnetworks.NetWorkManager;
 import com.qp.app_new.interfaces.NetListener;
 import com.qp.app_new.interfaces.NormalDialogListener1;
@@ -37,7 +37,7 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
     private MainViewPagerAdapter mMainViewPagerAdapter;
 
     private HomeFragment mHomeFragment;
-    private OrderFragment mOrderFragment;
+    private RankingFragment mRankingFragment;
     private MineFragment mMineFragment;
 
     @Override
@@ -52,10 +52,10 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
     private void initViewPager () {
         List<Fragment> fragmentList = new ArrayList<> ();
         mHomeFragment = new HomeFragment ();
-        mOrderFragment = new OrderFragment ();
+        mRankingFragment = new RankingFragment ();
         mMineFragment = new MineFragment ();
         fragmentList.add (mHomeFragment);
-        fragmentList.add (mOrderFragment);
+        fragmentList.add (mRankingFragment);
         fragmentList.add (mMineFragment);
         mMainViewPagerAdapter = new MainViewPagerAdapter (getSupportFragmentManager (), fragmentList);
         mViewPager = (ViewPager) findViewById (R.id.viewPager);
@@ -150,7 +150,7 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
      */
     public void updateData () {
         mHomeFragment.updateData ();
-        mOrderFragment.updateData ();
+        mRankingFragment.updateData ();
         mMineFragment.updateData ();
     }
 

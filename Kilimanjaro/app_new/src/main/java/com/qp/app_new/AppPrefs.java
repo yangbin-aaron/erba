@@ -2,6 +2,11 @@ package com.qp.app_new;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by Aaron on 17/11/8.
@@ -34,6 +39,9 @@ public class AppPrefs {
         String BET_AUTO_COUNT = "bet_auto_count";// 自动投注的期数
         String BET_AUTO_IS_STARTED = "bet_auto_is_started";// 自动投注是否开始
         String BASIC_INFO = "basic_info";// 客服信息
+        String SYS_INFO_QQ = "customerQQ";// 系统信息  qq
+        String SYS_INFO_PHONE = "customerPhone";// 系统信息
+        String SYS_INFO_WORKTIME = "workTime";// 系统信息  工作时间
     }
 
     private static AppPrefs sInstance;
@@ -79,8 +87,17 @@ public class AppPrefs {
      *
      * @return
      */
-    public String getUserJson () {
-        return mPrefs.getString (Key.USER_JSON, null);
+    public JSONObject getUserJson () {
+        String info = mPrefs.getString (Key.USER_JSON, null);
+        JSONObject jsonObject = null;
+        if (!TextUtils.isEmpty (info)) {
+            try {
+                jsonObject = new JSONObject (info);
+            } catch (JSONException e) {
+                e.printStackTrace ();
+            }
+        }
+        return jsonObject;
     }
 
     public void saveToken (String token) {
@@ -96,8 +113,8 @@ public class AppPrefs {
      *
      * @param tokenState
      */
-    public void saveTokenState(boolean tokenState) {
-        getEditor().putBoolean(Key.TOKEN_WRONG, tokenState).commit();
+    public void saveTokenState (boolean tokenState) {
+        getEditor ().putBoolean (Key.TOKEN_WRONG, tokenState).commit ();
     }
 
     /**
@@ -105,7 +122,26 @@ public class AppPrefs {
      *
      * @return
      */
-    public boolean getTokenState() {
-        return mPrefs.getBoolean(Key.TOKEN_WRONG, false);
+    public boolean getTokenState () {
+        return mPrefs.getBoolean (Key.TOKEN_WRONG, false);
+    }
+
+    public void saveSysInfo (JSONArray sysInfo) {
+        for (int i = 0; i < sysInfo.length (); i++) {
+            JSONObject jsonObject = sysInfo.optJSONObject (i);
+            getEditor ().putString (jsonObject.optString ("key"), jsonObject.optString ("value")).commit ();
+        }
+    }
+
+    public String getSysInfoQQ () {
+        return mPrefs.getString (Key.SYS_INFO_QQ, App.mContext.getString (R.string.kefu_qq_num_default));
+    }
+
+    public String getSysInfoPhone () {
+        return mPrefs.getString (Key.SYS_INFO_PHONE, App.mContext.getString (R.string.kefu_phone_default));
+    }
+
+    public String getSysInfoWorkTime () {
+        return mPrefs.getString (Key.SYS_INFO_WORKTIME, App.mContext.getString (R.string.kefu_worktime_default));
     }
 }

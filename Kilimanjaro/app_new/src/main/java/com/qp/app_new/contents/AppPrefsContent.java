@@ -15,20 +15,19 @@ public class AppPrefsContent {
      *
      * @return
      */
-    public static boolean isLogined() {
-        return AppPrefs.getInstance().getUserJson() == null ? false : true;
+    public static boolean isLogined () {
+        return AppPrefs.getInstance ().getUserJson () == null ? false : true;
     }
 
-    public static JSONObject getUser() {
-        JSONObject user = null;
-        String userJson = AppPrefs.getInstance().getUserJson();
+    public static JSONObject getUser () {
+        JSONObject userJson = AppPrefs.getInstance ().getUserJson ();
+        if (userJson == null) return null;
         try {
-            user = new JSONObject(userJson);
-            user.put("token", AppPrefs.getInstance().getToken());
+            userJson.put ("token", AppPrefs.getInstance ().getToken ());
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace ();
         }
-        return user;
+        return userJson;
     }
 
     /**
@@ -36,9 +35,9 @@ public class AppPrefsContent {
      *
      * @param jsonObject
      */
-    public static void handlerLoginData(JSONObject jsonObject) {
-        AppPrefs.getInstance().saveUserJson(jsonObject.toString());
-        AppPrefs.getInstance().saveUserPhone(jsonObject.optString("phone"));
-        AppPrefs.getInstance().saveTokenState(true);// 能够访问
+    public static void handlerLoginData (JSONObject jsonObject) {
+        AppPrefs.getInstance ().saveUserJson (jsonObject.toString ());
+        AppPrefs.getInstance ().saveUserPhone (jsonObject.optString ("phone"));
+        AppPrefs.getInstance ().saveTokenState (true);// 能够访问
     }
 }

@@ -1,9 +1,12 @@
 package com.qp.app_new.activitys;
 
+import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 
 import com.qp.app_new.R;
+import com.qp.app_new.configs.BroadcastConfig;
 import com.qp.app_new.contents.AppPrefsContent;
 import com.qp.app_new.dialogs.DialogHelp;
 import com.qp.app_new.httpnetworks.NetWorkManager;
@@ -27,6 +30,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     // 手机号码输入框、密码输入框
     private EditText mPhoneET, mPasswordET;
+    private boolean mIsExit;// 异常登陆时   ，如果按返回，退到主页
+
+    @Override
+    public void getIntentData () {
+        super.getIntentData ();
+        mIsExit = getIntent ().getBooleanExtra ("is_exit", false);
+    }
 
     @Override
     public void initView () {
@@ -42,11 +52,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         findViewById (R.id.btn_login).setOnClickListener (this);
         findViewById (R.id.tv_forgetpwd).setOnClickListener (this);
         findViewById (R.id.tv_register).setOnClickListener (this);
-    }
-
-    @Override
-    public void onLeftClick (View v) {
-        finish ();
     }
 
     @Override
@@ -108,5 +113,25 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 DialogHelp.showMessageDialog (LoginActivity.this, message);
             }
         });
+    }
+
+    @Override
+    public void onLeftClick (View v) {
+        if (mIsExit) {
+            sendBroadcast (new Intent (BroadcastConfig.ACTION_EXIT_APP));
+        }
+        finish ();
+    }
+
+    @Override
+    public boolean onKeyDown (int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (mIsExit) {
+                sendBroadcast (new Intent (BroadcastConfig.ACTION_EXIT_APP));
+            }
+            finish ();
+            return true;
+        }
+        return super.onKeyDown (keyCode, event);
     }
 }

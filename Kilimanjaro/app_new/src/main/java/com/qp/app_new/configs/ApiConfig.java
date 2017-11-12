@@ -37,7 +37,7 @@ public class ApiConfig {
         String PAY_PWD_MODIFY = "/user/payPasswordModify";// 修改支付密码
         String GAME_LIST = "/game/list";// 游戏列表（我的界面）
         String UPDATE_APP = "/user/auth/checkVersion";// 获取版本信息
-        String BASIC_INFO = "/basicInfo";// 客服信息
+        String BASIC_INFO = "/sysProperty/list";// 客服信息
     }
 
     /**
@@ -62,6 +62,13 @@ public class ApiConfig {
     public interface TrendApi {
         String GET_BIG_CHART = "/game/bChart";// 游戏趋势图大图
         String GET_SMALL_CHART = "/game/sChart";// 游戏趋势图小图
+    }
+
+    /**
+     * 排行榜  相关
+     */
+    public interface RankingApi {
+        String GET_RANKING = "/game/ranking";
     }
 
     public interface CoinApi {

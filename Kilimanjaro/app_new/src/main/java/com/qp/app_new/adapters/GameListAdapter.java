@@ -1,16 +1,12 @@
 package com.qp.app_new.adapters;
 
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.imageaware.ImageAware;
 import com.nostra13.universalimageloader.core.imageaware.ImageViewAware;
-import com.qp.app_new.App;
 import com.qp.app_new.R;
 import com.qp.app_new.views.CircleImageView;
 
@@ -21,16 +17,9 @@ import org.json.JSONObject;
  * Created by Aaron on 2017/11/8.
  */
 
-public class GameListAdapter extends BaseAdapter {
+public class GameListAdapter extends BaseMyAdapter<GameListAdapter.ViewHodler> {
 
-    private JSONArray mJSONArray;
-    private LayoutInflater mInflater;
-
-    public GameListAdapter () {
-        mJSONArray = new JSONArray ();
-        mInflater = LayoutInflater.from (App.mContext);
-    }
-
+    @Override
     public void setJSONArray (JSONArray jsonArray) {
         for (int i = 0; i < jsonArray.length (); i++) {
             JSONObject jsonObject = jsonArray.optJSONObject (i);
@@ -42,26 +31,15 @@ public class GameListAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getCount () {
-        return mJSONArray.length ();
+    public int getContentView () {
+        return R.layout.item_game_list;
     }
 
     @Override
-    public JSONObject getItem (int position) {
-        return mJSONArray.optJSONObject (position);
-    }
-
-    @Override
-    public long getItemId (int position) {
-        return position;
-    }
-
-    @Override
-    public View getView (int position, View convertView, ViewGroup parent) {
+    public void setConvertView (View convertView, boolean isEmtpy, int position) {
         ViewHodler hodler;
-        if (convertView == null) {
+        if (isEmtpy) {
             hodler = new ViewHodler ();
-            convertView = mInflater.inflate (R.layout.item_game_list, null);
             hodler.iconIV = (CircleImageView) convertView.findViewById (R.id.iv_icon);
             hodler.gameNameTV = (TextView) convertView.findViewById (R.id.tv_gamename);
             hodler.referNameTV = (TextView) convertView.findViewById (R.id.tv_referName);
@@ -81,7 +59,6 @@ public class GameListAdapter extends BaseAdapter {
             hodler.iconIV.setTag (icon);
             ImageLoader.getInstance ().displayImage (icon, imageAware);
         }
-        return convertView;
     }
 
     class ViewHodler {

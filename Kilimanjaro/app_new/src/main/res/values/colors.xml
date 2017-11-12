@@ -2,8 +2,8 @@
 <resources>
 
     <!--主色调-->
-    <color name="main_background">#DBB76C</color>
-    <color name="main_background_x">#C89614</color>
+    <color name="main_background">#ED1961</color>
+    <color name="main_background_x">#F83943</color>
 
     <color name="color_bg">#EDEDED</color>
 
@@ -48,7 +48,7 @@
     <color name="gray_line">#D4D4D4</color>
     <color name="gray_dialog_bg">#F0FDFD</color>
     <!--BottomBar选中和未选中的颜色-->
-    <color name="bottom_tab_select">#DBB76C</color>
+    <color name="bottom_tab_select">@color/main_background</color>
     <color name="bottom_tab_unselect">#999999</color>
 
     <color name="red_select">#FF0000</color>

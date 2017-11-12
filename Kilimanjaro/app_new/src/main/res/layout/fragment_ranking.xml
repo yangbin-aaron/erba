@@ -7,33 +7,54 @@
 
     <include layout="@layout/incule_actionbar"/>
 
-    <RelativeLayout
-        android:id="@+id/order_rl"
+    <LinearLayout
+        android:id="@+id/ly_ranking"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/action_bar"
+        android:orientation="vertical"
         android:visibility="gone">
 
-        <com.handmark.pulltorefresh.library.PullToRefreshListView
-            android:id="@+id/order_d_lv"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@null"/>
+            android:layout_height="@dimen/dp_40"
+            android:background="@color/gray_line"
+            android:gravity="center_vertical">
 
-        <com.handmark.pulltorefresh.library.PullToRefreshListView
-            android:id="@+id/order_w_lv"
+            <TextView
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp_10"
+                android:text="排名"
+                android:textColor="@color/gray_xxx"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="昵称"
+                android:textColor="@color/gray_xxx"/>
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="奖金"
+                android:textColor="@color/gray_xxx"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/gray_line"/>
+
+        <ListView
+            android:id="@+id/lv_ranking"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@null"
-            android:visibility="gone"/>
+            android:scrollbars="none"/>
 
-        <com.handmark.pulltorefresh.library.PullToRefreshListView
-            android:id="@+id/order_m_lv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@null"
-            android:visibility="gone"/>
-    </RelativeLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/error_ly"
@@ -41,7 +62,8 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/action_bar"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
 
         <ImageView
             android:layout_width="wrap_content"

@@ -2,6 +2,10 @@ package com.qp.app_new.activitys;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.qp.app_new.R;
+import com.qp.app_new.configs.BroadcastConfig;
 import com.qp.app_new.contents.AppPrefsContent;
 import com.qp.app_new.dialogs.DialogHelp;
 
@@ -22,6 +27,15 @@ public abstract class BaseActivity extends Activity {
     public Dialog mLoadingDialog;// 加载对话框
     private Dialog mDialogLogin;
     public int layoutId = R.layout.activity_main;
+
+    private BroadcastReceiver mReceiver = new BroadcastReceiver () {
+        @Override
+        public void onReceive (Context context, Intent intent) {
+            if (intent.getAction ().equals (BroadcastConfig.ACTION_EXIT_APP)) {
+                finish ();
+            }
+        }
+    };
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -35,6 +49,15 @@ public abstract class BaseActivity extends Activity {
         setContentView (layoutId);
         mLoadingDialog = DialogHelp.createLoadingDialog (this, true);
         initView ();
+        IntentFilter filter = new IntentFilter ();
+        filter.addAction (BroadcastConfig.ACTION_EXIT_APP);
+        registerReceiver (mReceiver, filter);
+    }
+
+    @Override
+    protected void onDestroy () {
+        super.onDestroy ();
+        unregisterReceiver (mReceiver);
     }
 
     public abstract void setContentView ();

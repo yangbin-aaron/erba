@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.qp.app_new.App;
+import com.qp.app_new.AppPrefs;
 import com.qp.app_new.R;
 import com.qp.app_new.dialogs.DialogHelp;
 import com.qp.app_new.httpnetworks.NetWorkManager;
@@ -30,8 +31,8 @@ public class AboutUsActivity extends BaseActivity implements View.OnClickListene
         setTitle (R.string.about_str);
         setLeftIV (R.drawable.ic_back_btn);
 
-        TextView tv_vision = (TextView) findViewById (R.id.tv_vision);
-        tv_vision.setText (getString (R.string.visition, AppUtils.getAppVersionName ()));
+        ((TextView) findViewById (R.id.tv_vision)).setText (getString (R.string.visition, AppUtils.getAppVersionName ()));
+        ((TextView) findViewById (R.id.tv_work_time)).setText (AppPrefs.getInstance ().getSysInfoWorkTime ());
 
         findViewById (R.id.rl_qq).setOnClickListener (this);
         findViewById (R.id.rl_phone).setOnClickListener (this);
@@ -42,11 +43,11 @@ public class AboutUsActivity extends BaseActivity implements View.OnClickListene
     public void onClick (View v) {
         switch (v.getId ()) {
             case R.id.rl_qq:
-                final String kefu_qq_num_default = getString (R.string.kefu_qq_num_default);
+                final String kefu_qq_num_default = AppPrefs.getInstance ().getSysInfoQQ ();
                 DialogHelp.showMessageDialog (this, getString (R.string.kefu_qq_, kefu_qq_num_default));
                 break;
             case R.id.rl_phone:
-                final String kefu_phone_default = getString (R.string.kefu_phone_default);
+                final String kefu_phone_default = AppPrefs.getInstance ().getSysInfoPhone ();
                 DialogHelp.showMessageDialog (this, getString (R.string.kefu_phone_, kefu_phone_default));
                 break;
             case R.id.rl_update:
@@ -79,7 +80,7 @@ public class AboutUsActivity extends BaseActivity implements View.OnClickListene
                     mDialogUpdate = DialogHelp.createOkDialog (this, getString (R.string.app_updateapp_), new NormalDialogListener1 () {
                         @Override
                         public void onOkClickListener () {
-                            AppUtils.startDownApk (AboutUsActivity.this,jsonObject.optString ("url"));
+                            AppUtils.startDownApk (AboutUsActivity.this, jsonObject.optString ("url"));
                         }
                     });
                 }

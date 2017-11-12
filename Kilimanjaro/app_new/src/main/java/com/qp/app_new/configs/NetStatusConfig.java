@@ -11,4 +11,5 @@ public class NetStatusConfig {
     public static final int STATUS_TOKEN_IS_UPDATED = 403;// 登录状态被修改
     public static final int STATUS_DATA_WRONG = 100;// 数据解析错误
     public static final int STATUS_NET_ERROR = 404;// 网络连接出错
+    public static final int STATUS_HAVE_NO_DATA = 405;// 没有数据
 }

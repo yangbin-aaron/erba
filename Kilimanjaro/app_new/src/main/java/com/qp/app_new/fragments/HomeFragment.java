@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.qp.app_new.AppPrefs;
 import com.qp.app_new.R;
 import com.qp.app_new.adapters.GameListAdapter;
 import com.qp.app_new.contents.AppPrefsContent;
@@ -97,7 +98,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 if (!AppUtils.isQQClientAvailable (getActivity ())) {
                     DialogHelp.showMessageDialog (getActivity (), getString (R.string.recharge_hasnot_qq));
                 } else {
-                    final String kefu_qq_num_default = getString (R.string.kefu_qq_num_default);
+                    final String kefu_qq_num_default = AppPrefs.getInstance ().getSysInfoQQ ();
                     String call_kefu_qq = getString (R.string.call_kefu_qq, kefu_qq_num_default);
                     if (mDialogQQ == null) {
                         mDialogQQ = DialogHelp.createOkDialog (getActivity (), call_kefu_qq, new NormalDialogListener1 () {
@@ -112,7 +113,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.phone_btn:
                 if (mDialogPhone == null) {
-                    final String kefu_phone_default = getString (R.string.kefu_phone_default);
+                    final String kefu_phone_default = AppPrefs.getInstance ().getSysInfoPhone ();
                     mDialogPhone = DialogHelp.createOkDialog (getActivity (), getString (R.string.app_call_phone, kefu_phone_default), new
                             NormalDialogListener1 () {
                                 @Override

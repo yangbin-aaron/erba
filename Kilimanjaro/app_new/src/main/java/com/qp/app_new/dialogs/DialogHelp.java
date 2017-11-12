@@ -75,7 +75,8 @@ public class DialogHelp {
                                               boolean isCancelable,
                                               boolean sideCance,
                                               final NormalDialogListener1 listener1,
-                                              final NormalDialogListener2 listener2) {
+                                              final NormalDialogListener2 listener2,
+                                              final boolean isDismiss) {
         // 加载布局
         LayoutInflater inflater = LayoutInflater.from (context);
         View v = inflater.inflate (R.layout.dialog_nomal, null);
@@ -99,7 +100,7 @@ public class DialogHelp {
             @Override
             public void onClick (View v) {
                 if (listener2 != null) listener2.onLeftClickListener ();
-                dialog.dismiss ();
+                if (isDismiss) dialog.dismiss ();
             }
         });
         rightTV.setOnClickListener (new View.OnClickListener () {
@@ -107,14 +108,14 @@ public class DialogHelp {
             public void onClick (View v) {
                 if (listener1 != null) listener1.onOkClickListener ();
                 if (listener2 != null) listener2.onRightClickListener ();
-                dialog.dismiss ();
+                if (isDismiss) dialog.dismiss ();
             }
         });
         if (sideCance) {
             v.findViewById (R.id.dialog_normal_layout).setOnClickListener (new View.OnClickListener () {
                 @Override
                 public void onClick (View v) {
-                    dialog.dismiss ();
+                    if (isDismiss) dialog.dismiss ();
                 }
             });
         }
@@ -137,8 +138,12 @@ public class DialogHelp {
      * @param listener
      * @return
      */
+    public static Dialog createMustDialog (Context context, String msg, NormalDialogListener1 listener, boolean isDismiss) {
+        return createNormalDialog (context, msg, false, "", "", false, false, listener, null, isDismiss);
+    }
+
     public static Dialog createMustDialog (Context context, String msg, NormalDialogListener1 listener) {
-        return createNormalDialog (context, msg, false, "", "", false, false, listener, null);
+        return createNormalDialog (context, msg, false, "", "", false, false, listener, null, true);
     }
 
     /**
@@ -150,7 +155,7 @@ public class DialogHelp {
      * @return
      */
     public static Dialog createOkDialog (Context context, String msg, NormalDialogListener1 listener) {
-        return createNormalDialog (context, msg, true, "", "", true, true, listener, null);
+        return createNormalDialog (context, msg, true, "", "", true, true, listener, null, true);
     }
 
     /**
@@ -162,7 +167,7 @@ public class DialogHelp {
      * @return
      */
     public static Dialog createOkCancelDialog (Context context, String msg, NormalDialogListener2 listener) {
-        return createNormalDialog (context, msg, true, "", "", true, true, null, listener);
+        return createNormalDialog (context, msg, true, "", "", true, true, null, listener, true);
     }
 
     /**
@@ -176,7 +181,7 @@ public class DialogHelp {
      * @return
      */
     public static Dialog createOkCancelDialog (Context context, String msg, String left, String right, NormalDialogListener2 listener) {
-        return createNormalDialog (context, msg, true, left, right, true, true, null, listener);
+        return createNormalDialog (context, msg, true, left, right, true, true, null, listener, true);
     }
 
     /**
@@ -186,7 +191,7 @@ public class DialogHelp {
      * @param msg
      */
     public static void showMessageDialog (Context context, String msg) {
-        createNormalDialog (context, msg, false, "", "", true, true, null, null).show ();
+        createNormalDialog (context, msg, false, "", "", true, true, null, null, true).show ();
     }
 
     /**
@@ -203,7 +208,7 @@ public class DialogHelp {
                     public void onOkClickListener () {
                         ActivityStartUtils.startLoginActivity ((Activity) context);
                     }
-                }, null);
+                }, null, true);
     }
 
     public static PopupWindow createPopupWindow (Context context, String[] list, final PopupWindowItemListener listener) {

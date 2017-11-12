@@ -8,7 +8,6 @@ import android.view.KeyEvent;
 import com.qp.app_new.R;
 import com.qp.app_new.httpnetworks.NetWorkManager;
 import com.qp.app_new.utils.ActivityStartUtils;
-import com.qp.app_new.utils.StringUtil;
 
 /**
  * Created by yangbin on 16/7/1.
@@ -24,7 +23,7 @@ public class SplashActivity extends Activity {
         // 全屏
 //        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView (R.layout.activity_splash);
-        NetWorkManager.getInstance ().getBasicInfo (StringUtil.getNullJson ());
+        NetWorkManager.getInstance ().getSysInfo ();
         skipActivity ();
     }
 
