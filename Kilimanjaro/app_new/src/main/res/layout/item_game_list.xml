@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dp_60"
-    android:background="@color/color_bg">
+    android:background="@drawable/selector_r0_bg_grayx_str0">
 
     <com.qp.app_new.views.CircleImageView
         android:id="@+id/iv_icon"

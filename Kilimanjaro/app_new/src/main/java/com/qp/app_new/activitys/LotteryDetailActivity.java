@@ -25,8 +25,8 @@ import java.util.HashMap;
 
 public class LotteryDetailActivity extends BaseActivity {
     @Override
-    public void setContentView () {
-        layoutId = R.layout.activity_lottery_detail;
+    public int getContentView () {
+        return R.layout.activity_lottery_detail;
     }
 
     private JSONObject mGameJSONObject, mLotteryJSONObject;

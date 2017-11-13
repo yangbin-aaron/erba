@@ -21,41 +21,41 @@ import org.json.JSONObject;
 
 public class AboutUsActivity extends BaseActivity implements View.OnClickListener {
     @Override
-    public void setContentView () {
-        layoutId = R.layout.activity_aboutus;
+    public int getContentView() {
+        return R.layout.activity_aboutus;
     }
 
     @Override
-    public void initView () {
-        initActionBar ();
-        setTitle (R.string.about_str);
-        setLeftIV (R.drawable.ic_back_btn);
+    public void initView() {
+        initActionBar();
+        setTitle(R.string.about_str);
+        setLeftIV(R.drawable.ic_back_btn);
 
-        ((TextView) findViewById (R.id.tv_vision)).setText (getString (R.string.visition, AppUtils.getAppVersionName ()));
-        ((TextView) findViewById (R.id.tv_work_time)).setText (AppPrefs.getInstance ().getSysInfoWorkTime ());
+        ((TextView) findViewById(R.id.tv_vision)).setText(getString(R.string.visition, AppUtils.getAppVersionName()));
+        ((TextView) findViewById(R.id.tv_work_time)).setText(AppPrefs.getInstance().getSysInfoWorkTime());
 
-        findViewById (R.id.rl_qq).setOnClickListener (this);
-        findViewById (R.id.rl_phone).setOnClickListener (this);
-        findViewById (R.id.rl_update).setOnClickListener (this);
+        findViewById(R.id.rl_qq).setOnClickListener(this);
+        findViewById(R.id.rl_phone).setOnClickListener(this);
+        findViewById(R.id.rl_update).setOnClickListener(this);
     }
 
     @Override
-    public void onClick (View v) {
-        switch (v.getId ()) {
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.rl_qq:
-                final String kefu_qq_num_default = AppPrefs.getInstance ().getSysInfoQQ ();
-                DialogHelp.showMessageDialog (this, getString (R.string.kefu_qq_, kefu_qq_num_default));
+                final String kefu_qq_num_default = AppPrefs.getInstance().getSysInfoQQ();
+                DialogHelp.showMessageDialog(this, getString(R.string.kefu_qq_, kefu_qq_num_default));
                 break;
             case R.id.rl_phone:
-                final String kefu_phone_default = AppPrefs.getInstance ().getSysInfoPhone ();
-                DialogHelp.showMessageDialog (this, getString (R.string.kefu_phone_, kefu_phone_default));
+                final String kefu_phone_default = AppPrefs.getInstance().getSysInfoPhone();
+                DialogHelp.showMessageDialog(this, getString(R.string.kefu_phone_, kefu_phone_default));
                 break;
             case R.id.rl_update:
-                NetWorkManager.getInstance ().updateApp (mLoadingDialog, new NetListener () {
+                NetWorkManager.getInstance().updateApp(mLoadingDialog, new NetListener() {
                     @Override
-                    public void onSuccessResponse (String msg, JSONObject jsonObject) {
-                        super.onSuccessResponse (msg, jsonObject);
-                        updateVersion (jsonObject);
+                    public void onSuccessResponse(String msg, JSONObject jsonObject) {
+                        super.onSuccessResponse(msg, jsonObject);
+                        updateVersion(jsonObject);
                     }
                 });
                 break;
@@ -64,27 +64,27 @@ public class AboutUsActivity extends BaseActivity implements View.OnClickListene
 
     private Dialog mDialogUpdate;
 
-    private void updateVersion (final JSONObject jsonObject) {
+    private void updateVersion(final JSONObject jsonObject) {
         // 如果成功则继续获取其他信息(判断是否需要更新，再执行下面的操作)
-        int status = jsonObject.optInt ("versionStatus", 0);
-        App app = (App) getApplication ();
+        int status = jsonObject.optInt("versionStatus", 0);
+        App app = (App) getApplication();
         app.haveNewVersion = status != 0;
         switch (status) {
             case 0:
-                DialogHelp.showMessageDialog (this, getString (R.string.update_app_newest));
+                DialogHelp.showMessageDialog(this, getString(R.string.update_app_newest));
                 break;
             case -1:
             case 1:
                 app.haveNewVersion = true;// 有新版本
                 if (mDialogUpdate == null) {
-                    mDialogUpdate = DialogHelp.createOkDialog (this, getString (R.string.app_updateapp_), new NormalDialogListener1 () {
+                    mDialogUpdate = DialogHelp.createOkDialog(this, getString(R.string.app_updateapp_), new NormalDialogListener1() {
                         @Override
-                        public void onOkClickListener () {
-                            AppUtils.startDownApk (AboutUsActivity.this, jsonObject.optString ("url"));
+                        public void onOkClickListener() {
+                            AppUtils.startDownApk(AboutUsActivity.this, jsonObject.optString("url"));
                         }
                     });
                 }
-                mDialogUpdate.show ();
+                mDialogUpdate.show();
                 break;
         }
     }

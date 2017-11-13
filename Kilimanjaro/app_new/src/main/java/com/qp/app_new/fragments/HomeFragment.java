@@ -27,8 +27,8 @@ import org.json.JSONArray;
 public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
-    public void setContentView() {
-        layoutId = R.layout.fragment_home;
+    public int getContentView() {
+        return R.layout.fragment_home;
     }
 
     private ListView mGameListLV;

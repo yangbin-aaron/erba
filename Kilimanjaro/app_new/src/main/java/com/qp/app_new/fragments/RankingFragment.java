@@ -29,8 +29,8 @@ import java.util.HashMap;
 public class RankingFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
-    public void setContentView() {
-        layoutId = R.layout.fragment_ranking;
+    public int getContentView() {
+        return R.layout.fragment_ranking;
     }
 
     private ListView mRankingLV;
@@ -78,6 +78,7 @@ public class RankingFragment extends BaseFragment implements View.OnClickListene
         mRunnable = new Runnable() {
             @Override
             public void run() {
+                mDialog = null;
                 updateData();
                 mHandler.postDelayed(mRunnable, 1000 * 60 * 1);// 一分钟刷新一次
             }

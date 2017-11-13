@@ -3,10 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_bg"
     android:orientation="vertical">
-
-    <include layout="@layout/incule_actionbar"/>
 
     <!--开奖期数-->
     <LinearLayout
@@ -27,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_10"
-            android:text="0000"
+            android:text=""
             android:textColor="@color/black_text"/>
     </LinearLayout>
 
@@ -56,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_10"
-            android:text="0+0+0="
+            android:text=""
             android:textColor="@color/black_text"/>
 
         <!--中奖数字-->
@@ -66,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:gravity="center"
-            android:text="0"
+            android:text=""
             android:textColor="@color/main_background_x"/>
     </LinearLayout>
 
@@ -94,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_10"
-            android:text="2017/11/11 16:51"
+            android:text=""
             android:textColor="@color/black_text"/>
 
     </LinearLayout>
@@ -141,7 +138,7 @@
             android:id="@+id/tv_bet_coin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text=""
             android:textColor="@color/gray_xx"
             android:textSize="12sp"/>
 
@@ -165,7 +162,7 @@
             android:id="@+id/tv_pure_profit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text=""
             android:textColor="@color/gray_xxx"
             android:textSize="12sp"/>
 
@@ -189,7 +186,7 @@
             android:id="@+id/tv_income_rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-100%"
+            android:text=""
             android:textColor="@color/gray_xxx"
             android:textSize="12sp"/>
     </LinearLayout>

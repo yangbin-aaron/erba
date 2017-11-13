@@ -5,8 +5,6 @@
               android:background="@color/color_bg"
               android:orientation="vertical">
 
-    <include layout="@layout/incule_actionbar"/>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"

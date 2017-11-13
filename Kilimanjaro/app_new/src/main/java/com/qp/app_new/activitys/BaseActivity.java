@@ -9,9 +9,11 @@ import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.qp.app_new.R;
@@ -27,57 +29,62 @@ import com.umeng.analytics.MobclickAgent;
 public abstract class BaseActivity extends Activity {
     public Dialog mLoadingDialog;// 加载对话框
     private Dialog mDialogLogin;
-    public int layoutId = R.layout.activity_main;
+    private View mView;
+    private LinearLayout mLy;
 
-    private BroadcastReceiver mReceiver = new BroadcastReceiver () {
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
-        public void onReceive (Context context, Intent intent) {
-            if (intent.getAction ().equals (BroadcastConfig.ACTION_EXIT_APP)) {
-                finish ();
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(BroadcastConfig.ACTION_EXIT_APP)) {
+                finish();
             }
         }
     };
 
     @Override
-    protected void onCreate (Bundle savedInstanceState) {
-        super.onCreate (savedInstanceState);
-//        requestWindowFeature (Window.FEATURE_NO_TITLE);// 没有ActionBar,在style里面已经设置
-        getWindow ().addFlags (WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);// 屏幕保持常亮
-//        getWindow ().setSoftInputMode (WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);// 强制为竖屏
-        getIntentData ();
-        setContentView ();
-        setContentView (layoutId);
-        mLoadingDialog = DialogHelp.createLoadingDialog (this, true);
-        initView ();
-        IntentFilter filter = new IntentFilter ();
-        filter.addAction (BroadcastConfig.ACTION_EXIT_APP);
-        registerReceiver (mReceiver, filter);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);// 屏幕保持常亮
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);// 强制为竖屏
+        getIntentData();
+        setContentView(R.layout.activity_base);
+        mLy = (LinearLayout) findViewById(R.id.ly);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        int layoutId = getContentView();
+        if (layoutId != 0) {
+            mView = inflater.inflate(getContentView(), null);
+            mLy.addView(mView);
+        }
+        mLoadingDialog = DialogHelp.createLoadingDialog(this, true);
+        initView();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(BroadcastConfig.ACTION_EXIT_APP);
+        registerReceiver(mReceiver, filter);
     }
 
     @Override
-    protected void onDestroy () {
-        super.onDestroy ();
-        unregisterReceiver (mReceiver);
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mReceiver);
     }
 
-    public abstract void setContentView ();
+    public abstract int getContentView();
 
-    public abstract void initView ();
+    public abstract void initView();
 
-    public void getIntentData () {
+    public void getIntentData() {
     }
 
     /**
      * 判断是否登录
      */
-    public boolean judgeLogin () {
-        if (!AppPrefsContent.isLogined ()) {
+    public boolean judgeLogin() {
+        if (!AppPrefsContent.isLogined()) {
             // 去登陆
             if (mDialogLogin == null) {
-                mDialogLogin = DialogHelp.createToLoginDialog (this);
+                mDialogLogin = DialogHelp.createToLoginDialog(this);
             }
-            mDialogLogin.show ();
+            mDialogLogin.show();
             return false;
         }
         return true;
@@ -91,68 +98,78 @@ public abstract class BaseActivity extends Activity {
     private TextView mTitleTV, mRightTV;
     private ImageView mBackIV, mRightIV;
 
-    public void initActionBar () {
-        mActionBar = findViewById (R.id.action_bar);
-        mActionBar.setVisibility (View.VISIBLE);
+    public void initActionBar() {
+        mActionBar = findViewById(R.id.action_bar);
+        mActionBar.setVisibility(View.VISIBLE);
 
-        mTitleTV = (TextView) findViewById (R.id.title_tv);
-        mRightTV = (TextView) findViewById (R.id.right_tv);
-        mBackIV = (ImageView) findViewById (R.id.back_iv);
-        mRightIV = (ImageView) findViewById (R.id.right_iv);
+        mTitleTV = (TextView) findViewById(R.id.title_tv);
+        mRightTV = (TextView) findViewById(R.id.right_tv);
+        mBackIV = (ImageView) findViewById(R.id.back_iv);
+        mRightIV = (ImageView) findViewById(R.id.right_iv);
 
-        mLeftView = findViewById (R.id.back_btn);
-        mLeftView.setOnClickListener (new View.OnClickListener () {
+        mLeftView = findViewById(R.id.back_btn);
+        mLeftView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick (View v) {
-                onLeftClick (v);
+            public void onClick(View v) {
+                onLeftClick(v);
             }
         });
-        mRightView = findViewById (R.id.right_btn);
-        mRightView.setOnClickListener (new View.OnClickListener () {
+        mRightView = findViewById(R.id.right_btn);
+        mRightView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick (View v) {
-                onRightClick (v);
+            public void onClick(View v) {
+                onRightClick(v);
             }
         });
     }
 
-    public void onLeftClick (View v) {
-        Log.e ("BaseActivity", "onLeftClick");
-        finish ();
+    public void onLeftClick(View v) {
+        Log.e("BaseActivity", "onLeftClick");
+        finish();
     }
 
-    public void onRightClick (View v) {
-        Log.e ("BaseActivity", "onRightClick");
+    public void onRightClick(View v) {
+        Log.e("BaseActivity", "onRightClick");
     }
 
-    public void setTitle (String title) {
-        mTitleTV.setText (title);
+    public void setTitle(String title) {
+        if (mActionBar != null) mTitleTV.setText(title);
     }
 
-    public void setTitle (int textId) {
-        mTitleTV.setText (textId);
+    public void setTitle(int textId) {
+        if (mActionBar != null) mTitleTV.setText(textId);
     }
 
-    public void setLeftIV (int resId) {
-        mLeftView.setVisibility (View.VISIBLE);
-        mBackIV.setVisibility (View.VISIBLE);
-        mBackIV.setImageResource (resId);
+    public void setLeftIV(int resId) {
+        if (mActionBar != null) {
+            mLeftView.setVisibility(View.VISIBLE);
+            mBackIV.setVisibility(View.VISIBLE);
+            mBackIV.setImageResource(resId);
+        }
     }
 
-    public void setRightIV (int resId) {
-        mRightView.setVisibility (View.VISIBLE);
-        mRightIV.setVisibility (View.VISIBLE);
-        mRightIV.setImageResource (resId);
+    public void setRightIV(int resId) {
+        if (mActionBar != null) {
+            mRightView.setVisibility(View.VISIBLE);
+            mRightIV.setVisibility(View.VISIBLE);
+            mRightIV.setImageResource(resId);
+        }
     }
 
-    public void setRightTV (int resId) {
-        mRightView.setVisibility (View.VISIBLE);
-        mRightTV.setVisibility (View.VISIBLE);
-        mRightTV.setText (resId);
+    public void setRightTV(int resId) {
+        if (mActionBar != null) {
+            mRightView.setVisibility(View.VISIBLE);
+            mRightTV.setVisibility(View.VISIBLE);
+            mRightTV.setText(resId);
+        }
     }
 
-    public void setActionBarBackgroundResource (int colorId) {
-        mActionBar.setBackgroundResource (colorId);
+    public void setActionBarBackgroundResource(int colorId) {
+        if (mActionBar != null) mActionBar.setBackgroundResource(colorId);
+    }
+
+    public void setBackgroundResource(int colorId) {
+        mLy.setBackgroundResource(colorId);
     }
 
     /**

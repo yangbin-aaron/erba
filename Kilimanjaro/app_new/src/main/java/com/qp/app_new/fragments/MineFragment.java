@@ -26,8 +26,8 @@ import org.json.JSONObject;
 
 public class MineFragment extends BaseFragment implements View.OnClickListener {
     @Override
-    public void setContentView () {
-        layoutId = R.layout.fragment_mine;
+    public int getContentView() {
+        return R.layout.fragment_mine;
     }
 
     // 登录、退出登录、交易明细、修改密码、关于我们
@@ -38,102 +38,102 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     private Dialog mDialogLogout;
 
     @Override
-    public void initView () {
-        initActionBar ();
-        setTitle (R.string.bottom_tab_mine);
-        mHeadCIV = (CircleImageView) findViewById (R.id.iv_head);
-        mNickNameTV = (TextView) findViewById (R.id.tv_nickName);
-        mQQTV = (TextView) findViewById (R.id.tv_qq);
-        mTelTV = (TextView) findViewById (R.id.tv_tel);
-        mEmailTV = (TextView) findViewById (R.id.tv_email);
-        mCoinTV = (TextView) findViewById (R.id.tv_coin);
+    public void initView() {
+        initActionBar();
+        setTitle(R.string.bottom_tab_mine);
+        mHeadCIV = (CircleImageView) findViewById(R.id.iv_head);
+        mNickNameTV = (TextView) findViewById(R.id.tv_nickName);
+        mQQTV = (TextView) findViewById(R.id.tv_qq);
+        mTelTV = (TextView) findViewById(R.id.tv_tel);
+        mEmailTV = (TextView) findViewById(R.id.tv_email);
+        mCoinTV = (TextView) findViewById(R.id.tv_coin);
 
-        mLoginView = findViewById (R.id.tv_login_register);
-        mLoginView.setOnClickListener (this);
-        mInfoView = findViewById (R.id.ly_userinfo);
-        mTrandListView = findViewById (R.id.rl_trand_list);
-        mTrandListView.setOnClickListener (this);
-        mModifyPwdView = findViewById (R.id.rl_modify_pwd);
-        mModifyPwdView.setOnClickListener (this);
-        mAboutUsView = findViewById (R.id.rl_about);
-        mAboutUsView.setOnClickListener (this);
-        mLogoutView = findViewById (R.id.btn_logout);
-        mLogoutView.setOnClickListener (this);
+        mLoginView = findViewById(R.id.tv_login_register);
+        mLoginView.setOnClickListener(this);
+        mInfoView = findViewById(R.id.ly_userinfo);
+        mTrandListView = findViewById(R.id.rl_trand_list);
+        mTrandListView.setOnClickListener(this);
+        mModifyPwdView = findViewById(R.id.rl_modify_pwd);
+        mModifyPwdView.setOnClickListener(this);
+        mAboutUsView = findViewById(R.id.rl_about);
+        mAboutUsView.setOnClickListener(this);
+        mLogoutView = findViewById(R.id.btn_logout);
+        mLogoutView.setOnClickListener(this);
     }
 
     @Override
-    public void onClick (View v) {
-        switch (v.getId ()) {
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.btn_logout:
                 if (mDialogLogout == null) {
-                    mDialogLogout = DialogHelp.createOkDialog (getActivity (), getString (R.string.hint_logout_str), new NormalDialogListener1 () {
+                    mDialogLogout = DialogHelp.createOkDialog(getActivity(), getString(R.string.hint_logout_str), new NormalDialogListener1() {
                         @Override
-                        public void onOkClickListener () {
-                            AppPrefs.getInstance ().saveUserJson (null);
-                            ((MainActivity) getActivity ()).updateData ();
+                        public void onOkClickListener() {
+                            AppPrefs.getInstance().saveUserJson(null);
+                            ((MainActivity) getActivity()).updateData();
                         }
                     });
                 }
-                mDialogLogout.show ();
+                mDialogLogout.show();
                 break;
             case R.id.tv_login_register:
-                ActivityStartUtils.startLoginActivity (getActivity ());
+                ActivityStartUtils.startLoginActivity(getActivity());
                 break;
             case R.id.rl_modify_pwd:
-                ToastUtil.showToast ("修改密码");
+                ToastUtil.showToast("修改密码");
                 break;
             case R.id.rl_about:
-                ActivityStartUtils.startAboutUsActivity (getActivity ());
+                ActivityStartUtils.startAboutUsActivity(getActivity());
                 break;
             case R.id.rl_trand_list:
-                if (judgeLogin ()) {
-                    ToastUtil.showToast ("交易明细");
+                if (judgeLogin()) {
+                    ToastUtil.showToast("交易明细");
                 }
                 break;
         }
     }
 
     @Override
-    public void onResume () {
-        super.onResume ();
-        updateData ();
+    public void onResume() {
+        super.onResume();
+        updateData();
     }
 
-    public void updateData () {
-        if (AppPrefsContent.isLogined ()) {// 登录
-            mLogoutView.setVisibility (View.VISIBLE);
-            mModifyPwdView.setVisibility (View.VISIBLE);
-            mCoinTV.setVisibility (View.VISIBLE);
+    public void updateData() {
+        if (AppPrefsContent.isLogined()) {// 登录
+            mLogoutView.setVisibility(View.VISIBLE);
+            mModifyPwdView.setVisibility(View.VISIBLE);
+            mCoinTV.setVisibility(View.VISIBLE);
 
-            JSONObject userJsonObject = AppPrefsContent.getUser ();
-            mCoinTV.setText (getString (R.string.gamecoin_str, userJsonObject.optString ("coin", "0")));
-            String uri = userJsonObject.optString ("avatar");
-            if (TextUtils.isEmpty (uri)) {
-                mHeadCIV.setImageResource (R.mipmap.ic_launcher);
+            JSONObject userJsonObject = AppPrefsContent.getUser();
+            mCoinTV.setText(getString(R.string.gamecoin_str, userJsonObject.optString("coin", "0")));
+            String uri = userJsonObject.optString("avatar");
+            if (TextUtils.isEmpty(uri)) {
+                mHeadCIV.setImageResource(R.mipmap.ic_launcher);
             } else {
-                ImageAware imageAware = new ImageViewAware (mHeadCIV, false);
-                mHeadCIV.setTag (uri);
-                ImageLoader.getInstance ().displayImage (uri, imageAware);
+                ImageAware imageAware = new ImageViewAware(mHeadCIV, false);
+                mHeadCIV.setTag(uri);
+                ImageLoader.getInstance().displayImage(uri, imageAware);
             }
-            mNickNameTV.setText (userJsonObject.optString ("nickName"));
-            mTelTV.setText (userJsonObject.optString ("phone"));
-            String email = userJsonObject.optString ("email");
+            mNickNameTV.setText(userJsonObject.optString("nickName"));
+            mTelTV.setText(userJsonObject.optString("phone"));
+            String email = userJsonObject.optString("email");
             String qq = "";
-            mEmailTV.setText (email);
-            if (!TextUtils.isEmpty (email) && email.contains ("@")) {
-                qq = email.substring (0, email.indexOf ("@"));
+            mEmailTV.setText(email);
+            if (!TextUtils.isEmpty(email) && email.contains("@")) {
+                qq = email.substring(0, email.indexOf("@"));
             }
-            mQQTV.setText (qq);
-            mLoginView.setVisibility (View.GONE);
-            mInfoView.setVisibility (View.VISIBLE);
+            mQQTV.setText(qq);
+            mLoginView.setVisibility(View.GONE);
+            mInfoView.setVisibility(View.VISIBLE);
         } else {// 未登录
-            mLogoutView.setVisibility (View.GONE);
-            mModifyPwdView.setVisibility (View.GONE);
-            mCoinTV.setVisibility (View.GONE);
-            mHeadCIV.setImageResource (R.mipmap.ic_launcher);
-            mNickNameTV.setText ("");
-            mLoginView.setVisibility (View.VISIBLE);
-            mInfoView.setVisibility (View.GONE);
+            mLogoutView.setVisibility(View.GONE);
+            mModifyPwdView.setVisibility(View.GONE);
+            mCoinTV.setVisibility(View.GONE);
+            mHeadCIV.setImageResource(R.mipmap.ic_launcher);
+            mNickNameTV.setText("");
+            mLoginView.setVisibility(View.VISIBLE);
+            mInfoView.setVisibility(View.GONE);
         }
     }
 }

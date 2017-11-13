@@ -24,8 +24,8 @@ import java.util.HashMap;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
     @Override
-    public void setContentView () {
-        layoutId = R.layout.activity_login;
+    public int getContentView () {
+        return R.layout.activity_login;
     }
 
     // 手机号码输入框、密码输入框
@@ -41,6 +41,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public void initView () {
         initActionBar ();
+        setBackgroundResource (R.color.translucent);
         setActionBarBackgroundResource (R.color.translucent);
         setLeftIV (R.drawable.ic_back_btn);
 
