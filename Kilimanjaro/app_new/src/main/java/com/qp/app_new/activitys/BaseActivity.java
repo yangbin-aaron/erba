@@ -18,6 +18,7 @@ import com.qp.app_new.R;
 import com.qp.app_new.configs.BroadcastConfig;
 import com.qp.app_new.contents.AppPrefsContent;
 import com.qp.app_new.dialogs.DialogHelp;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Aaron on 17/11/8.
@@ -157,4 +158,17 @@ public abstract class BaseActivity extends Activity {
     /**
      * ActionBar   END
      */
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 }

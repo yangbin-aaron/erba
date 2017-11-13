@@ -12,6 +12,8 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.utils.StorageUtils;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.commonsdk.UMConfigure;
 
 import java.io.File;
 
@@ -28,7 +30,13 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         mContext = this;
-        initImageLoad (this);
+        initUmeng(this);
+        initImageLoad(this);
+    }
+
+    private void initUmeng(Context context) {
+        MobclickAgent.setScenarioType(context, MobclickAgent.EScenarioType.E_UM_NORMAL);
+        UMConfigure.init(context,UMConfigure.DEVICE_TYPE_PHONE,"");// 第三个参数为 推送时使用
     }
 
     private static void initImageLoad(Context context) {
@@ -61,9 +69,9 @@ public class App extends Application {
                 .denyCacheImageMultipleSizesInMemory()
                 .defaultDisplayImageOptions(options)
                 .discCacheFileCount(100)// 缓存文件数量
-                .discCacheFileNameGenerator(new Md5FileNameGenerator ())
+                .discCacheFileNameGenerator(new Md5FileNameGenerator())
                 .tasksProcessingOrder(QueueProcessingType.LIFO)
-                .discCache(new UnlimitedDiskCache (cacheDir)) // 自定义缓存路径
+                .discCache(new UnlimitedDiskCache(cacheDir)) // 自定义缓存路径
                 .threadPoolSize(3)
                 .build();
         ImageLoader.getInstance().init(config);

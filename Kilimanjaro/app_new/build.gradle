@@ -61,7 +61,7 @@ android {
             versionCode 101
             versionName "1.0.1"
             manifestPlaceholders = [
-                    UMENG_APPKEY: "57bc13d267e58eeeae002718"
+                    UMENG_APPKEY: "57babcbc67e58ef2bd0021ef"
             ]
         }
 
@@ -82,4 +82,6 @@ dependencies {
 //    compile files('libs/alipaySdk-20160825.jar')
 //    compile files('libs/via_pay_sdk_v1.jar')
     compile files('libs/umeng-analytics-v6.0.1.jar')
+    compile files('libs/umeng-common-1.4.0.jar')
+    compile files('libs/umerror_android_1.0.0.jar')
 }
