@@ -11,17 +11,20 @@
     <!--客服QQ等信息-->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="@drawable/ic_home_top_bg">
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_home_top">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="WIN ￥$"
-            android:textColor="@color/main_background_x"
-            android:textSize="18sp"/>
+        <LinearLayout
+            android:id="@+id/btn_left"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:gravity="center">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_menu"/>
+        </LinearLayout>
 
     </RelativeLayout>
 

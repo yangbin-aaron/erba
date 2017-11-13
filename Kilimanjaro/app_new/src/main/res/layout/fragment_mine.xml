@@ -10,6 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"
+        android:background="@drawable/ic_home_top_bg"
         android:orientation="horizontal">
 
         <com.qp.app_new.views.CircleImageView
