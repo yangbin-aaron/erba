@@ -6,6 +6,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
+import com.qp.app_new.App;
 import com.qp.app_new.AppPrefs;
 import com.qp.app_new.R;
 import com.qp.app_new.adapters.GameListAdapter;
@@ -60,6 +61,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (judgeLogin()) {
                     // 去游戏页面
+                    App.currentGameJsonObject = mGameListAdapter.getItem(position);
                     ActivityStartUtils.startGameActivity(getActivity(), mGameListAdapter.getItem(position));
                 }
             }

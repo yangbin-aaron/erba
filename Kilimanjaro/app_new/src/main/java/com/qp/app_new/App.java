@@ -15,6 +15,8 @@ import com.nostra13.universalimageloader.utils.StorageUtils;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 
+import org.json.JSONObject;
+
 import java.io.File;
 
 /**
@@ -25,6 +27,7 @@ public class App extends Application {
     public static Context mContext;
     public static final boolean IS_DEV = true;// 是否是测试环境
     public boolean haveNewVersion = false;
+    public static JSONObject currentGameJsonObject;// 当前进入的游戏
 
     @Override
     public void onCreate() {
@@ -36,7 +39,7 @@ public class App extends Application {
 
     private void initUmeng(Context context) {
         MobclickAgent.setScenarioType(context, MobclickAgent.EScenarioType.E_UM_NORMAL);
-        UMConfigure.init(context,UMConfigure.DEVICE_TYPE_PHONE,"");// 第三个参数为 推送时使用
+        UMConfigure.init(context, UMConfigure.DEVICE_TYPE_PHONE, "");// 第三个参数为 推送时使用
     }
 
     private static void initImageLoad(Context context) {

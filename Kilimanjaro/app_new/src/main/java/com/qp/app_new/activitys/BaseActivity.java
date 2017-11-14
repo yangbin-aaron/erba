@@ -35,9 +35,7 @@ public abstract class BaseActivity extends Activity {
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(BroadcastConfig.ACTION_EXIT_APP)) {
-                finish();
-            }
+            handlerBroadcastReceiver(intent);
         }
     };
 
@@ -59,7 +57,18 @@ public abstract class BaseActivity extends Activity {
         initView();
         IntentFilter filter = new IntentFilter();
         filter.addAction(BroadcastConfig.ACTION_EXIT_APP);
+        addFilterAction(filter);
         registerReceiver(mReceiver, filter);
+    }
+
+    public void addFilterAction(IntentFilter filter) {
+
+    }
+
+    public void handlerBroadcastReceiver(Intent intent) {
+        if (intent.getAction().equals(BroadcastConfig.ACTION_EXIT_APP)) {
+            finish();
+        }
     }
 
     @Override

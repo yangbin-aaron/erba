@@ -99,6 +99,11 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         updateData();
     }
 
+    public void setGameCoin() {
+        long gameCoin = AppPrefs.getInstance().getGameCoin();
+        if (mCoinTV != null) mCoinTV.setText(getString(R.string.gamecoin_str, String.valueOf(gameCoin)));
+    }
+
     public void updateData() {
         if (AppPrefsContent.isLogined()) {// 登录
             mLogoutView.setVisibility(View.VISIBLE);
@@ -106,7 +111,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             mCoinTV.setVisibility(View.VISIBLE);
 
             JSONObject userJsonObject = AppPrefsContent.getUser();
-            mCoinTV.setText(getString(R.string.gamecoin_str, userJsonObject.optString("coin", "0")));
+            setGameCoin();
             String uri = userJsonObject.optString("avatar");
             if (TextUtils.isEmpty(uri)) {
                 mHeadCIV.setImageResource(R.mipmap.ic_launcher);

@@ -48,28 +48,28 @@ public class AppPrefs {
 
     private SharedPreferences mPrefs;
 
-    public static AppPrefs getInstance () {
+    public static AppPrefs getInstance() {
         if (sInstance == null) {
-            sInstance = new AppPrefs ();
+            sInstance = new AppPrefs();
         }
         return sInstance;
     }
 
-    private AppPrefs () {
-        mPrefs = App.mContext.getSharedPreferences (SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+    private AppPrefs() {
+        mPrefs = App.mContext.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
     }
 
-    private SharedPreferences.Editor getEditor () {
-        return mPrefs.edit ();
+    private SharedPreferences.Editor getEditor() {
+        return mPrefs.edit();
     }
 
     // *******************************************
-    public void saveUserPhone (String phone) {
-        getEditor ().putString (Key.USER_PHONE, phone).commit ();
+    public void saveUserPhone(String phone) {
+        getEditor().putString(Key.USER_PHONE, phone).commit();
     }
 
-    public String getUserPhone () {
-        return mPrefs.getString (Key.USER_PHONE, null);
+    public String getUserPhone() {
+        return mPrefs.getString(Key.USER_PHONE, null);
     }
 
     /**
@@ -78,8 +78,8 @@ public class AppPrefs {
      *
      * @param userJson
      */
-    public void saveUserJson (String userJson) {
-        getEditor ().putString (Key.USER_JSON, userJson).commit ();
+    public void saveUserJson(String userJson) {
+        getEditor().putString(Key.USER_JSON, userJson).commit();
     }
 
     /**
@@ -87,25 +87,25 @@ public class AppPrefs {
      *
      * @return
      */
-    public JSONObject getUserJson () {
-        String info = mPrefs.getString (Key.USER_JSON, null);
+    public JSONObject getUserJson() {
+        String info = mPrefs.getString(Key.USER_JSON, null);
         JSONObject jsonObject = null;
-        if (!TextUtils.isEmpty (info)) {
+        if (!TextUtils.isEmpty(info)) {
             try {
-                jsonObject = new JSONObject (info);
+                jsonObject = new JSONObject(info);
             } catch (JSONException e) {
-                e.printStackTrace ();
+                e.printStackTrace();
             }
         }
         return jsonObject;
     }
 
-    public void saveToken (String token) {
-        getEditor ().putString (Key.TOKEN, token).commit ();
+    public void saveToken(String token) {
+        getEditor().putString(Key.TOKEN, token).commit();
     }
 
-    public String getToken () {
-        return mPrefs.getString (Key.TOKEN, "");
+    public String getToken() {
+        return mPrefs.getString(Key.TOKEN, "");
     }
 
     /**
@@ -113,8 +113,8 @@ public class AppPrefs {
      *
      * @param tokenState
      */
-    public void saveTokenState (boolean tokenState) {
-        getEditor ().putBoolean (Key.TOKEN_WRONG, tokenState).commit ();
+    public void saveTokenState(boolean tokenState) {
+        getEditor().putBoolean(Key.TOKEN_WRONG, tokenState).commit();
     }
 
     /**
@@ -122,26 +122,69 @@ public class AppPrefs {
      *
      * @return
      */
-    public boolean getTokenState () {
-        return mPrefs.getBoolean (Key.TOKEN_WRONG, false);
+    public boolean getTokenState() {
+        return mPrefs.getBoolean(Key.TOKEN_WRONG, false);
     }
 
-    public void saveSysInfo (JSONArray sysInfo) {
-        for (int i = 0; i < sysInfo.length (); i++) {
-            JSONObject jsonObject = sysInfo.optJSONObject (i);
-            getEditor ().putString (jsonObject.optString ("key"), jsonObject.optString ("value")).commit ();
+    public void saveSysInfo(JSONArray sysInfo) {
+        for (int i = 0; i < sysInfo.length(); i++) {
+            JSONObject jsonObject = sysInfo.optJSONObject(i);
+            getEditor().putString(jsonObject.optString("key"), jsonObject.optString("value")).commit();
         }
     }
 
-    public String getSysInfoQQ () {
-        return mPrefs.getString (Key.SYS_INFO_QQ, App.mContext.getString (R.string.kefu_qq_num_default));
+    public String getSysInfoQQ() {
+        return mPrefs.getString(Key.SYS_INFO_QQ, App.mContext.getString(R.string.kefu_qq_num_default));
     }
 
-    public String getSysInfoPhone () {
-        return mPrefs.getString (Key.SYS_INFO_PHONE, App.mContext.getString (R.string.kefu_phone_default));
+    public String getSysInfoPhone() {
+        return mPrefs.getString(Key.SYS_INFO_PHONE, App.mContext.getString(R.string.kefu_phone_default));
     }
 
-    public String getSysInfoWorkTime () {
-        return mPrefs.getString (Key.SYS_INFO_WORKTIME, App.mContext.getString (R.string.kefu_worktime_default));
+    public String getSysInfoWorkTime() {
+        return mPrefs.getString(Key.SYS_INFO_WORKTIME, App.mContext.getString(R.string.kefu_worktime_default));
+    }
+
+    /**
+     * 保存本次投注的信息
+     */
+    public void saveLastBetMode(JSONObject modeJsonObject) {
+        getEditor().putString(Key.LAST_BET_QQ + App.currentGameJsonObject.optString("id"), modeJsonObject.toString()).commit();
+    }
+
+    /**
+     * 获取  QQ群玩法的上次投注
+     *
+     * @return
+     */
+    public JSONObject getLastBetMode() {
+        String json = mPrefs.getString(Key.LAST_BET_QQ + App.currentGameJsonObject.optString("id"), null);
+        JSONObject jsonObject = null;
+        if (!TextUtils.isEmpty(json)) {
+            try {
+                jsonObject = new JSONObject(json);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return jsonObject;
+    }
+
+    /**
+     * 积分
+     *
+     * @param coin
+     */
+    public void saveGameCoin(long coin) {
+        getEditor().putLong(Key.GAME_COIN, coin).commit();
+    }
+
+    /**
+     * 积分
+     *
+     * @return
+     */
+    public long getGameCoin() {
+        return mPrefs.getLong(Key.GAME_COIN, 0);
     }
 }

@@ -4,13 +4,16 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
 import com.qp.app_new.App;
+import com.qp.app_new.AppPrefs;
 import com.qp.app_new.R;
 import com.qp.app_new.adapters.MainViewPagerAdapter;
+import com.qp.app_new.configs.NetStatusConfig;
 import com.qp.app_new.dialogs.DialogHelp;
 import com.qp.app_new.fragments.HomeFragment;
 import com.qp.app_new.fragments.MineFragment;
@@ -205,6 +208,23 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
     protected void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
+        NetWorkManager.getInstance().getGameCoin(new NetListener(this, false) {
+            @Override
+            public void onSuccessResponse(String msg, JSONObject jsonObject) {
+                super.onSuccessResponse(msg, jsonObject);
+                AppPrefs.getInstance().saveGameCoin(jsonObject.optLong("coin"));
+                mMineFragment.setGameCoin();
+                Log.e("aaa", "aaa111");
+            }
+
+            @Override
+            public void onErrorResponse(int errorWhat, String message) {
+                if (errorWhat == NetStatusConfig.STATUS_TOKEN_IS_UPDATED) {
+                    Log.e("aaa", "aaa");
+                    super.onErrorResponse(errorWhat, message);
+                }
+            }
+        });
     }
 
     @Override

@@ -90,4 +90,24 @@
         <item name="android:background">@drawable/edittext_base_border</item>
         <item name="android:paddingLeft">10dp</item>
     </style>
+
+    <!--投注界面：选择倍数时的按钮  基本style-->
+    <style name="StylesBetTimesBtnBase" parent="AppTheme.Widget.TextView">
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_height">38dp</item>
+        <item name="android:background">@drawable/selector_r5_main_mainx_str0</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!--投注界面：选择倍数时的按钮-->
+    <style name="StylesBetTimesBtn0" parent="StylesBetTimesBtnBase">
+        <item name="android:textColor">@color/orange</item>
+    </style>
+
+    <!--投注界面：选择倍数时的按钮(大 小 全包   等等)-->
+    <style name="StylesBetTimesBtn1" parent="StylesBetTimesBtnBase">
+        <item name="android:textColor">@color/gray_xx</item>
+    </style>
 </resources>

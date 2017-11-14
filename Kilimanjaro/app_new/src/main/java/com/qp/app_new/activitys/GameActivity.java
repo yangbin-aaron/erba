@@ -1,12 +1,17 @@
 package com.qp.app_new.activitys;
 
+import android.app.Dialog;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.view.View;
 import android.widget.ListView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.qp.app_new.AppPrefs;
 import com.qp.app_new.R;
 import com.qp.app_new.adapters.HallLotteryAdapter;
+import com.qp.app_new.configs.BroadcastConfig;
 import com.qp.app_new.configs.NetStatusConfig;
 import com.qp.app_new.httpnetworks.NetWorkManager;
 import com.qp.app_new.interfaces.NetListener;
@@ -34,6 +39,8 @@ public class GameActivity extends BaseActivity implements HallLotteryAdapter.OnI
     private PullToRefreshListView mListView;
     private HallLotteryAdapter mLotteryAdapter;
     private JSONArray mHistoryLotteryDatas;
+
+    private Dialog mDialog;
 
     private int mType = 0;// 0默认第一次请求,1下拉刷新,-1上拉加载更多
 
@@ -66,11 +73,27 @@ public class GameActivity extends BaseActivity implements HallLotteryAdapter.OnI
         initData();
     }
 
+    @Override
+    public void addFilterAction(IntentFilter filter) {
+        super.addFilterAction(filter);
+        filter.addAction(BroadcastConfig.ACTION_REFRESH_GAMELIST);
+    }
+
+    @Override
+    public void handlerBroadcastReceiver(Intent intent) {
+        super.handlerBroadcastReceiver(intent);
+        if (intent.getAction().equals(BroadcastConfig.ACTION_REFRESH_GAMELIST)) {
+            mDialog = null;
+            getAllData();
+        }
+    }
+
     private PullToRefreshBase.OnRefreshListener2<ListView> mListener = new PullToRefreshBase.OnRefreshListener2<ListView>() {
         @Override
         public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
             mType = 0;
             if (mHistoryLotteryDatas == null || mHistoryLotteryDatas.length() == 0) mType = 0;
+            mDialog = mLoadingDialog;
             getAllData();
         }
 
@@ -87,13 +110,14 @@ public class GameActivity extends BaseActivity implements HallLotteryAdapter.OnI
         switch (view.getId()) {
             case R.id.tv_time:// 刷新
                 mType = 0;
+                mDialog = mLoadingDialog;
                 getAllData();
                 break;
             case R.id.btn_betting:// 进入投注
                 if (data.optInt("betNum") > 0) {// 有订单
 
                 } else {// 无订单
-                    ActivityStartUtils.startBetActivity(this, data);
+                    ActivityStartUtils.startBetActivity(this, mGameJSONObject, data);
                 }
                 break;
         }
@@ -107,12 +131,14 @@ public class GameActivity extends BaseActivity implements HallLotteryAdapter.OnI
     private void initData() {
         mHistoryLotteryDatas = new JSONArray();
         mType = 0;
+        mDialog = mLoadingDialog;
         getAllData();
     }
 
     private void getAllData() {
         getHistoryLotteryList();
         getNoLotteryList();
+        getGameCoin();
     }
 
     /**
@@ -137,7 +163,7 @@ public class GameActivity extends BaseActivity implements HallLotteryAdapter.OnI
                 hashMap.put("id", mHistoryLotteryDatas.optJSONObject(mHistoryLotteryDatas.length() - 1).optString("id"));
                 break;
         }
-        NetWorkManager.getInstance().getHistoryLotteryList(StringUtil.getJson(hashMap), mLoadingDialog, new NetListener(this) {
+        NetWorkManager.getInstance().getHistoryLotteryList(StringUtil.getJson(hashMap), mDialog, new NetListener(this) {
             @Override
             public void onSuccessResponse(String msg, JSONArray jsonArray) {
                 super.onSuccessResponse(msg, jsonArray);
@@ -208,6 +234,22 @@ public class GameActivity extends BaseActivity implements HallLotteryAdapter.OnI
                     }
                 }
                 mLotteryAdapter.setNoList(jsonArray);
+            }
+        });
+    }
+
+    private void getGameCoin() {
+        NetWorkManager.getInstance().getGameCoin(new NetListener(this) {
+            @Override
+            public void onSuccessResponse(String msg, JSONObject jsonObject) {
+                super.onSuccessResponse(msg, jsonObject);
+                AppPrefs.getInstance().saveGameCoin(jsonObject.optLong("coin"));
+            }
+
+            @Override
+            public void onErrorResponse(int errorWhat, String message) {
+                if (errorWhat == NetStatusConfig.STATUS_TOKEN_IS_UPDATED)
+                    super.onErrorResponse(errorWhat, message);
             }
         });
     }

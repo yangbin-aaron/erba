@@ -59,9 +59,10 @@ public class ActivityStartUtils {
         activity.startActivity(intent);
     }
 
-    public static void startBetActivity(Activity activity, JSONObject data) {
+    public static void startBetActivity(Activity activity, JSONObject gameJsonObject, JSONObject lotteryJsonObject) {
         Intent intent = new Intent(activity, BetActivity.class);
-        intent.putExtra("data", data.toString());
+        intent.putExtra("gameJsonObject", gameJsonObject.toString());
+        intent.putExtra("lotteryJsonObject", lotteryJsonObject.toString());
         activity.startActivity(intent);
     }
 }
