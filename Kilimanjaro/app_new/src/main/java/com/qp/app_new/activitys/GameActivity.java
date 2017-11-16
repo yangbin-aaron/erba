@@ -115,7 +115,7 @@ public class GameActivity extends BaseActivity implements HallLotteryAdapter.OnI
                 break;
             case R.id.btn_betting:// 进入投注
                 if (data.optInt("betNum") > 0) {// 有订单
-
+                    ActivityStartUtils.startBetedListActivity(this, mGameJSONObject, data);
                 } else {// 无订单
                     ActivityStartUtils.startBetActivity(this, mGameJSONObject, data);
                 }
@@ -136,9 +136,9 @@ public class GameActivity extends BaseActivity implements HallLotteryAdapter.OnI
     }
 
     private void getAllData() {
+        getGameCoin();
         getHistoryLotteryList();
         getNoLotteryList();
-        getGameCoin();
     }
 
     /**
@@ -163,7 +163,7 @@ public class GameActivity extends BaseActivity implements HallLotteryAdapter.OnI
                 hashMap.put("id", mHistoryLotteryDatas.optJSONObject(mHistoryLotteryDatas.length() - 1).optString("id"));
                 break;
         }
-        NetWorkManager.getInstance().getHistoryLotteryList(StringUtil.getJson(hashMap), mDialog, new NetListener(this) {
+        NetWorkManager.getInstance().getHistoryLotteryList(StringUtil.getJson(hashMap), mDialog, new NetListener() {
             @Override
             public void onSuccessResponse(String msg, JSONArray jsonArray) {
                 super.onSuccessResponse(msg, jsonArray);
@@ -201,7 +201,7 @@ public class GameActivity extends BaseActivity implements HallLotteryAdapter.OnI
 
             @Override
             public void onErrorResponse(int errorWhat, String message) {
-                if (errorWhat == NetStatusConfig.STATUS_TOKEN_IS_UPDATED) {
+                if (errorWhat != NetStatusConfig.STATUS_TOKEN_IS_UPDATED) {
                     super.onErrorResponse(errorWhat, message);
                 }
             }

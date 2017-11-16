@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--投注列表-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_bet_header"/>
+
+    <View
+        style="@style/StyleHorizontalLineView"
+        android:layout_height="4dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/lv_bettinglist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/ll_add_betting"
+            android:divider="@null"
+            android:scrollbars="none"/>
+
+        <View
+            style="@style/StyleHorizontalLineView"
+            android:layout_above="@+id/ll_add_betting"/>
+
+        <LinearLayout
+            android:id="@+id/ll_add_betting"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/login_btn_height"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/selector_r0_white_grayx_str0"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add_icon"/>
+
+            <TextView
+                android:id="@+id/tv_add_betting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="@string/qq_bettinglist_addbet"
+                android:textColor="@color/red_text"/>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

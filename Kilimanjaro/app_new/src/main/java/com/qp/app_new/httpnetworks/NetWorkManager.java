@@ -156,6 +156,29 @@ public class NetWorkManager {
         createOKHttpBuilder(url, StringUtil.getNullJson(), null, listener);
     }
 
+
+    /**
+     * 投注
+     *
+     * @param json
+     * @param listener
+     */
+    public void orderBet(String json, Dialog dialog, NetListener listener) {
+        String url = ApiConfig.getFullUrl(ApiConfig.BetApiQQ.ORDER_BET_QQ);
+        createOKHttpBuilder(url, json, dialog, listener);
+    }
+
+    /**
+     * 获取未开奖的订单列表
+     *
+     * @param json
+     * @param listener
+     */
+    public void getBettingListOfNoLottery(String json, Dialog dialog, NetListener listener) {
+        String url = ApiConfig.getFullUrl(ApiConfig.BetApiQQ.ORDER_NOLOTTERYBETS_QQ);
+        createOKHttpBuilder(url, json, dialog, listener);
+    }
+
     /**
      * 发送邮件激活账户
      *
@@ -518,43 +541,6 @@ public class NetWorkManager {
 
     // **********************QQ群玩法相关API*************START************
 
-    /**
-     * 获取未开奖的订单列表
-     *
-     * @param json
-     * @param handler
-     */
-    public void getBettingListOfNoLotteryQQ(String json, final Handler handler) {
-//        String url = ApiConfig.getFullUrl(ApiConfig.BetApiQQ.ORDER_NOLOTTERYBETS_QQ);
-//        new OkHttpRequestBuilder()
-//                .create(url, json, handler)
-//                .callBack(new OkHttpRequestBuilder.OkHttpRequestBuilderCallBack() {
-//                    @Override
-//                    public void onRespone(String response) {
-//                        BettingListModelQQ result = new Gson().fromJson(response, BettingListModelQQ.class);
-//                        handler.obtainMessage(HandlerConfig.WHAT_POST_SUCCESS, result.getData()).sendToTarget();
-//                    }
-//                });
-    }
-
-
-    /**
-     * 投注
-     *
-     * @param json
-     * @param handler
-     */
-    public void orderBetQQ(String json, final Handler handler) {
-//        String url = ApiConfig.getFullUrl(ApiConfig.BetApiQQ.ORDER_BET_QQ);
-//        new OkHttpRequestBuilder()
-//                .create(url, json, handler)
-//                .callBack(new OkHttpRequestBuilder.OkHttpRequestBuilderCallBack() {
-//                    @Override
-//                    public void onRespone(String response) {
-//                        handler.obtainMessage(HandlerConfig.WHAT_POST_SUCCESS).sendToTarget();
-//                    }
-//                });
-    }
 
     /**
      * 获取投注模式列表

@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.qp.app_new.activitys.AboutUsActivity;
 import com.qp.app_new.activitys.BetActivity;
+import com.qp.app_new.activitys.BetedListActivity;
 import com.qp.app_new.activitys.GameActivity;
 import com.qp.app_new.activitys.LoginActivity;
 import com.qp.app_new.activitys.LotteryDetailActivity;
@@ -61,6 +62,13 @@ public class ActivityStartUtils {
 
     public static void startBetActivity(Activity activity, JSONObject gameJsonObject, JSONObject lotteryJsonObject) {
         Intent intent = new Intent(activity, BetActivity.class);
+        intent.putExtra("gameJsonObject", gameJsonObject.toString());
+        intent.putExtra("lotteryJsonObject", lotteryJsonObject.toString());
+        activity.startActivity(intent);
+    }
+
+    public static void startBetedListActivity(Activity activity, JSONObject gameJsonObject, JSONObject lotteryJsonObject) {
+        Intent intent = new Intent(activity, BetedListActivity.class);
         intent.putExtra("gameJsonObject", gameJsonObject.toString());
         intent.putExtra("lotteryJsonObject", lotteryJsonObject.toString());
         activity.startActivity(intent);

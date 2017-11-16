@@ -1,20 +1,27 @@
 package com.qp.app_new.activitys;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import com.qp.app_new.App;
 import com.qp.app_new.AppPrefs;
 import com.qp.app_new.R;
 import com.qp.app_new.adapters.BetModeAdapter;
 import com.qp.app_new.adapters.BetNumAdapter;
+import com.qp.app_new.configs.BroadcastConfig;
+import com.qp.app_new.configs.NetStatusConfig;
 import com.qp.app_new.contents.AppContent;
+import com.qp.app_new.dialogs.BetAllDialog;
+import com.qp.app_new.dialogs.DialogHelp;
 import com.qp.app_new.httpnetworks.NetWorkManager;
 import com.qp.app_new.interfaces.NetListener;
+import com.qp.app_new.interfaces.NormalDialogListener1;
 import com.qp.app_new.utils.BetUtils;
 import com.qp.app_new.utils.StringUtil;
 import com.qp.app_new.utils.ToastUtil;
@@ -22,6 +29,8 @@ import com.qp.app_new.utils.ToastUtil;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
 
 /**
  * Created by Aaron on 2017/11/13.
@@ -47,11 +56,16 @@ public class BetActivity extends BaseActivity implements View.OnClickListener, B
     private JSONArray mModeJSONArray, mOddsJSONArray;
     private BetModeAdapter mBetModeAdapter;
     private BetNumAdapter mBetNumAdapter;
+    private String mBetNums = "";
 
     private TextView mClearTV;// 清除
     private TextView mLastIssueTV, mBetTV;// 上期投注，投注
 
-    private long mTotalCoin = 0;// 本期已经投注额度
+    private TextView mGameCoinTV, mBetCoinTV;// 余额,投注额
+    private long mTotalCoin;// 本期已经投注额度
+    private long mBetCoin = 1000;// 默认投注额为1000
+
+    private Dialog mDialogBet;// 投注dialog
 
     private Handler mHandler = new Handler();
     private Runnable mRunnable = new Runnable() {
@@ -88,6 +102,7 @@ public class BetActivity extends BaseActivity implements View.OnClickListener, B
             mGameJSONObject = new JSONObject(getIntent().getStringExtra("gameJsonObject"));
             stopBetSecond = mGameJSONObject.optInt("stopBetSecond", 60);
             mLotteryJSONObject = new JSONObject(getIntent().getStringExtra("lotteryJsonObject"));
+            mTotalCoin = mLotteryJSONObject.optLong("total_coin", 0);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -134,6 +149,11 @@ public class BetActivity extends BaseActivity implements View.OnClickListener, B
         createOdds();
         mBetNumAdapter.setJSONArray(mOddsJSONArray);
 
+        // ******余额，投注额
+        mGameCoinTV = (TextView) findViewById(R.id.tv_amount);
+        mBetCoinTV = (TextView) findViewById(R.id.tv_bet_coin);
+        mBetCoinTV.setText(mBetCoin + "");
+
         getBetModes();
     }
 
@@ -148,6 +168,13 @@ public class BetActivity extends BaseActivity implements View.OnClickListener, B
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        long gameCoin = AppPrefs.getInstance().getGameCoin();
+        mGameCoinTV.setText(gameCoin + "");
     }
 
     /**
@@ -187,11 +214,11 @@ public class BetActivity extends BaseActivity implements View.OnClickListener, B
                 }
                 break;
             case R.id.btn_last_issue:
-                lastBetMode();
+                getLastBetMode();
                 break;
             case R.id.btn_betting:
                 if (mSelectIndex != -1) {
-                    long canBetCoin = App.currentGameJsonObject.optLong("capCoin") - mTotalCoin;
+                    long canBetCoin = mGameJSONObject.optLong("capCoin") - mTotalCoin;
                     int nums = 0;
                     boolean isDandian = false;
                     for (int i = 0; i < mModeJSONArray.length(); i++) {
@@ -208,26 +235,39 @@ public class BetActivity extends BaseActivity implements View.OnClickListener, B
                         }
                     }
                     if (isDandian && nums == 0) return;// 单点，没有选球
-//                    new BetAllDialog(this, nums)
-//                            .setDefaultCoin(mBetCoin + "")
-//                            .setMaxCoin(canBetCoin)
-//                            .listener(new BetAllDialog.OnDialogClickListener() {
-//                                @Override
-//                                public void onRightClicked(long coin) {
-//                                    mBetCoin = coin;
-//                                    compareGameCoin();
-//                                }
-//                            })
-//                            .show();
+                    new BetAllDialog(this, nums)
+                            .setDefaultCoin(mBetCoin + "")
+                            .setMaxCoin(canBetCoin)
+                            .listener(new BetAllDialog.OnDialogClickListener() {
+                                @Override
+                                public void onRightClicked(long coin) {
+                                    mBetCoin = coin;
+                                    compareGameCoin();
+                                }
+                            })
+                            .show();
                 }
                 break;
         }
     }
 
     /**
+     * 保存投注的信息（上次投注功能）
+     */
+    private void saveLastBetMode() {
+        JSONObject jsonObject = mModeJSONArray.optJSONObject(mSelectIndex);
+        try {
+            jsonObject.put("includeNum", mBetNums);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        AppPrefs.getInstance().saveLastBetMode(jsonObject);
+    }
+
+    /**
      * 上次投注
      */
-    private void lastBetMode() {
+    private void getLastBetMode() {
         JSONObject modeJsonObject = AppPrefs.getInstance().getLastBetMode();
         try {
             if (modeJsonObject != null) {
@@ -304,6 +344,59 @@ public class BetActivity extends BaseActivity implements View.OnClickListener, B
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 比较余额
+     */
+    private void compareGameCoin() {
+        mBetCoinTV.setText(mBetCoin + "");
+        // 判断余额是否充足
+        long gameCoin = AppPrefs.getInstance().getGameCoin();
+        for (int i = 0; i < mOddsJSONArray.length(); i++) {
+            JSONObject object = mOddsJSONArray.optJSONObject(i);
+            if (object.optBoolean(AppContent.ISSELECTED)) {
+                mBetNums += "," + object.optString("lotteryNumber");
+            }
+        }
+        if (!TextUtils.isEmpty(mBetNums)) mBetNums = mBetNums.substring(1);
+        if (gameCoin < mBetCoin) {// 余额不足，请充值
+            saveLastBetMode();
+            DialogHelp.showMessageDialog(this, getString(R.string.coin_nohave_residual));
+            return;
+        }
+        if (mDialogBet == null) {
+            mDialogBet = DialogHelp.createOkDialog(this, getString(R.string.betting_confirm_bet, mBetCoin), new NormalDialogListener1() {
+                @Override
+                public void onOkClickListener() {
+                    bet();
+                }
+            });
+        }
+        mDialogBet.show();
+    }
+
+    private void bet() {
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("gameId", mGameJSONObject.optString("id"));
+        hashMap.put("id", mLotteryJSONObject.optString("id"));
+        hashMap.put("lotteryId", mLotteryJSONObject.optString("lotteryId"));
+        hashMap.put("betPatternId", mModeJSONArray.optJSONObject(mSelectIndex).optString("id"));
+        hashMap.put("betCoin", mBetCoin);
+        hashMap.put("betNum", mBetNums);
+
+        NetWorkManager.getInstance().orderBet(StringUtil.getJson(hashMap), mLoadingDialog, new NetListener(this) {
+            @Override
+            public void onErrorResponse(int errorWhat, String message) {
+                if (errorWhat == NetStatusConfig.STATUS_HAVE_NO_DATA) {
+                    ToastUtil.showToast("投注成功！");
+                    sendBroadcast(new Intent(BroadcastConfig.ACTION_REFRESH_GAMELIST));
+                    finish();
+                } else {
+                    super.onErrorResponse(errorWhat, message);
+                }
+            }
+        });
     }
 
     // ACTION_REFRESH_GAMELIST   投注完成之后  发送广播刷新数据

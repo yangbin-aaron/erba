@@ -54,6 +54,8 @@
         <activity android:name=".activitys.LotteryDetailActivity"/>
         <!--投注界面Activity-->
         <activity android:name=".activitys.BetActivity"/>
+        <!--投注列表界面Activity-->
+        <activity android:name=".activitys.BetedListActivity"/>
 
         <!--下载APKService-->
         <service android:name=".services.DownloadService">
