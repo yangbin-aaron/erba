@@ -70,6 +70,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             case R.id.tv_forgetpwd:
                 break;
             case R.id.tv_register:
+
                 break;
         }
     }

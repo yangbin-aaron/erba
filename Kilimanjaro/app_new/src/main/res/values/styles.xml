@@ -110,4 +110,15 @@
     <style name="StylesBetTimesBtn1" parent="StylesBetTimesBtnBase">
         <item name="android:textColor">@color/gray_xx</item>
     </style>
+
+    <!--注册界面  进度数字-->
+    <style name="RegisterTextView">
+        <item name="android:layout_width">14dp</item>
+        <item name="android:layout_height">14dp</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:gravity">center</item>
+    </style>
 </resources>
