@@ -43,7 +43,7 @@
     <string name="game_coin_withdraw_str">金豆提现</string>
     <string name="notice_str">消息通知</string>
     <string name="trand_list_str">交易明细</string>
-    <string name="modifypwd_str">密码修改</string>
+    <string name="modifypwd_str">修改密码</string>
     <string name="about_str">关于我们</string>
     <string name="logout_str">退出登录</string>
     <string name="hint_logout_str">退出当前用户？</string>
@@ -72,12 +72,13 @@
     <!--注册-->
     <string name="regist_btn">注册</string>
     <string name="submit_btn">提交</string>
+    <string name="finish_register">确定取消注册？</string>
     <string name="re_send_sms">重发验证码</string>
     <string name="complete_btn">完成注册</string>
     <string name="goto_login_btn">去登录</string>
     <string name="free_regist">免费注册</string>
     <string name="input_phone">请输入您的手机号码</string>
-    <string name="send_sms_hint">我们将发送验证码到这个号码，该条信息免费</string>
+    <string name="send_sms_hint">我们将发送验证码到这个号码，此信息免费</string>
     <string name="has_send_sms">已发送验证码短信到手机</string>
     <string name="input_verify_code">请输入验证码</string>
     <string name="input_email">QQ邮箱</string>
@@ -114,7 +115,7 @@
 
     <!--修改密码-->
     <string name="bar_updatepwd">安全中心</string>
-    <string name="old_pwd">旧密码</string>
+    <string name="old_pwd">原密码</string>
     <string name="new_pwd">新密码</string>
     <string name="repwd">确认密码</string>
     <string name="update_login_pwd_str">修改登录密码</string>
@@ -131,9 +132,10 @@
 
     <!--重置密码-->
     <string name="authentication">验证身份</string>
+    <string name="forget_title">重置密码</string>
     <string name="input_your_registed_phone">请输入您已注册的手机号码</string>
     <string name="get_captcha">获取验证码</string>
-    <string name="call_apply_reset_loginpwd">若手机无法收到验证码，请联系客服QQ 765770000 申诉更改登录密码</string>
+    <string name="call_apply_reset_loginpwd">* 若手机无法收到验证码，请联系客服申诉！</string>
     <string name="reset_hint0">已发送验证码到：</string>
     <string name="input_new_password">请输入新密码</string>
     <string name="input_re_new_password">请再次输入新密码</string>
@@ -294,7 +296,7 @@
     <string name="qq_betting_last_bet">上次投注</string>
     <string name="qq_lottery_d_amount">投注额：</string>
     <string name="qq_payingmethod_bar">%s玩法介绍</string>
-    <string name="qq_betting_2">请以2的倍数的金额进行投注</string>
+    <string name="qq_betting_2">请以%d的倍数的金额进行投注</string>
     <!--<string name="qq_lottery_d_maxcoin">投注额不能超过 </string>-->
 
     <!--QQ群玩法  LotteryDefaultActivityQQ-->

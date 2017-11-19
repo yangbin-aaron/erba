@@ -5,12 +5,14 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 
+import com.qp.app_new.AppPrefs;
 import com.qp.app_new.R;
 import com.qp.app_new.configs.BroadcastConfig;
 import com.qp.app_new.contents.AppPrefsContent;
 import com.qp.app_new.dialogs.DialogHelp;
 import com.qp.app_new.httpnetworks.NetWorkManager;
 import com.qp.app_new.interfaces.NetListener;
+import com.qp.app_new.utils.ActivityStartUtils;
 import com.qp.app_new.utils.NetUtil;
 import com.qp.app_new.utils.StringUtil;
 
@@ -44,9 +46,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         setBackgroundResource (R.color.translucent);
         setActionBarBackgroundResource (R.color.translucent);
         setLeftIV (R.drawable.ic_back_btn);
+        setTitle (R.string.login_btn);
 
         mPhoneET = (EditText) findViewById (R.id.et_phone);
         mPasswordET = (EditText) findViewById (R.id.et_password);
+        if (AppPrefs.getInstance ().getUserPhone () != null) {
+            mPhoneET.setText (AppPrefs.getInstance ().getUserPhone ());
+            mPasswordET.setFocusable (true);
+            mPasswordET.setFocusableInTouchMode (true);
+            mPasswordET.requestFocus ();
+        }
 
         findViewById (R.id.iv_clear_phone).setOnClickListener (this);
         findViewById (R.id.iv_clear_pwd).setOnClickListener (this);
@@ -68,9 +77,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 doLogin ();
                 break;
             case R.id.tv_forgetpwd:
+                ActivityStartUtils.startForgetPwdActivity (this);
                 break;
             case R.id.tv_register:
-
+                ActivityStartUtils.startRegisterActivity (this);
                 break;
         }
     }

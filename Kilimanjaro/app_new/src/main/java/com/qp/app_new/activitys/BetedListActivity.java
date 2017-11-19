@@ -30,7 +30,7 @@ import java.util.HashMap;
 public class BetedListActivity extends BaseActivity {
 
     @Override
-    public int getContentView() {
+    public int getContentView () {
         return R.layout.activity_beted_list;
     }
 
@@ -48,118 +48,117 @@ public class BetedListActivity extends BaseActivity {
     private BettingListAdapter mAdapter;
 
     private long mTotalCoin;// 已经投注的总额
-    private Handler mHandler = new Handler();
-    private Runnable mRunnable = new Runnable() {
+    private Handler mHandler = new Handler ();
+    private Runnable mRunnable = new Runnable () {
         @Override
-        public void run() {
+        public void run () {
             mSurplusTime--;
             if (mSurplusTime > 0) {
-                mLotteryStateTV.setVisibility(View.GONE);
-                findViewById(R.id.ll_bet_state).setVisibility(View.VISIBLE);
-                mSurplusTimeTV.setText(mSurplusTime + "");// 逻辑没有问题，先减少1s再setText
+                mLotteryStateTV.setVisibility (View.GONE);
+                findViewById (R.id.ll_bet_state).setVisibility (View.VISIBLE);
+                mSurplusTimeTV.setText (mSurplusTime + "");// 逻辑没有问题，先减少1s再setText
             } else {
-                mAddBetLL.setEnabled(false);
-                mAddBetLL.setBackgroundResource(R.drawable.shape_r5_grayx_str0);
-                mAddBetTV.setTextColor(getResources().getColor(R.color.gray_xx));
-                mLotteryStateTV.setVisibility(View.VISIBLE);
-                findViewById(R.id.ll_bet_state).setVisibility(View.GONE);
+                mAddBetLL.setEnabled (false);
+                mAddBetLL.setBackgroundResource (R.drawable.shape_r5_grayx_str0);
+                mAddBetTV.setTextColor (getResources ().getColor (R.color.gray_xx));
+                mLotteryStateTV.setVisibility (View.VISIBLE);
+                findViewById (R.id.ll_bet_state).setVisibility (View.GONE);
                 if (mSurplusTime > -stopBetSecond) {
-                    mLotteryStateTV.setText(R.string.betting_endbet);
+                    mLotteryStateTV.setText (R.string.betting_endbet);
                 } else {
-                    mLotteryStateTV.setText(R.string.betting_open_result);
+                    mLotteryStateTV.setText (R.string.betting_open_result);
                 }
             }
             if (mSurplusTime < -100) {
-                mHandler.removeCallbacks(mRunnable);
+                mHandler.removeCallbacks (mRunnable);
             } else {
-                mHandler.postDelayed(mRunnable, 1000);
+                mHandler.postDelayed (mRunnable, 1000);
             }
         }
     };
 
     @Override
-    public void getIntentData() {
-        super.getIntentData();
+    public void getIntentData () {
+        super.getIntentData ();
         try {
-            mGameJSONObject = new JSONObject(getIntent().getStringExtra("gameJsonObject"));
-            stopBetSecond = mGameJSONObject.optInt("stopBetSecond", 60);
-            mLotteryJSONObject = new JSONObject(getIntent().getStringExtra("lotteryJsonObject"));
+            mGameJSONObject = new JSONObject (getIntent ().getStringExtra ("gameJsonObject"));
+            stopBetSecond = mGameJSONObject.optInt ("stopBetSecond", 60);
+            mLotteryJSONObject = new JSONObject (getIntent ().getStringExtra ("lotteryJsonObject"));
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace ();
         }
     }
 
     @Override
-    public void addFilterAction(IntentFilter filter) {
-        super.addFilterAction(filter);
-        filter.addAction(BroadcastConfig.ACTION_REFRESH_GAMELIST);
+    public void addFilterAction (IntentFilter filter) {
+        super.addFilterAction (filter);
+        filter.addAction (BroadcastConfig.ACTION_REFRESH_GAMELIST);
     }
 
     @Override
-    public void handlerBroadcastReceiver(Intent intent) {
-        super.handlerBroadcastReceiver(intent);
-        if (intent.getAction().equals(BroadcastConfig.ACTION_REFRESH_GAMELIST)) {
-           getBettingList();
+    public void handlerBroadcastReceiver (Intent intent) {
+        super.handlerBroadcastReceiver (intent);
+        if (intent.getAction ().equals (BroadcastConfig.ACTION_REFRESH_GAMELIST)) {
+            getBettingList ();
         }
     }
 
     @Override
-    public void initView() {
-        initActionBar();
-        setLeftIV(R.drawable.ic_back_btn);
-        setTitle(R.string.qq_bettinglist_bar);
+    public void initView () {
+        initActionBar ();
+        setLeftIV (R.drawable.ic_back_btn);
+        setTitle (R.string.qq_bettinglist_bar);
 
         // ******奖注信息
-        mIssueTV = (TextView) findViewById(R.id.tv_issue);
-        mLotteryTimeTV = (TextView) findViewById(R.id.tv_lottery_time);
-        mSurplusTimeTV = (TextView) findViewById(R.id.tv_bet_surplus_time);
-        mLotteryStateTV = (TextView) findViewById(R.id.tv_lottery_state);
+        mIssueTV = (TextView) findViewById (R.id.tv_issue);
+        mLotteryTimeTV = (TextView) findViewById (R.id.tv_lottery_time);
+        mSurplusTimeTV = (TextView) findViewById (R.id.tv_bet_surplus_time);
+        mLotteryStateTV = (TextView) findViewById (R.id.tv_lottery_state);
 
         if (mLotteryJSONObject != null) {
-            mIssueTV.setText(mLotteryJSONObject.optString("lotteryId"));
-            mLotteryTimeTV.setText(StringUtil.getShowTime4(mLotteryJSONObject.optString("lotteryTime")));
-            mSurplusTime = mLotteryJSONObject.optInt("lotterySecond") - stopBetSecond;
-            mHandler.post(mRunnable);
+            mIssueTV.setText (mLotteryJSONObject.optString ("lotteryId"));
+            mLotteryTimeTV.setText (StringUtil.getShowTime4 (mLotteryJSONObject.optString ("lotteryTime")));
+            mSurplusTime = mLotteryJSONObject.optInt ("lotterySecond") - stopBetSecond;
+            mHandler.post (mRunnable);
         }
 
         // 加注按钮
-        mAddBetLL = (LinearLayout) findViewById(R.id.ll_add_betting);
-        mAddBetTV = (TextView) findViewById(R.id.tv_add_betting);
-        mAddBetLL.setOnClickListener(new View.OnClickListener() {
+        mAddBetLL = (LinearLayout) findViewById (R.id.ll_add_betting);
+        mAddBetTV = (TextView) findViewById (R.id.tv_add_betting);
+        mAddBetLL.setOnClickListener (new View.OnClickListener () {
             @Override
-            public void onClick(View v) {
+            public void onClick (View v) {
                 try {
-                    mLotteryJSONObject.put("lotterySecond", mSurplusTime + stopBetSecond);
-                    mLotteryJSONObject.put("total_coin", mTotalCoin);
-                    ActivityStartUtils.startBetActivity(BetedListActivity.this, mGameJSONObject, mLotteryJSONObject);
+                    mLotteryJSONObject.put ("lotterySecond", mSurplusTime + stopBetSecond);
+                    mLotteryJSONObject.put ("total_coin", mTotalCoin);
+                    ActivityStartUtils.startBetActivity (BetedListActivity.this, mGameJSONObject, mLotteryJSONObject);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    e.printStackTrace ();
                 }
             }
         });
 
         // ******ListView
-        mListView = (ListView) findViewById(R.id.lv_bettinglist);
-        mAdapter = new BettingListAdapter();
-        mListView.setAdapter(mAdapter);
+        mListView = (ListView) findViewById (R.id.lv_bettinglist);
+        mAdapter = new BettingListAdapter ();
+        mListView.setAdapter (mAdapter);
 
-        getBettingList();
+        getBettingList ();
     }
 
-    private void getBettingList() {
-        HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("gameId", mGameJSONObject.optString("id"));
-        hashMap.put("id", mLotteryJSONObject.optString("id"));
-        NetWorkManager.getInstance().getBettingListOfNoLottery(StringUtil.getJson(hashMap), mLoadingDialog, new NetListener(this) {
+    private void getBettingList () {
+        HashMap<String, Object> hashMap = new HashMap<> ();
+        hashMap.put ("gameId", mGameJSONObject.optString ("id"));
+        hashMap.put ("id", mLotteryJSONObject.optString ("id"));
+        NetWorkManager.getInstance ().getBettingListOfNoLottery (StringUtil.getJson (hashMap), mLoadingDialog, new NetListener (this) {
             @Override
-            public void onSuccessResponse(String msg, JSONArray jsonArray) {
-                super.onSuccessResponse(msg, jsonArray);
-                mAdapter.setJSONArray(jsonArray);
-            }
-
-            @Override
-            public void onErrorResponse(int errorWhat, String message) {
-                super.onErrorResponse(errorWhat, message);
+            public void onSuccessResponse (String msg, JSONArray jsonArray) {
+                super.onSuccessResponse (msg, jsonArray);
+                mAdapter.setJSONArray (jsonArray);
+                mTotalCoin = 0;
+                for (int i = 0; i < jsonArray.length (); i++) {
+                    mTotalCoin += jsonArray.optJSONObject (i).optLong ("betCoin");
+                }
             }
         });
     }

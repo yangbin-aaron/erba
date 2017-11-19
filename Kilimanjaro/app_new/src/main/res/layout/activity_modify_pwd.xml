@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginLeft="@dimen/dp_14"
+        android:layout_marginRight="@dimen/dp_14"
+        android:layout_marginTop="@dimen/dp_10"
+        android:gravity="center_vertical"
+        android:padding="4dp">
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="@string/old_pwd"
+            android:textColor="@color/black_text"/>
+
+        <EditText
+            android:id="@+id/et_login_old_pwd"
+            style="@style/PwdDigits"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_r5_transparent_str1_grayxx"
+            android:maxLength="16"
+            android:paddingLeft="4dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginLeft="@dimen/dp_14"
+        android:layout_marginRight="@dimen/dp_14"
+        android:layout_marginTop="@dimen/dp_10"
+        android:gravity="center_vertical"
+        android:padding="4dp">
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="@string/new_pwd"
+            android:textColor="@color/black_text"/>
+
+        <EditText
+            android:id="@+id/et_login_new_pwd"
+            style="@style/PwdDigits"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_r5_transparent_str1_grayxx"
+            android:maxLength="16"
+            android:paddingLeft="4dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginLeft="@dimen/dp_14"
+        android:layout_marginRight="@dimen/dp_14"
+        android:layout_marginTop="@dimen/dp_10"
+        android:gravity="center_vertical"
+        android:padding="4dp">
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="@string/repwd"
+            android:textColor="@color/black_text"/>
+
+        <EditText
+            android:id="@+id/et_login_re_pwd"
+            style="@style/PwdDigits"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_r5_transparent_str1_grayxx"
+            android:maxLength="16"
+            android:paddingLeft="4dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btn_update_login_pwd"
+        style="@style/BaseBtnStyle"
+        android:background="@drawable/shape_r5_main_str0"
+        android:text="@string/submit_btn"/>
+</LinearLayout>

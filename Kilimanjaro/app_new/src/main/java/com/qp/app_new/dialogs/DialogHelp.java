@@ -16,11 +16,13 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.qp.app_new.AppPrefs;
 import com.qp.app_new.R;
 import com.qp.app_new.interfaces.NormalDialogListener1;
 import com.qp.app_new.interfaces.NormalDialogListener2;
 import com.qp.app_new.interfaces.PopupWindowItemListener;
 import com.qp.app_new.utils.ActivityStartUtils;
+import com.qp.app_new.utils.AppUtils;
 
 /**
  * Created by yangbin on 16/7/11.
@@ -242,5 +244,41 @@ public class DialogHelp {
         popupWindow.setFocusable (true);
 
         return popupWindow;
+    }
+
+    /**
+     * 进入QQ
+     *
+     * @param context
+     */
+    public static void showKefuQQDialog (final Context context) {
+        if (!AppUtils.isQQClientAvailable (context)) {
+            showMessageDialog (context, context.getString (R.string.recharge_hasnot_qq));
+        } else {
+            final String kefu_qq_num_default = AppPrefs.getInstance ().getSysInfoQQ ();
+            String call_kefu_qq = context.getString (R.string.call_kefu_qq, kefu_qq_num_default);
+            createOkDialog (context, call_kefu_qq, new NormalDialogListener1 () {
+                @Override
+                public void onOkClickListener () {
+                    AppUtils.intoQQ (context, kefu_qq_num_default);
+                }
+            }).show ();
+        }
+    }
+
+    /**
+     * 拨打电话
+     *
+     * @param context
+     */
+    public static void showKefuPhoneDialog (final Context context) {
+        final String kefu_phone_default = AppPrefs.getInstance ().getSysInfoPhone ();
+        createOkDialog (context, context.getString (R.string.app_call_phone, kefu_phone_default), new
+                NormalDialogListener1 () {
+                    @Override
+                    public void onOkClickListener () {
+                        AppUtils.call (context, kefu_phone_default);
+                    }
+                }).show ();
     }
 }

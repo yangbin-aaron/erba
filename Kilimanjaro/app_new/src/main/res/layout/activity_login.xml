@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
+    android:id="@+id/content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="30dp"
         android:padding="10dp"
         android:src="@mipmap/ic_launcher"/>
 
     <RelativeLayout
         android:id="@+id/rl_phone"
-        style="@style/BaseEditText"
-        android:layout_below="@id/image">
+        style="@style/BaseEditText">
 
         <ImageView
             android:id="@+id/image_ph"
@@ -52,8 +54,7 @@
 
     <RelativeLayout
         android:id="@+id/rl_password"
-        style="@style/BaseEditText"
-        android:layout_below="@id/rl_phone">
+        style="@style/BaseEditText">
 
         <ImageView
             android:id="@+id/image_pw"
@@ -64,14 +65,13 @@
 
         <EditText
             android:id="@+id/et_password"
+            style="@style/PwdDigits"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@+id/iv_clear_pwd"
             android:layout_toRightOf="@id/image_pw"
             android:background="@color/transparent"
-            android:digits="0123456789abcdefghigklmnopqrstuvwxyz"
             android:hint="@string/input_password"
-            android:inputType="textPassword"
             android:paddingLeft="4dp"
             android:textColor="@color/gray_text"
             android:textCursorDrawable="@null"
@@ -90,7 +90,6 @@
     <TextView
         android:id="@+id/btn_login"
         style="@style/BaseBtnStyle"
-        android:layout_below="@id/rl_password"
         android:background="@drawable/shape_r5_main_str0"
         android:text="@string/login_btn"/>
 
@@ -98,19 +97,20 @@
         android:id="@+id/tv_forgetpwd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_login"
-        android:layout_centerHorizontal="true"
         android:padding="20dp"
         android:text="@string/forget_pwd"
         android:textColor="@color/gray_text"/>
 
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
     <TextView
         android:id="@+id/tv_register"
         style="@style/BaseBtnStyle"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/shape_r5_trans_str1"
         android:text="@string/register"
         android:textColor="@color/gray_text"/>
-</RelativeLayout>
+</LinearLayout>

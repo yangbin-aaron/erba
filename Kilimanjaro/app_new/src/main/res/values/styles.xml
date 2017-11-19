@@ -121,4 +121,9 @@
         <item name="android:layout_centerInParent">true</item>
         <item name="android:gravity">center</item>
     </style>
+
+    <style name="PwdDigits">
+        <item name="android:digits">0123456789abcdefghigklmnopqrstuvwxyz.!@#$%*_=+</item>
+        <item name="android:inputType">textPassword</item>
+    </style>
 </resources>

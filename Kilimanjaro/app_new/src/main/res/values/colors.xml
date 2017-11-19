@@ -2,8 +2,8 @@
 <resources>
 
     <!--主色调-->
-    <color name="main_background">#ED1961</color>
-    <color name="main_background_x">#F83943</color>
+    <color name="main_background">#D44E4D</color>
+    <color name="main_background_x">#CD3700</color>
 
     <color name="color_bg">#EDEDED</color>
 
