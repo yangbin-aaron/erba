@@ -36,60 +36,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <GridView
-            android:id="@+id/gv_mode"
+        <ListView
+            android:id="@+id/dandian_nums_tv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="9dp"
-            android:listSelector="@null"
-            android:numColumns="7"
-            android:scrollbars="none"/>
-
-        <GridView
-            android:id="@+id/gv_nums"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/gv_mode"
-            android:layout_margin="10dp"
+            android:layout_height="match_parent"
             android:layout_marginBottom="60dp"
-            android:listSelector="@null"
-            android:numColumns="7"
-            android:scrollbars="none"
-            android:verticalSpacing="4dp"/>
+            android:divider="@null"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:scrollbars="none">
+
+        </ListView>
+
         <!--底部按钮-->
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"
-            android:background="@color/gray_line">
-
-            <TextView
-                android:id="@+id/btn_last_issue"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/selector_r5_main_mainx_str0"
-                android:gravity="center"
-                android:minWidth="60dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/qq_betting_last_bet"
-                android:textColor="@color/white"/>
+            android:background="@color/gray_line"
+            android:gravity="center_vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="vertical">
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/dp_10">
                 <!--余额-->
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true">
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -106,26 +83,48 @@
                         android:textColor="@color/gray_xx"
                         android:textSize="12sp"/>
                 </LinearLayout>
-
-                <!--投注额-->
+                <!--本期可投金额-->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true">
+                    android:layout_marginTop="2dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/qq_lottery_d_amount"
-                        android:textColor="@color/red_text"/>
+                        android:text="@string/coin_max"
+                        android:textColor="@color/gray_xx"
+                        android:textSize="12sp"/>
 
                     <TextView
-                        android:id="@+id/tv_bet_coin"
+                        android:id="@+id/tv_coin_max"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
-                        android:textColor="@color/red_text"/>
+                        android:textColor="@color/gray_xx"
+                        android:textSize="12sp"/>
                 </LinearLayout>
+            </LinearLayout>
+
+            <!--投注额-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/qq_lottery_d_amount"
+                    android:textColor="@color/red_text"/>
+
+                <TextView
+                    android:id="@+id/tv_bet_coin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/red_text"/>
             </LinearLayout>
 
             <TextView
@@ -142,6 +141,6 @@
                 android:paddingRight="10dp"
                 android:text="@string/betting_str"
                 android:textColor="@color/white"/>
-        </RelativeLayout>
+        </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

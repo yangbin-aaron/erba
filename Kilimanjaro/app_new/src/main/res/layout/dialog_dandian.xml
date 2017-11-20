@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--普通的对话框布局-->
+<LinearLayout
+    android:id="@+id/dialog_normal_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_rectangle_style"
+        android:minHeight="150dp"
+        android:orientation="vertical"
+        android:padding="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dp">
+
+            <EditText
+                android:id="@+id/et_bet_coin"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginBottom="6dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@id/tv_1"
+                android:background="@drawable/shape_r5_transparent_str1_grayx"
+                android:gravity="center"
+                android:hint="@string/input_bet_dd_amount"
+                android:inputType="number"
+                android:minWidth="100dp"
+                android:textColor="@color/black_text"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+
+        <View
+            style="@style/StyleHorizontalLineView"/>
+
+        <!--按钮部分-->
+        <LinearLayout
+            android:id="@+id/dialog_btn_latout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:id="@+id/dialog_left_textview"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/app_cancel"
+                android:textColor="@color/blue"/>
+
+            <View
+                android:id="@+id/dialog_center_line"
+                style="@style/StyleVerticalLineView"/>
+
+            <TextView
+                android:id="@+id/dialog_right_textview"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/app_confirm"
+                android:textColor="@color/blue"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

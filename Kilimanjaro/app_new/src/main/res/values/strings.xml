@@ -105,6 +105,9 @@
     <string name="call_kefu_qq">确定进入客服QQ:%s？</string>
     <string name="kefu_qq_num_default">121965871</string>
     <string name="kefu_worktime_default">08:00-22:00</string>
+    <string name="kefu_wx">微信号</string>
+    <string name="kefu_wx_">微信号：%s</string>
+    <string name="kefu_wx_default">121965871</string>
     <string name="kefu_phone">客服电话</string>
     <string name="kefu_phone_">客服电话：%s</string>
     <string name="kefu_phone_default">13530155972</string>
@@ -166,11 +169,15 @@
     <string name="lottery_d_get">获得金豆</string>
     <string name="lottery_d_getscore">获得积分</string>
     <string name="lottery_d_num">号码</string>
-    <string name="lottery_d_odds">赔率</string>
+    <string name="lottery_d_odds">赔率：%s 倍</string>
     <string name="lottery_default_no_more_data">已无更多数据</string>
 
     <!--投注界面-->
+    <string name="betting_text">%s投注</string>
     <string name="betting_str">投注</string>
+    <string name="bet_dd_amount">投注额：%d</string>
+    <string name="input_bet_dd_amount">请输入投注金额！</string>
+    <string name="click_input_amt">点击输入金额！</string>
     <string name="betting_mode">模式</string>
     <string name="betting_times">倍数</string>
     <string name="betting_change0">投注界面</string>
@@ -268,6 +275,7 @@
     <!--我的亏盈-->
     <string name="revenue_bar_base">我的亏盈</string>
     <string name="revenue_bar">亏盈</string>
+    <string name="revenue_bar_">%s亏盈</string>
     <string name="revenue_today_str">今日参与</string>
     <string name="revenue_win_lv">胜率</string>
     <string name="revenue_today">今日</string>
@@ -292,6 +300,9 @@
     <string name="qq_bettinglist_addbet">加注</string>
 
     <!--QQ群玩法  BettingActivity-->
+    <string name="odds_title">%s赔率列表</string>
+    <string name="pay_method_hint">玩法仅供参考，实际请以当前赔率为准！</string>
+    <string name="curr_odds">当前赔率</string>
     <string name="qq_betting_bar">投注</string>
     <string name="qq_betting_last_bet">上次投注</string>
     <string name="qq_lottery_d_amount">投注额：</string>

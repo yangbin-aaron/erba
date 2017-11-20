@@ -1,4 +1,4 @@
-package com.qp.app_new.activitys;
+package com.qp.app_new.activitys.mine;
 
 import android.app.Dialog;
 import android.view.View;
@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.qp.app_new.App;
 import com.qp.app_new.AppPrefs;
 import com.qp.app_new.R;
+import com.qp.app_new.activitys.BaseActivity;
 import com.qp.app_new.dialogs.DialogHelp;
 import com.qp.app_new.httpnetworks.NetWorkManager;
 import com.qp.app_new.interfaces.NetListener;
@@ -35,7 +36,7 @@ public class AboutUsActivity extends BaseActivity implements View.OnClickListene
         ((TextView) findViewById(R.id.tv_work_time)).setText(AppPrefs.getInstance().getSysInfoWorkTime());
 
         findViewById(R.id.rl_qq).setOnClickListener(this);
-        findViewById(R.id.rl_phone).setOnClickListener(this);
+        findViewById(R.id.rl_wx).setOnClickListener(this);
         findViewById(R.id.rl_update).setOnClickListener(this);
     }
 
@@ -47,8 +48,13 @@ public class AboutUsActivity extends BaseActivity implements View.OnClickListene
                 DialogHelp.showMessageDialog(this, getString(R.string.kefu_qq_, kefu_qq_num_default));
                 break;
             case R.id.rl_phone:
+                @Deprecated
                 final String kefu_phone_default = AppPrefs.getInstance().getSysInfoPhone();
                 DialogHelp.showMessageDialog(this, getString(R.string.kefu_phone_, kefu_phone_default));
+                break;
+            case R.id.rl_wx:
+                final String kefu_wx_default = AppPrefs.getInstance().getSysInfoWX();
+                DialogHelp.showMessageDialog(this, getString(R.string.kefu_wx_, kefu_wx_default));
                 break;
             case R.id.rl_update:
                 NetWorkManager.getInstance().updateApp(mLoadingDialog, new NetListener() {

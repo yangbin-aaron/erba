@@ -1,4 +1,4 @@
-package com.qp.app_new.activitys;
+package com.qp.app_new.activitys.home;
 
 import android.util.Log;
 import android.view.View;
@@ -6,6 +6,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.qp.app_new.R;
+import com.qp.app_new.activitys.BaseActivity;
 import com.qp.app_new.adapters.BettingListAdapter;
 import com.qp.app_new.configs.NetStatusConfig;
 import com.qp.app_new.httpnetworks.NetWorkManager;

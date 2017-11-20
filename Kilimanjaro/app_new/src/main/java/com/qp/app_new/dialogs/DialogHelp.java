@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 import com.qp.app_new.AppPrefs;
 import com.qp.app_new.R;
+import com.qp.app_new.interfaces.DandianDialogListener;
 import com.qp.app_new.interfaces.NormalDialogListener1;
 import com.qp.app_new.interfaces.NormalDialogListener2;
 import com.qp.app_new.interfaces.PopupWindowItemListener;
@@ -35,27 +37,27 @@ public class DialogHelp {
      * @param context
      * @return
      */
-    public static Dialog createLoadingDialog (Context context, int textResId, boolean setCancelable) {
+    public static Dialog createLoadingDialog(Context context, int textResId, boolean setCancelable) {
         // 加载布局
-        LayoutInflater inflater = LayoutInflater.from (context);
-        View v = inflater.inflate (R.layout.dialog_loading, null);
-        LinearLayout layout = (LinearLayout) v.findViewById (R.id.dialog_util_loading_layout);
-        TextView textView = (TextView) v.findViewById (R.id.dialog_util_loading_textview);
-        textView.setText (textResId);
-        ImageView imageView = (ImageView) v.findViewById (R.id.dialog_util_loading_imageview);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View v = inflater.inflate(R.layout.dialog_loading, null);
+        LinearLayout layout = (LinearLayout) v.findViewById(R.id.dialog_util_loading_layout);
+        TextView textView = (TextView) v.findViewById(R.id.dialog_util_loading_textview);
+        textView.setText(textResId);
+        ImageView imageView = (ImageView) v.findViewById(R.id.dialog_util_loading_imageview);
         // 开始旋转
-        AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getBackground ();
-        animationDrawable.start ();
+        AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getBackground();
+        animationDrawable.start();
 
-        Dialog loadingDialog = new Dialog (context, R.style.StylesDialog); // 创建自定义样式dialog
-        loadingDialog.setCancelable (setCancelable);
-        loadingDialog.setContentView (layout);
-        WindowManager windowManager = ((Activity) context).getWindowManager ();
-        Display display = windowManager.getDefaultDisplay ();
-        WindowManager.LayoutParams lp = loadingDialog.getWindow ().getAttributes ();
-        lp.width = (int) (display.getWidth ()); // 设置宽度
-        lp.height = (int) (display.getHeight ());
-        loadingDialog.getWindow ().setAttributes (lp);
+        Dialog loadingDialog = new Dialog(context, R.style.StylesDialog); // 创建自定义样式dialog
+        loadingDialog.setCancelable(setCancelable);
+        loadingDialog.setContentView(layout);
+        WindowManager windowManager = ((Activity) context).getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        WindowManager.LayoutParams lp = loadingDialog.getWindow().getAttributes();
+        lp.width = (int) (display.getWidth()); // 设置宽度
+        lp.height = (int) (display.getHeight());
+        loadingDialog.getWindow().setAttributes(lp);
         return loadingDialog;
     }
 
@@ -69,67 +71,67 @@ public class DialogHelp {
      * @param listener2    两个按钮的监听
      * @return
      */
-    private static Dialog createNormalDialog (Context context,
-                                              String msg,
-                                              boolean isShowLeft,
-                                              String leftText,
-                                              String rightText,
-                                              boolean isCancelable,
-                                              boolean sideCance,
-                                              final NormalDialogListener1 listener1,
-                                              final NormalDialogListener2 listener2,
-                                              final boolean isDismiss) {
+    private static Dialog createNormalDialog(Context context,
+                                             String msg,
+                                             boolean isShowLeft,
+                                             String leftText,
+                                             String rightText,
+                                             boolean isCancelable,
+                                             boolean sideCance,
+                                             final NormalDialogListener1 listener1,
+                                             final NormalDialogListener2 listener2,
+                                             final boolean isDismiss) {
         // 加载布局
-        LayoutInflater inflater = LayoutInflater.from (context);
-        View v = inflater.inflate (R.layout.dialog_nomal, null);
-        final Dialog dialog = new Dialog (context, R.style.StylesDialog); // 创建自定义样式dialog
-        dialog.setCancelable (isCancelable);
-        dialog.setContentView (v);
-        WindowManager windowManager = ((Activity) context).getWindowManager ();
-        Display display = windowManager.getDefaultDisplay ();
-        WindowManager.LayoutParams lp = dialog.getWindow ().getAttributes ();
-        lp.width = display.getWidth (); // 设置宽度
-        lp.height = display.getHeight ();
-        dialog.getWindow ().setAttributes (lp);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View v = inflater.inflate(R.layout.dialog_nomal, null);
+        final Dialog dialog = new Dialog(context, R.style.StylesDialog); // 创建自定义样式dialog
+        dialog.setCancelable(isCancelable);
+        dialog.setContentView(v);
+        WindowManager windowManager = ((Activity) context).getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+        lp.width = display.getWidth(); // 设置宽度
+        lp.height = display.getHeight();
+        dialog.getWindow().setAttributes(lp);
 
-        TextView msgTV = (TextView) v.findViewById (R.id.dialog_message_textview);
-        msgTV.setText (msg);
-        TextView leftTV = (TextView) v.findViewById (R.id.dialog_left_textview);
-        if (!TextUtils.isEmpty (leftText)) leftTV.setText (leftText);
-        TextView rightTV = (TextView) v.findViewById (R.id.dialog_right_textview);
-        if (!TextUtils.isEmpty (rightText)) rightTV.setText (rightText);
-        leftTV.setOnClickListener (new View.OnClickListener () {
+        TextView msgTV = (TextView) v.findViewById(R.id.dialog_message_textview);
+        msgTV.setText(msg);
+        TextView leftTV = (TextView) v.findViewById(R.id.dialog_left_textview);
+        if (!TextUtils.isEmpty(leftText)) leftTV.setText(leftText);
+        TextView rightTV = (TextView) v.findViewById(R.id.dialog_right_textview);
+        if (!TextUtils.isEmpty(rightText)) rightTV.setText(rightText);
+        leftTV.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick (View v) {
-                if (listener2 != null) listener2.onLeftClickListener ();
-                if (isDismiss) dialog.dismiss ();
+            public void onClick(View v) {
+                if (listener2 != null) listener2.onLeftClickListener();
+                if (isDismiss) dialog.dismiss();
             }
         });
-        rightTV.setOnClickListener (new View.OnClickListener () {
+        rightTV.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick (View v) {
-                if (listener1 != null) listener1.onOkClickListener ();
-                if (listener2 != null) listener2.onRightClickListener ();
-                if (isDismiss) dialog.dismiss ();
+            public void onClick(View v) {
+                if (listener1 != null) listener1.onOkClickListener();
+                if (listener2 != null) listener2.onRightClickListener();
+                if (isDismiss) dialog.dismiss();
             }
         });
         if (sideCance) {
-            v.findViewById (R.id.dialog_normal_layout).setOnClickListener (new View.OnClickListener () {
+            v.findViewById(R.id.dialog_normal_layout).setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick (View v) {
-                    if (isDismiss) dialog.dismiss ();
+                public void onClick(View v) {
+                    if (isDismiss) dialog.dismiss();
                 }
             });
         }
         if (!isShowLeft) {
-            v.findViewById (R.id.dialog_center_line).setVisibility (View.GONE);
-            leftTV.setVisibility (View.GONE);
+            v.findViewById(R.id.dialog_center_line).setVisibility(View.GONE);
+            leftTV.setVisibility(View.GONE);
         }
         return dialog;
     }
 
-    public static Dialog createLoadingDialog (Context context, boolean setCancelable) {
-        return createLoadingDialog (context, R.string.app_loading, setCancelable);
+    public static Dialog createLoadingDialog(Context context, boolean setCancelable) {
+        return createLoadingDialog(context, R.string.app_loading, setCancelable);
     }
 
     /**
@@ -140,12 +142,12 @@ public class DialogHelp {
      * @param listener
      * @return
      */
-    public static Dialog createMustDialog (Context context, String msg, NormalDialogListener1 listener, boolean isDismiss) {
-        return createNormalDialog (context, msg, false, "", "", false, false, listener, null, isDismiss);
+    public static Dialog createMustDialog(Context context, String msg, NormalDialogListener1 listener, boolean isDismiss) {
+        return createNormalDialog(context, msg, false, "", "", false, false, listener, null, isDismiss);
     }
 
-    public static Dialog createMustDialog (Context context, String msg, NormalDialogListener1 listener) {
-        return createNormalDialog (context, msg, false, "", "", false, false, listener, null, true);
+    public static Dialog createMustDialog(Context context, String msg, NormalDialogListener1 listener) {
+        return createNormalDialog(context, msg, false, "", "", false, false, listener, null, true);
     }
 
     /**
@@ -156,8 +158,8 @@ public class DialogHelp {
      * @param listener
      * @return
      */
-    public static Dialog createOkDialog (Context context, String msg, NormalDialogListener1 listener) {
-        return createNormalDialog (context, msg, true, "", "", true, true, listener, null, true);
+    public static Dialog createOkDialog(Context context, String msg, NormalDialogListener1 listener) {
+        return createNormalDialog(context, msg, true, "", "", true, true, listener, null, true);
     }
 
     /**
@@ -168,8 +170,8 @@ public class DialogHelp {
      * @param listener
      * @return
      */
-    public static Dialog createOkCancelDialog (Context context, String msg, NormalDialogListener2 listener) {
-        return createNormalDialog (context, msg, true, "", "", true, true, null, listener, true);
+    public static Dialog createOkCancelDialog(Context context, String msg, NormalDialogListener2 listener) {
+        return createNormalDialog(context, msg, true, "", "", true, true, null, listener, true);
     }
 
     /**
@@ -182,8 +184,8 @@ public class DialogHelp {
      * @param listener
      * @return
      */
-    public static Dialog createOkCancelDialog (Context context, String msg, String left, String right, NormalDialogListener2 listener) {
-        return createNormalDialog (context, msg, true, left, right, true, true, null, listener, true);
+    public static Dialog createOkCancelDialog(Context context, String msg, String left, String right, NormalDialogListener2 listener) {
+        return createNormalDialog(context, msg, true, left, right, true, true, null, listener, true);
     }
 
     /**
@@ -192,8 +194,8 @@ public class DialogHelp {
      * @param context
      * @param msg
      */
-    public static void showMessageDialog (Context context, String msg) {
-        createNormalDialog (context, msg, false, "", "", true, true, null, null, true).show ();
+    public static void showMessageDialog(Context context, String msg) {
+        createNormalDialog(context, msg, false, "", "", true, true, null, null, true).show();
     }
 
     /**
@@ -202,46 +204,46 @@ public class DialogHelp {
      * @param context
      * @return
      */
-    public static Dialog createToLoginDialog (final Context context) {
-        return createNormalDialog (context, context.getString (R.string.please_login), true,
-                "", context.getString (R.string.goto_login_btn), true, true,
-                new NormalDialogListener1 () {
+    public static Dialog createToLoginDialog(final Context context) {
+        return createNormalDialog(context, context.getString(R.string.please_login), true,
+                "", context.getString(R.string.goto_login_btn), true, true,
+                new NormalDialogListener1() {
                     @Override
-                    public void onOkClickListener () {
-                        ActivityStartUtils.startLoginActivity ((Activity) context);
+                    public void onOkClickListener() {
+                        ActivityStartUtils.startLoginActivity((Activity) context);
                     }
                 }, null, true);
     }
 
-    public static PopupWindow createPopupWindow (Context context, String[] list, final PopupWindowItemListener listener) {
-        int padding = (int) context.getResources ().getDimension (R.dimen.dp_14);
-        View popView = LayoutInflater.from (context).inflate (R.layout.popwindow_list, null);
-        LinearLayout pop_ly = (LinearLayout) popView.findViewById (R.id.pop_ly);
-        pop_ly.removeAllViews ();
+    public static PopupWindow createPopupWindow(Context context, String[] list, final PopupWindowItemListener listener) {
+        int padding = (int) context.getResources().getDimension(R.dimen.dp_14);
+        View popView = LayoutInflater.from(context).inflate(R.layout.popwindow_list, null);
+        LinearLayout pop_ly = (LinearLayout) popView.findViewById(R.id.pop_ly);
+        pop_ly.removeAllViews();
         if (list != null && list.length > 0) {
             for (int i = 0; i < list.length; i++) {
-                View v = LayoutInflater.from (context).inflate (R.layout.popwindow_list_item, null);
-                TextView textView = (TextView) v.findViewById (R.id.pop_tv);
-                View line = v.findViewById (R.id.pop_line);
-                textView.setText (list[i]);
+                View v = LayoutInflater.from(context).inflate(R.layout.popwindow_list_item, null);
+                TextView textView = (TextView) v.findViewById(R.id.pop_tv);
+                View line = v.findViewById(R.id.pop_line);
+                textView.setText(list[i]);
                 final int finalI = i;
-                textView.setOnClickListener (new View.OnClickListener () {
+                textView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick (View v) {
-                        listener.onPopItemClick (v, finalI);
+                    public void onClick(View v) {
+                        listener.onPopItemClick(v, finalI);
                     }
                 });
-                line.setVisibility (View.VISIBLE);
+                line.setVisibility(View.VISIBLE);
                 if (i == list.length - 1) {
-                    line.setVisibility (View.GONE);
+                    line.setVisibility(View.GONE);
                 }
-                pop_ly.addView (v);
+                pop_ly.addView(v);
             }
         }
-        PopupWindow popupWindow = new PopupWindow (popView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        popupWindow.setBackgroundDrawable (new ColorDrawable (0x00000000));
-        popupWindow.setOutsideTouchable (true);
-        popupWindow.setFocusable (true);
+        PopupWindow popupWindow = new PopupWindow(popView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setFocusable(true);
 
         return popupWindow;
     }
@@ -251,18 +253,18 @@ public class DialogHelp {
      *
      * @param context
      */
-    public static void showKefuQQDialog (final Context context) {
-        if (!AppUtils.isQQClientAvailable (context)) {
-            showMessageDialog (context, context.getString (R.string.recharge_hasnot_qq));
+    public static void showKefuQQDialog(final Context context) {
+        if (!AppUtils.isQQClientAvailable(context)) {
+            showMessageDialog(context, context.getString(R.string.recharge_hasnot_qq));
         } else {
-            final String kefu_qq_num_default = AppPrefs.getInstance ().getSysInfoQQ ();
-            String call_kefu_qq = context.getString (R.string.call_kefu_qq, kefu_qq_num_default);
-            createOkDialog (context, call_kefu_qq, new NormalDialogListener1 () {
+            final String kefu_qq_num_default = AppPrefs.getInstance().getSysInfoQQ();
+            String call_kefu_qq = context.getString(R.string.call_kefu_qq, kefu_qq_num_default);
+            createOkDialog(context, call_kefu_qq, new NormalDialogListener1() {
                 @Override
-                public void onOkClickListener () {
-                    AppUtils.intoQQ (context, kefu_qq_num_default);
+                public void onOkClickListener() {
+                    AppUtils.intoQQ(context, kefu_qq_num_default);
                 }
-            }).show ();
+            }).show();
         }
     }
 
@@ -271,14 +273,64 @@ public class DialogHelp {
      *
      * @param context
      */
-    public static void showKefuPhoneDialog (final Context context) {
-        final String kefu_phone_default = AppPrefs.getInstance ().getSysInfoPhone ();
-        createOkDialog (context, context.getString (R.string.app_call_phone, kefu_phone_default), new
-                NormalDialogListener1 () {
+    public static void showKefuPhoneDialog(final Context context) {
+        final String kefu_phone_default = AppPrefs.getInstance().getSysInfoPhone();
+        createOkDialog(context, context.getString(R.string.app_call_phone, kefu_phone_default), new
+                NormalDialogListener1() {
                     @Override
-                    public void onOkClickListener () {
-                        AppUtils.call (context, kefu_phone_default);
+                    public void onOkClickListener() {
+                        AppUtils.call(context, kefu_phone_default);
                     }
-                }).show ();
+                }).show();
+    }
+
+    public static Dialog createDanDianDialog(Context context,
+                                             long amt,
+                                             final DandianDialogListener listener) {
+        // 加载布局
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View v = inflater.inflate(R.layout.dialog_dandian, null);
+        final Dialog dialog = new Dialog(context, R.style.StylesDialog); // 创建自定义样式dialog
+        dialog.setCancelable(true);
+        dialog.setContentView(v);
+        WindowManager windowManager = ((Activity) context).getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+        lp.width = display.getWidth(); // 设置宽度
+        lp.height = display.getHeight();
+        dialog.getWindow().setAttributes(lp);
+
+        final EditText et = (EditText) v.findViewById(R.id.et_bet_coin);
+        et.setText(amt + "");
+        et.setSelection(et.getText().toString().trim().length());
+        TextView leftTV = (TextView) v.findViewById(R.id.dialog_left_textview);
+        TextView rightTV = (TextView) v.findViewById(R.id.dialog_right_textview);
+
+        leftTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        rightTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    String etStr = et.getText().toString().trim();
+                    if (TextUtils.isEmpty(etStr)) etStr = "0";
+                    long a = Long.parseLong(etStr);
+                    listener.onOkClickListener(a);
+                }
+                dialog.dismiss();
+            }
+        });
+        v.findViewById(R.id.dialog_normal_layout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        return dialog;
     }
 }

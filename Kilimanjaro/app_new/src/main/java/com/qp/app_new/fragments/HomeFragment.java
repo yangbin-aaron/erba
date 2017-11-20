@@ -5,6 +5,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.qp.app_new.App;
+import com.qp.app_new.AppPrefs;
 import com.qp.app_new.R;
 import com.qp.app_new.adapters.GameListAdapter;
 import com.qp.app_new.dialogs.DialogHelp;
@@ -21,7 +22,7 @@ import org.json.JSONArray;
 public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
-    public int getContentView () {
+    public int getContentView() {
         return R.layout.fragment_home;
     }
 
@@ -29,39 +30,39 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private GameListAdapter mGameListAdapter;
 
     @Override
-    public void initView () {
+    public void initView() {
 //        initActionBar ();
 //        setTitle (R.string.bottom_tab_home);
 //        setRightIV (R.drawable.ic_menu);
 
-        findViewById (R.id.qq_btn).setOnClickListener (this);
-        findViewById (R.id.phone_btn).setOnClickListener (this);
+        findViewById(R.id.qq_btn).setOnClickListener(this);
+        findViewById(R.id.wx_btn).setOnClickListener(this);
 
-        mGameListLV = (ListView) findViewById (R.id.game_list_lv);
-        mGameListAdapter = new GameListAdapter ();
-        mGameListLV.setAdapter (mGameListAdapter);
+        mGameListLV = (ListView) findViewById(R.id.game_list_lv);
+        mGameListAdapter = new GameListAdapter();
+        mGameListLV.setAdapter(mGameListAdapter);
 
-        mGameListLV.setOnItemClickListener (new AdapterView.OnItemClickListener () {
+        mGameListLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
-                if (judgeLogin ()) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (judgeLogin()) {
                     // 去游戏页面
-                    App.currentGameJsonObject = mGameListAdapter.getItem (position);
-                    ActivityStartUtils.startGameActivity (getActivity (), mGameListAdapter.getItem (position));
+                    App.currentGameJsonObject = mGameListAdapter.getItem(position);
+                    ActivityStartUtils.startGameActivity(getActivity(), mGameListAdapter.getItem(position));
                 }
             }
         });
     }
 
     @Override
-    public void onResume () {
-        super.onResume ();
-        updateData ();
+    public void onResume() {
+        super.onResume();
+        updateData();
     }
 
-    public void updateData () {
-        if (mGameListAdapter.getCount () == 0) {
-            getGameList ();
+    public void updateData() {
+        if (mGameListAdapter.getCount() == 0) {
+            getGameList();
         }
     }
 
@@ -70,16 +71,16 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     /**
      * 获取游戏列表
      */
-    private void getGameList () {
-        NetWorkManager.getInstance ().getGameList (mLoadingDialog, new NetListener () {
+    private void getGameList() {
+        NetWorkManager.getInstance().getGameList(mLoadingDialog, new NetListener() {
             @Override
-            public void onSuccessResponse (String msg, JSONArray jsonArray) {
-                super.onSuccessResponse (msg, jsonArray);
-                mGameListAdapter.setJSONArray (jsonArray);
+            public void onSuccessResponse(String msg, JSONArray jsonArray) {
+                super.onSuccessResponse(msg, jsonArray);
+                mGameListAdapter.setJSONArray(jsonArray);
             }
 
             @Override
-            public void onErrorResponse (int errorWhat, String message) {
+            public void onErrorResponse(int errorWhat, String message) {
             }
         });
     }
@@ -92,13 +93,14 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 //    }
 
     @Override
-    public void onClick (View v) {
-        switch (v.getId ()) {
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.qq_btn:
-                DialogHelp.showKefuQQDialog (getActivity ());
+                DialogHelp.showKefuQQDialog(getActivity());
                 break;
-            case R.id.phone_btn:
-                DialogHelp.showKefuPhoneDialog (getActivity ());
+            case R.id.wx_btn:
+                final String kefu_wx_default = AppPrefs.getInstance().getSysInfoWX();
+                DialogHelp.showMessageDialog(getActivity(), getString(R.string.kefu_wx_, kefu_wx_default));
                 break;
         }
     }

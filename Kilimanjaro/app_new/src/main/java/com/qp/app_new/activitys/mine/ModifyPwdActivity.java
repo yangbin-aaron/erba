@@ -1,4 +1,4 @@
-package com.qp.app_new.activitys;
+package com.qp.app_new.activitys.mine;
 
 import android.text.TextUtils;
 import android.view.View;
@@ -6,6 +6,7 @@ import android.widget.EditText;
 
 import com.qp.app_new.AppPrefs;
 import com.qp.app_new.R;
+import com.qp.app_new.activitys.BaseActivity;
 import com.qp.app_new.dialogs.DialogHelp;
 import com.qp.app_new.httpnetworks.NetWorkManager;
 import com.qp.app_new.interfaces.NetListener;

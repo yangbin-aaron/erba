@@ -25,7 +25,7 @@
             style="@style/PwdDigits"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/shape_r5_transparent_str1_grayxx"
+            android:background="@drawable/shape_r5_transparent_str1_grayx"
             android:maxLength="16"
             android:paddingLeft="4dp"/>
     </LinearLayout>
@@ -50,7 +50,7 @@
             style="@style/PwdDigits"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/shape_r5_transparent_str1_grayxx"
+            android:background="@drawable/shape_r5_transparent_str1_grayx"
             android:maxLength="16"
             android:paddingLeft="4dp"/>
     </LinearLayout>
@@ -75,7 +75,7 @@
             style="@style/PwdDigits"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/shape_r5_transparent_str1_grayxx"
+            android:background="@drawable/shape_r5_transparent_str1_grayx"
             android:maxLength="16"
             android:paddingLeft="4dp"/>
     </LinearLayout>

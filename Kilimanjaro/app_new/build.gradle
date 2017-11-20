@@ -55,7 +55,7 @@ android {
 
         flavorDimensions "package", "channel"
 
-        kilimanjaro {
+        play {
             dimension "package"
             applicationId "com.qp.app_new"
             versionCode 100

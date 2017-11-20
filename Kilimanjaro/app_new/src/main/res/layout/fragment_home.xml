@@ -30,7 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/ic_about_qq"
+            android:drawableLeft="@drawable/ic_qq"
             android:drawablePadding="4dp"
             android:gravity="center_vertical"
             android:padding="4dp"
@@ -39,15 +39,15 @@
             android:textSize="12sp"/>
 
         <TextView
-            android:id="@+id/phone_btn"
+            android:id="@+id/wx_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/ic_about_phone"
+            android:drawableLeft="@drawable/ic_weixin"
             android:drawablePadding="4dp"
             android:gravity="center_vertical"
             android:padding="4dp"
-            android:text="@string/kefu_phone"
+            android:text="@string/kefu_wx"
             android:textColor="@color/gray_xxx"
             android:textSize="12sp"/>
     </LinearLayout>

@@ -44,24 +44,32 @@
             android:launchMode="singleTask"/>
         <!--登录Activity-->
         <activity
-            android:name=".activitys.LoginActivity"
+            android:name=".activitys.mine.ForgetPwdActivity$LoginActivity"
             android:launchMode="singleTask"/>
         <!--关于我们Activity-->
-        <activity android:name=".activitys.AboutUsActivity"/>
+        <activity android:name=".activitys.mine.AboutUsActivity"/>
         <!--游戏主页Activity-->
-        <activity android:name=".activitys.GameActivity"/>
+        <activity android:name=".activitys.home.GameActivity"/>
         <!--投注详情Activity-->
-        <activity android:name=".activitys.LotteryDetailActivity"/>
+        <activity android:name=".activitys.home.LotteryDetailActivity"/>
         <!--投注界面Activity-->
-        <activity android:name=".activitys.BetActivity"/>
+        <activity android:name=".activitys.home.BetActivity"/>
+        <!--投注-单点Activity-->
+        <activity android:name=".activitys.home.BetDandianActivity"/>
         <!--投注列表界面Activity-->
-        <activity android:name=".activitys.BetedListActivity"/>
+        <activity android:name=".activitys.home.BetedListActivity"/>
         <!--注册Activity-->
-        <activity android:name=".activitys.RegisterActivity"/>
+        <activity android:name=".activitys.mine.RegisterActivity"/>
         <!--修改密码Activity-->
-        <activity android:name=".activitys.ModifyPwdActivity"/>
+        <activity android:name=".activitys.mine.ModifyPwdActivity"/>
         <!--忘记密码Activity-->
-        <activity android:name=".activitys.ForgetPwdActivity"/>
+        <activity android:name=".activitys.mine.ForgetPwdActivity"/>
+        <!--玩法介绍Activity-->
+        <activity android:name=".activitys.home.PayingMethodActivity"/>
+        <!--实际赔率Activity-->
+        <activity android:name=".activitys.home.ActualOddsActivity"/>
+        <!--亏赢Activity-->
+        <activity android:name=".activitys.home.RevenueActivity"/>
 
         <!--下载APKService-->
         <service android:name=".services.DownloadService">

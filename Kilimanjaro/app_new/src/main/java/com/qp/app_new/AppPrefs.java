@@ -41,6 +41,7 @@ public class AppPrefs {
         String BASIC_INFO = "basic_info";// 客服信息
         String SYS_INFO_QQ = "customerQQ";// 系统信息  qq
         String SYS_INFO_PHONE = "customerPhone";// 系统信息
+        String SYS_INFO_WX = "customerWX";// 系统信息
         String SYS_INFO_WORKTIME = "workTime";// 系统信息  工作时间
     }
 
@@ -139,6 +140,10 @@ public class AppPrefs {
 
     public String getSysInfoPhone() {
         return mPrefs.getString(Key.SYS_INFO_PHONE, App.mContext.getString(R.string.kefu_phone_default));
+    }
+
+    public String getSysInfoWX() {
+        return mPrefs.getString(Key.SYS_INFO_WX, App.mContext.getString(R.string.kefu_wx_default));
     }
 
     public String getSysInfoWorkTime() {

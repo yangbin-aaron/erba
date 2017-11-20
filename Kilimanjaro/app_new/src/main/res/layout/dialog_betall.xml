@@ -56,7 +56,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="6dp"
                 android:layout_toRightOf="@id/tv_1"
-                android:background="@drawable/shape_r5_transparent_str1_grayxx"
+                android:background="@drawable/shape_r5_transparent_str1_grayx"
                 android:gravity="center"
                 android:inputType="number"
                 android:minWidth="100dp"
