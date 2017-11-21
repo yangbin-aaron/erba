@@ -3,19 +3,21 @@ package com.qp.app_new.utils;
 import android.app.Activity;
 import android.content.Intent;
 
-import com.qp.app_new.activitys.home.BetDandianActivity;
-import com.qp.app_new.activitys.home.RevenueActivity;
-import com.qp.app_new.activitys.mine.AboutUsActivity;
+import com.qp.app_new.activitys.MainActivity;
 import com.qp.app_new.activitys.home.ActualOddsActivity;
 import com.qp.app_new.activitys.home.BetActivity;
+import com.qp.app_new.activitys.home.BetDandianActivity;
 import com.qp.app_new.activitys.home.BetedListActivity;
-import com.qp.app_new.activitys.mine.ForgetPwdActivity;
 import com.qp.app_new.activitys.home.GameActivity;
 import com.qp.app_new.activitys.home.LotteryDetailActivity;
-import com.qp.app_new.activitys.MainActivity;
-import com.qp.app_new.activitys.mine.ModifyPwdActivity;
 import com.qp.app_new.activitys.home.PayingMethodActivity;
+import com.qp.app_new.activitys.home.RevenueActivity;
+import com.qp.app_new.activitys.mine.AboutUsActivity;
+import com.qp.app_new.activitys.mine.ForgetPwdActivity;
+import com.qp.app_new.activitys.mine.LoginActivity;
+import com.qp.app_new.activitys.mine.ModifyPwdActivity;
 import com.qp.app_new.activitys.mine.RegisterActivity;
+import com.qp.app_new.activitys.mine.TrandDetailActivity;
 
 import org.json.JSONObject;
 
@@ -37,7 +39,7 @@ public class ActivityStartUtils {
      * @param isExit   能否关闭登陆界面
      */
     public static void startLoginActivity(Activity activity, boolean isExit) {
-        Intent intent = new Intent(activity, ForgetPwdActivity.LoginActivity.class);
+        Intent intent = new Intent(activity, LoginActivity.class);
         intent.putExtra("is_exit", isExit);
         activity.startActivity(intent);
     }
@@ -86,10 +88,11 @@ public class ActivityStartUtils {
         activity.startActivity(intent);
     }
 
-    public static void startBetDandianActivity(Activity activity, JSONObject gameJsonObject, JSONObject lotteryJsonObject) {
+    public static void startBetDandianActivity(Activity activity, JSONObject gameJsonObject, JSONObject lotteryJsonObject, int ddId) {
         Intent intent = new Intent(activity, BetDandianActivity.class);
         intent.putExtra("gameJsonObject", gameJsonObject.toString());
         intent.putExtra("lotteryJsonObject", lotteryJsonObject.toString());
+        intent.putExtra("ddId", ddId);
         activity.finish();
         activity.startActivity(intent);
     }
@@ -116,6 +119,11 @@ public class ActivityStartUtils {
     public static void startRevenueActivity(Activity activity, JSONObject gameJsonObject) {
         Intent intent = new Intent(activity, RevenueActivity.class);
         intent.putExtra("gameJsonObject", gameJsonObject.toString());
+        activity.startActivity(intent);
+    }
+
+    public static void startTrandDetailActivity(Activity activity) {
+        Intent intent = new Intent(activity, TrandDetailActivity.class);
         activity.startActivity(intent);
     }
 }

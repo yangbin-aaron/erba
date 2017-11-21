@@ -30,7 +30,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Aaron on 2017/11/13.
@@ -328,7 +330,14 @@ public class BetActivity extends BaseActivity implements View.OnClickListener, B
     public void onBetModeItemClickListener(int position, JSONObject jsonObject) {
         try {
             if (jsonObject.optString("code").equals(ZIDINGYI)) {
-                ActivityStartUtils.startBetDandianActivity(this, mGameJSONObject, mLotteryJSONObject);
+                int ddId = 11;
+                for (int i = 0; i < mModeJSONArray.length(); i++) {
+                    if (mModeJSONArray.optJSONObject(i).optString("code").equals(DANDIAN)) {
+                        ddId = mModeJSONArray.optJSONObject(i).optInt("id");
+                        break;
+                    }
+                }
+                ActivityStartUtils.startBetDandianActivity(this, mGameJSONObject, mLotteryJSONObject, ddId);
                 return;
             }
             if (mSelectIndex != -1) {
@@ -392,8 +401,12 @@ public class BetActivity extends BaseActivity implements View.OnClickListener, B
         hashMap.put("id", mLotteryJSONObject.optString("id"));
         hashMap.put("lotteryId", mLotteryJSONObject.optString("lotteryId"));
         hashMap.put("betPatternId", mModeJSONArray.optJSONObject(mSelectIndex).optString("id"));
-        hashMap.put("betCoin", mBetCoin);
-        hashMap.put("betNum", mBetNums);
+        List<HashMap<String, Object>> list = new ArrayList<>();
+        HashMap<String, Object> bet = new HashMap<>();
+        bet.put("betCoin", mBetCoin);
+        bet.put("betNum", mBetNums);
+        list.add(bet);
+        hashMap.put("bets", list);
 
         NetWorkManager.getInstance().orderBet(StringUtil.getJson(hashMap), mLoadingDialog, new NetListener(this) {
             @Override

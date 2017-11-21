@@ -36,7 +36,7 @@ public class GameActivity extends BaseActivity implements HallLotteryAdapter.OnI
         .OnItemClickListenerHistory {
     @Override
     public int getContentView() {
-        return R.layout.activity_game_item;
+        return R.layout.activity_game;
     }
 
     private PopupWindow mPopupWindow;

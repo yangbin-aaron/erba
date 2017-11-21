@@ -163,6 +163,18 @@ public class DialogHelp {
     }
 
     /**
+     * 两个按钮，只有确定按钮有用(能设置确定按钮的值)
+     *
+     * @param context
+     * @param msg
+     * @param listener
+     * @return
+     */
+    public static Dialog createOkDialog(Context context, String msg, String rightText, NormalDialogListener1 listener) {
+        return createNormalDialog(context, msg, true, "", rightText, true, true, listener, null, true);
+    }
+
+    /**
      * 两个按钮，都能响应事件
      *
      * @param context
@@ -301,6 +313,7 @@ public class DialogHelp {
         dialog.getWindow().setAttributes(lp);
 
         final EditText et = (EditText) v.findViewById(R.id.et_bet_coin);
+        if (amt == 0) amt = 10;// 默认10
         et.setText(amt + "");
         et.setSelection(et.getText().toString().trim().length());
         TextView leftTV = (TextView) v.findViewById(R.id.dialog_left_textview);

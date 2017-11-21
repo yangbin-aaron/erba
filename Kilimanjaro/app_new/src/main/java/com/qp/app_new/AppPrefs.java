@@ -41,7 +41,7 @@ public class AppPrefs {
         String BASIC_INFO = "basic_info";// 客服信息
         String SYS_INFO_QQ = "customerQQ";// 系统信息  qq
         String SYS_INFO_PHONE = "customerPhone";// 系统信息
-        String SYS_INFO_WX = "customerWX";// 系统信息
+        String SYS_INFO_WX = "customerWeixin";// 系统信息
         String SYS_INFO_WORKTIME = "workTime";// 系统信息  工作时间
     }
 

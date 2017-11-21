@@ -1,5 +1,6 @@
 package com.qp.app_new.activitys.home;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
@@ -12,8 +13,11 @@ import com.qp.app_new.AppPrefs;
 import com.qp.app_new.R;
 import com.qp.app_new.activitys.BaseActivity;
 import com.qp.app_new.adapters.BetDandianAdapter;
+import com.qp.app_new.configs.BroadcastConfig;
 import com.qp.app_new.dialogs.DialogHelp;
+import com.qp.app_new.httpnetworks.NetWorkManager;
 import com.qp.app_new.interfaces.DandianDialogListener;
+import com.qp.app_new.interfaces.NetListener;
 import com.qp.app_new.interfaces.NormalDialogListener1;
 import com.qp.app_new.utils.StringUtil;
 import com.qp.app_new.utils.ToastUtil;
@@ -22,7 +26,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Aaron on 2017/11/20.
@@ -38,6 +44,7 @@ public class BetDandianActivity extends BaseActivity implements View.OnClickList
     private int stopBetSecond = 60;
 
     private JSONObject mGameJSONObject, mLotteryJSONObject;
+    private int mDandianId;
 
     private ListView mOddsLV;
     private BetDandianAdapter mAdapter;
@@ -86,6 +93,7 @@ public class BetDandianActivity extends BaseActivity implements View.OnClickList
             stopBetSecond = mGameJSONObject.optInt("stopBetSecond", 60);
             mLotteryJSONObject = new JSONObject(getIntent().getStringExtra("lotteryJsonObject"));
             mTotalCoin = mLotteryJSONObject.optLong("total_coin", 0);
+            mDandianId = getIntent().getIntExtra("ddId", 11);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -179,7 +187,28 @@ public class BetDandianActivity extends BaseActivity implements View.OnClickList
         hashMap.put("gameId", mGameJSONObject.optString("id"));
         hashMap.put("id", mLotteryJSONObject.optString("id"));
         hashMap.put("lotteryId", mLotteryJSONObject.optString("lotteryId"));
-        ToastUtil.showToast(mBetCoin + "  -------");
+        hashMap.put("betPatternId", mDandianId);// 单点的id
+        List<HashMap<String, Object>> list = new ArrayList<>();
+        for (int i = 0; i < mOddsJSONArray.length(); i++) {
+            JSONObject object = mOddsJSONArray.optJSONObject(i);
+            if (object.optLong("amt") > 0) {
+                HashMap<String, Object> bet = new HashMap<>();
+                bet.put("betCoin", object.optLong("amt"));
+                bet.put("betNum", object.optLong("lotteryNumber"));
+                list.add(bet);
+            }
+        }
+        hashMap.put("bets", list);
+
+        NetWorkManager.getInstance().orderBet(StringUtil.getJson(hashMap), mLoadingDialog, new NetListener(this) {
+            @Override
+            public void onSuccessResponse(JSONObject jsonObject) {
+                super.onSuccessResponse(jsonObject);
+                ToastUtil.showToast("投注成功！");
+                sendBroadcast(new Intent(BroadcastConfig.ACTION_REFRESH_GAMELIST));
+                finish();
+            }
+        });
     }
 
     @Override
