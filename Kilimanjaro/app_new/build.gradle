@@ -11,31 +11,14 @@ android {
         buildConfigField "boolean", "SALES_PACKAGE", "true"
         multiDexEnabled true
     }
-
-    signingConfigs {
-        debug {
-            storeFile file("../../kilimanjaro.keystore")
-            storePassword "123456kl"
-            keyAlias "kilimanjaro"
-            keyPassword "123456kl"
-        }
-        release {
-            storeFile file("../../kilimanjaro.keystore")
-            storePassword "123456kl"
-            keyAlias "kilimanjaro"
-            keyPassword "123456kl"
-        }
-    }
     buildTypes {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.debug
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
         }
     }
 
