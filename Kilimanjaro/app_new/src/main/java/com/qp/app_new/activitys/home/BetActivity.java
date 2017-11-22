@@ -189,14 +189,14 @@ public class BetActivity extends BaseActivity implements View.OnClickListener, B
             public void onSuccessResponse(String msg, JSONArray jsonArray) {
                 super.onSuccessResponse(msg, jsonArray);
                 mModeJSONArray = jsonArray;
-                JSONObject jsonObject = new JSONObject();
-                try {
-                    jsonObject.put("patternName", "自定义");
-                    jsonObject.put("code", "zidingyi");
-                    mModeJSONArray.put(jsonObject);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+//                JSONObject jsonObject = new JSONObject();
+//                try {
+//                    jsonObject.put("patternName", "自定义");
+//                    jsonObject.put("code", "zidingyi");
+//                    mModeJSONArray.put(jsonObject);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
                 mBetModeAdapter.setJSONArray(mModeJSONArray);
             }
         });
