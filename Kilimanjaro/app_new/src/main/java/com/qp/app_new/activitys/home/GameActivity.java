@@ -255,6 +255,7 @@ public class GameActivity extends BaseActivity implements HallLotteryAdapter.OnI
                     JSONObject jsonObject = jsonArray.optJSONObject(i);
                     try {
                         jsonObject.put("isNoLottery", true);
+                        jsonArray.put(i, jsonObject);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -285,5 +286,11 @@ public class GameActivity extends BaseActivity implements HallLotteryAdapter.OnI
         if (!mPopupWindow.isShowing()) {
             mPopupWindow.showAsDropDown(v, 0, 0);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mLotteryAdapter != null) mLotteryAdapter.removeRunnable();
     }
 }
