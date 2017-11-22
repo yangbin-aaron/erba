@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.qp.app_new.App;
 import com.qp.app_new.AppPrefs;
 import com.qp.app_new.R;
 import com.qp.app_new.activitys.BaseActivity;
@@ -189,14 +190,16 @@ public class BetActivity extends BaseActivity implements View.OnClickListener, B
             public void onSuccessResponse(String msg, JSONArray jsonArray) {
                 super.onSuccessResponse(msg, jsonArray);
                 mModeJSONArray = jsonArray;
-//                JSONObject jsonObject = new JSONObject();
-//                try {
-//                    jsonObject.put("patternName", "自定义");
-//                    jsonObject.put("code", "zidingyi");
-//                    mModeJSONArray.put(jsonObject);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
+                if (App.openDandianActivity) {
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+                        jsonObject.put("patternName", "自定义");
+                        jsonObject.put("code", "zidingyi");
+                        mModeJSONArray.put(jsonObject);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
                 mBetModeAdapter.setJSONArray(mModeJSONArray);
             }
         });
