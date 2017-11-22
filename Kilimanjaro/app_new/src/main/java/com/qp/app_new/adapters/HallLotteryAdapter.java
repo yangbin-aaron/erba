@@ -2,7 +2,6 @@ package com.qp.app_new.adapters;
 
 import android.content.Context;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,7 @@ import android.widget.TextView;
 
 import com.qp.app_new.App;
 import com.qp.app_new.R;
+import com.qp.app_new.utils.LogUtil;
 import com.qp.app_new.utils.StringUtil;
 
 import org.json.JSONArray;
@@ -89,7 +89,7 @@ public class HallLotteryAdapter extends BaseAdapter {
             JSONObject jsonObject = mHadList.optJSONObject(i);
             mList.put(jsonObject);
         }
-        Log.e("handlerList", mList.toString());
+        LogUtil.e("handlerList", mList.toString());
         notifyDataSetChanged();
     }
 

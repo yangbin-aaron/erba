@@ -1,7 +1,5 @@
 package com.qp.app_new.utils;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.qp.app_new.App;
 import com.qp.app_new.httpnetworks.JsonEntry;
@@ -41,7 +39,6 @@ public class StringUtil {
      * @return
      */
     public static String getNullJson() {
-        Log.e("aaa", getJson(new HashMap<String, Object>()));
         return getJson(new HashMap<String, Object>());
     }
 

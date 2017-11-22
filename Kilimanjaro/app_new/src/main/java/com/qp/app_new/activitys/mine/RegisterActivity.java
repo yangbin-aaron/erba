@@ -3,7 +3,6 @@ package com.qp.app_new.activitys.mine;
 import android.app.Dialog;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -17,6 +16,7 @@ import com.qp.app_new.dialogs.DialogHelp;
 import com.qp.app_new.httpnetworks.NetWorkManager;
 import com.qp.app_new.interfaces.NetListener;
 import com.qp.app_new.interfaces.NormalDialogListener1;
+import com.qp.app_new.utils.LogUtil;
 import com.qp.app_new.utils.NetUtil;
 import com.qp.app_new.utils.StringUtil;
 
@@ -157,7 +157,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
      */
     private void startTimer(int expired) {
         mExpired = expired;
-        Log.e("aaron", "expired = " + mExpired);
+        LogUtil.e("aaron", "expired = " + mExpired);
         mHandler.post(mRunnable);
         mCurrentStep = 1;
         changeLayout();

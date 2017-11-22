@@ -1,6 +1,6 @@
 package com.qp.app_new.okhttp;
 
-import android.util.Log;
+import com.qp.app_new.utils.LogUtil;
 
 /**
  * Created by Andy on 15/11/9.
@@ -13,7 +13,7 @@ public class L
     {
         if (debug)
         {
-            Log.e("OkHttp", msg);
+            LogUtil.e("OkHttp", msg);
         }
     }
 

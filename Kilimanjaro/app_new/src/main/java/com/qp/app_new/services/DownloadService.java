@@ -7,10 +7,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Environment;
-import android.util.Log;
 
 import com.nostra13.universalimageloader.utils.StorageUtils;
 import com.qp.app_new.utils.FileUtils;
+import com.qp.app_new.utils.LogUtil;
 import com.qp.app_new.utils.StringUtil;
 
 import java.io.File;
@@ -40,7 +40,7 @@ public class DownloadService extends IntentService {
     private int mDownloadStatus = DOWNLOAD_STOP;// 下载状态
     private int mProgress = 0;
 
-    public DownloadService () {
+    public DownloadService() {
         super("DownloadService");
     }
 
@@ -149,7 +149,7 @@ public class DownloadService extends IntentService {
         } catch (Exception e) {
             mProgress = DOWNLOAD_FAIL;
 
-            Log.e(TAG, "download apk file error", e);
+            LogUtil.e(TAG, "download apk file error = " + e.getMessage());
         } finally {
             if (out != null) {
                 try {
@@ -202,7 +202,7 @@ public class DownloadService extends IntentService {
                             }
 
                             installAPKIntent.setDataAndType(Uri.fromFile(mApkFile), "application/vnd.android.package-archive");
-                            Log.e(TAG, "install>>>>>>>" + mApkFile.getName() + "\n------" + mApkFile.toString());
+                            LogUtil.e(TAG, "install>>>>>>>" + mApkFile.getName() + "\n------" + mApkFile.toString());
 
                             installAPKIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             installAPKIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);

@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -20,6 +19,7 @@ import com.qp.app_new.R;
 import com.qp.app_new.configs.BroadcastConfig;
 import com.qp.app_new.contents.AppPrefsContent;
 import com.qp.app_new.dialogs.DialogHelp;
+import com.qp.app_new.utils.LogUtil;
 import com.umeng.analytics.MobclickAgent;
 
 /**
@@ -133,12 +133,12 @@ public abstract class BaseActivity extends Activity {
     }
 
     public void onLeftClick (View v) {
-        Log.e ("BaseActivity", "onLeftClick");
+        LogUtil.e("BaseActivity", "onLeftClick");
         finish ();
     }
 
     public void onRightClick (View v) {
-        Log.e ("BaseActivity", "onRightClick");
+        LogUtil.e("BaseActivity", "onRightClick");
     }
 
     public void setTitle (String title) {

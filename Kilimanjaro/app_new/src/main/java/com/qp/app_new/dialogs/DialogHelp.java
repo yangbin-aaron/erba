@@ -31,6 +31,20 @@ import com.qp.app_new.utils.AppUtils;
  * 普通的dialog
  */
 public class DialogHelp {
+
+    private static Dialog createBaseDialog(Context context, boolean isCancelable, View view) {
+        final Dialog dialog = new Dialog(context, R.style.StylesDialog); // 创建自定义样式dialog
+        dialog.setCancelable(isCancelable);
+        WindowManager windowManager = ((Activity) context).getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+        lp.width = display.getWidth(); // 设置宽度
+        lp.height = display.getHeight();
+        dialog.getWindow().setAttributes(lp);
+        dialog.setContentView(view);
+        return dialog;
+    }
+
     /**
      * 加载对话框
      *
@@ -41,7 +55,6 @@ public class DialogHelp {
         // 加载布局
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.dialog_loading, null);
-        LinearLayout layout = (LinearLayout) v.findViewById(R.id.dialog_util_loading_layout);
         TextView textView = (TextView) v.findViewById(R.id.dialog_util_loading_textview);
         textView.setText(textResId);
         ImageView imageView = (ImageView) v.findViewById(R.id.dialog_util_loading_imageview);
@@ -49,16 +62,7 @@ public class DialogHelp {
         AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getBackground();
         animationDrawable.start();
 
-        Dialog loadingDialog = new Dialog(context, R.style.StylesDialog); // 创建自定义样式dialog
-        loadingDialog.setCancelable(setCancelable);
-        loadingDialog.setContentView(layout);
-        WindowManager windowManager = ((Activity) context).getWindowManager();
-        Display display = windowManager.getDefaultDisplay();
-        WindowManager.LayoutParams lp = loadingDialog.getWindow().getAttributes();
-        lp.width = (int) (display.getWidth()); // 设置宽度
-        lp.height = (int) (display.getHeight());
-        loadingDialog.getWindow().setAttributes(lp);
-        return loadingDialog;
+        return createBaseDialog(context, setCancelable, v);
     }
 
     /**
@@ -84,15 +88,8 @@ public class DialogHelp {
         // 加载布局
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.dialog_nomal, null);
-        final Dialog dialog = new Dialog(context, R.style.StylesDialog); // 创建自定义样式dialog
-        dialog.setCancelable(isCancelable);
-        dialog.setContentView(v);
-        WindowManager windowManager = ((Activity) context).getWindowManager();
-        Display display = windowManager.getDefaultDisplay();
-        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
-        lp.width = display.getWidth(); // 设置宽度
-        lp.height = display.getHeight();
-        dialog.getWindow().setAttributes(lp);
+
+        final Dialog dialog = createBaseDialog(context, isCancelable, v);
 
         TextView msgTV = (TextView) v.findViewById(R.id.dialog_message_textview);
         msgTV.setText(msg);
@@ -228,7 +225,6 @@ public class DialogHelp {
     }
 
     public static PopupWindow createPopupWindow(Context context, String[] list, final PopupWindowItemListener listener) {
-        int padding = (int) context.getResources().getDimension(R.dimen.dp_14);
         View popView = LayoutInflater.from(context).inflate(R.layout.popwindow_list, null);
         LinearLayout pop_ly = (LinearLayout) popView.findViewById(R.id.pop_ly);
         pop_ly.removeAllViews();
@@ -296,21 +292,21 @@ public class DialogHelp {
                 }).show();
     }
 
+    /**
+     * 自定义单点    输入金额的对话框
+     *
+     * @param context
+     * @param amt
+     * @param listener
+     * @return
+     */
     public static Dialog createDanDianDialog(Context context,
                                              long amt,
                                              final DandianDialogListener listener) {
         // 加载布局
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.dialog_dandian, null);
-        final Dialog dialog = new Dialog(context, R.style.StylesDialog); // 创建自定义样式dialog
-        dialog.setCancelable(true);
-        dialog.setContentView(v);
-        WindowManager windowManager = ((Activity) context).getWindowManager();
-        Display display = windowManager.getDefaultDisplay();
-        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
-        lp.width = display.getWidth(); // 设置宽度
-        lp.height = display.getHeight();
-        dialog.getWindow().setAttributes(lp);
+        final Dialog dialog = createBaseDialog(context, true, v); // 创建自定义样式dialog
 
         final EditText et = (EditText) v.findViewById(R.id.et_bet_coin);
         if (amt == 0) amt = 10;// 默认10

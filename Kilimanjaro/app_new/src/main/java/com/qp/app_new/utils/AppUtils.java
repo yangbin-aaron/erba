@@ -163,7 +163,7 @@ public class AppUtils {
             appi = context.getPackageManager ().getApplicationInfo (context.getPackageName (), PackageManager.GET_META_DATA);
             appi.metaData.putString (metaDataKey, metaDataValue);
         } catch (PackageManager.NameNotFoundException e1) {
-            Log.e ("exp", e1.getMessage ());
+            LogUtil.e("exp", e1.getMessage ());
             e1.printStackTrace ();
         }
     }

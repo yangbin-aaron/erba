@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,7 @@ import android.widget.TextView;
 import com.qp.app_new.R;
 import com.qp.app_new.contents.AppPrefsContent;
 import com.qp.app_new.dialogs.DialogHelp;
+import com.qp.app_new.utils.LogUtil;
 
 /**
  * Created by Aaron on 17/11/7.
@@ -99,11 +99,11 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public void onLeftClick (View v) {
-        Log.e ("BaseFragment", "onLeftClick");
+        LogUtil.e ("BaseFragment", "onLeftClick");
     }
 
     public void onRightClick (View v) {
-        Log.e ("BaseFragment", "onRightClick");
+        LogUtil.e ("BaseFragment", "onRightClick");
     }
 
     public void setTitle (String title) {

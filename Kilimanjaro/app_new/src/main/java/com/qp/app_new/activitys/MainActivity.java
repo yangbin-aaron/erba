@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -23,6 +22,7 @@ import com.qp.app_new.httpnetworks.NetWorkManager;
 import com.qp.app_new.interfaces.NetListener;
 import com.qp.app_new.interfaces.NormalDialogListener1;
 import com.qp.app_new.utils.AppUtils;
+import com.qp.app_new.utils.LogUtil;
 import com.qp.app_new.utils.ToastUtil;
 import com.umeng.analytics.MobclickAgent;
 
@@ -216,13 +216,13 @@ public class MainActivity extends FragmentActivity implements ViewPager.OnPageCh
                     super.onSuccessResponse (msg, jsonObject);
                     AppPrefs.getInstance ().saveGameCoin (jsonObject.optLong ("coin"));
                     mMineFragment.setGameCoin ();
-                    Log.e ("aaa", "aaa111");
+                    LogUtil.e ("aaa", "aaa111");
                 }
 
                 @Override
                 public void onErrorResponse (int errorWhat, String message) {
                     if (errorWhat == NetStatusConfig.STATUS_TOKEN_IS_UPDATED) {
-                        Log.e ("aaa", "aaa");
+                        LogUtil.e ("aaa", "aaa");
                         super.onErrorResponse (errorWhat, message);
                     }
                 }

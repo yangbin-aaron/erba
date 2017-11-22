@@ -1,6 +1,5 @@
 package com.qp.app_new.activitys.home;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -11,6 +10,7 @@ import com.qp.app_new.adapters.BettingListAdapter;
 import com.qp.app_new.configs.NetStatusConfig;
 import com.qp.app_new.httpnetworks.NetWorkManager;
 import com.qp.app_new.interfaces.NetListener;
+import com.qp.app_new.utils.LogUtil;
 import com.qp.app_new.utils.StringUtil;
 
 import org.json.JSONArray;
@@ -41,10 +41,10 @@ public class LotteryDetailActivity extends BaseActivity {
         super.getIntentData ();
         try {
             String gameJson = getIntent ().getStringExtra ("gameJson");
-            Log.e ("LotteryDetailActivity", gameJson);
+            LogUtil.e ("LotteryDetailActivity", gameJson);
             mGameJSONObject = new JSONObject (gameJson);
             String lotteryJson = getIntent ().getStringExtra ("lotteryJson");
-            Log.e ("LotteryDetailActivity", lotteryJson);
+            LogUtil.e ("LotteryDetailActivity", lotteryJson);
             mLotteryJSONObject = new JSONObject (lotteryJson);
         } catch (JSONException e) {
             e.printStackTrace ();

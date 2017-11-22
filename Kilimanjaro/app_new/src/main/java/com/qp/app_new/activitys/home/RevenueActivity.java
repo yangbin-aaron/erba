@@ -1,6 +1,5 @@
 package com.qp.app_new.activitys.home;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -18,6 +17,7 @@ import com.qp.app_new.dialogs.DialogHelp;
 import com.qp.app_new.httpnetworks.NetWorkManager;
 import com.qp.app_new.interfaces.NetListener;
 import com.qp.app_new.interfaces.PopupWindowItemListener;
+import com.qp.app_new.utils.LogUtil;
 import com.qp.app_new.utils.StringUtil;
 
 import org.json.JSONArray;
@@ -152,7 +152,7 @@ public class RevenueActivity extends BaseActivity {
     }
 
     private void setGeneralData(JSONObject generalData) {
-        Log.e("setGeneralData", "generalData = " + generalData.toString());
+        LogUtil.e("setGeneralData", "generalData = " + generalData.toString());
         mIssueCountTV.setText(generalData.optString("periods"));
         mWinTV.setText(generalData.optString("victoryRate"));
 
