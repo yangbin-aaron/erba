@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="red">#FF0000</color>
-    <!--BottomBar选中和未选中的颜色-->
-    <color name="bottom_tab_select">#D44E4D</color>
-    <color name="bottom_tab_unselect">#999999</color>
-    <!--灰色线条，分割线-->
-    <color name="gray_line">#EDEDED</color>
-</resources>

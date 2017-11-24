@@ -68,7 +68,12 @@ public class HallLotteryAdapter extends BaseAdapter {
     }
 
     public void setNoList(JSONArray noList) {
-        mNoList = noList == null ? new JSONArray() : noList;
+        if (noList == null) {
+            mNoList = null;
+            mNoList = new JSONArray();
+        } else {
+            mNoList = noList;
+        }
         mNoLotteryCount = mNoList.length();
         handlerList();
     }
@@ -149,22 +154,6 @@ public class HallLotteryAdapter extends BaseAdapter {
             }
         }
 
-        // --------------投注按钮的相关设置
-        if (data.optBoolean("isNoLottery")) {
-            holder.btn_betting.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mListenerRaelTime.onItemClickRaelTime(v, data);
-                }
-            });
-            holder.tv_time.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mListenerRaelTime.onItemClickRaelTime(v, data);
-                }
-            });
-        }
-
         if (data.optInt("lotterySecond") > 0) {
             holder.tv_time.setEnabled(false);
             holder.tv_time.setBackgroundResource(R.drawable.shape_circle_main_str0);
@@ -196,7 +185,21 @@ public class HallLotteryAdapter extends BaseAdapter {
 
         // -----------历史数据的点击事件
         // 设置监听事件
-        if (!data.optBoolean("isNoLottery")) {
+        // --------------投注按钮的相关设置
+        if (data.optBoolean("isNoLottery")) {
+            holder.btn_betting.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mListenerRaelTime.onItemClickRaelTime(v, data);
+                }
+            });
+            holder.tv_time.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mListenerRaelTime.onItemClickRaelTime(v, data);
+                }
+            });
+        } else {
             holder.rl_adapter_hall.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
