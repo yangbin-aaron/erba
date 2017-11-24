@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_home_top">
+        android:background="@drawable/ic_home_top_bg">
 
     </RelativeLayout>
 

@@ -7,8 +7,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="@drawable/ic_home_top_bg"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_mine_top_bg"
+        android:minHeight="150dp"
         android:orientation="horizontal">
 
         <com.qp.app_new.views.CircleImageView
