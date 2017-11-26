@@ -6,7 +6,6 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.util.Log;
 
 import com.qp.app_new.App;
 import com.qp.app_new.dialogs.DownApkDialog;
@@ -57,11 +56,11 @@ public class AppUtils {
     /**
      * 获取app版本号
      */
-    public static int getAppVersionCode (Context context) {
-        PackageManager pm = context.getPackageManager ();
+    public static int getAppVersionCode () {
+        PackageManager pm = App.mContext.getPackageManager ();
         PackageInfo pi;
         try {
-            pi = pm.getPackageInfo (context.getPackageName (), 0);
+            pi = pm.getPackageInfo (App.mContext.getPackageName (), 0);
             return pi.versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace ();

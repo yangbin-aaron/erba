@@ -66,6 +66,7 @@
         <activity android:name=".activitys.mine.ForgetPwdActivity"/>
         <!--玩法介绍Activity-->
         <activity android:name=".activitys.home.PayingMethodActivity"/>
+        <activity android:name=".activitys.home.PayingMethodActivity1"/>
         <!--实际赔率Activity-->
         <activity android:name=".activitys.home.ActualOddsActivity"/>
         <!--亏赢Activity-->

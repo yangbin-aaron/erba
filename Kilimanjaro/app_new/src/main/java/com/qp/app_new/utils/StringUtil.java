@@ -50,6 +50,7 @@ public class StringUtil {
     public static String getVersionJson() {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("versionName", AppUtils.getAppVersionName());
+        hashMap.put("versionCode", AppUtils.getAppVersionCode ());
         hashMap.put("type", 0);
         return getJson(hashMap);
     }

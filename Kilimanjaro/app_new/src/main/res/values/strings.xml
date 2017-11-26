@@ -139,7 +139,7 @@
     <string name="lottery_d_ys_id1">第 %d 期</string>
     <string name="lottery_d_amount">投注额</string>
     <string name="lottery_d_get">获得金豆</string>
-    <string name="lottery_d_odds">赔率：%s 倍</string>
+    <string name="lottery_d_odds">赔率：%s倍</string>
     <string name="lottery_default_no_more_data">已无更多数据</string>
 
     <!--投注界面-->
@@ -257,6 +257,7 @@
     <string name="qq_lottery_default_jine">金额：</string>
     <string name="qq_lottery_default_benli">本利：</string>
     <string name="qq_lottery_default_haoma">号码：</string>
+    <string name="qq_lottery_default_tixing">提醒：</string>
 
 
     <string name="recharge_hasnot_weixin">请先安装微信!</string>

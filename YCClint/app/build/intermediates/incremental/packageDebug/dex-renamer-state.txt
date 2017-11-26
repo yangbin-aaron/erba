@@ -1,0 +1,7 @@
+#Wed Oct 25 22:39:59 CST 2017
+base.0=/Users/toughegg/AndroidStudioProjects/MyProject/erba/YCClint/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_e8920c35bc29de62e052fad572b2c97da24d8341
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=/Users/toughegg/AndroidStudioProjects/MyProject/erba/YCClint/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_c86d396cb7812caa96d2cf83472102de11d96ace/classes.dex
+base.1=/Users/toughegg/AndroidStudioProjects/MyProject/erba/YCClint/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_c86d396cb7812caa96d2cf83472102de11d96ace
+file.0=/Users/toughegg/AndroidStudioProjects/MyProject/erba/YCClint/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_e8920c35bc29de62e052fad572b2c97da24d8341/classes.dex

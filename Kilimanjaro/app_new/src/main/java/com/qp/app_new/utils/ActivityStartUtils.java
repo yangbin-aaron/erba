@@ -11,6 +11,7 @@ import com.qp.app_new.activitys.home.BetedListActivity;
 import com.qp.app_new.activitys.home.GameActivity;
 import com.qp.app_new.activitys.home.LotteryDetailActivity;
 import com.qp.app_new.activitys.home.PayingMethodActivity;
+import com.qp.app_new.activitys.home.PayingMethodActivity1;
 import com.qp.app_new.activitys.home.RevenueActivity;
 import com.qp.app_new.activitys.mine.AboutUsActivity;
 import com.qp.app_new.activitys.mine.ForgetPwdActivity;
@@ -106,6 +107,12 @@ public class ActivityStartUtils {
 
     public static void startPayingMethodActivity(Activity activity, JSONObject gameJsonObject) {
         Intent intent = new Intent(activity, PayingMethodActivity.class);
+        intent.putExtra("gameJsonObject", gameJsonObject.toString());
+        activity.startActivity(intent);
+    }
+
+    public static void startPayingMethodActivity1(Activity activity, JSONObject gameJsonObject) {
+        Intent intent = new Intent(activity, PayingMethodActivity1.class);
         intent.putExtra("gameJsonObject", gameJsonObject.toString());
         activity.startActivity(intent);
     }

@@ -152,7 +152,9 @@ public class BetAllDialog extends Dialog {
                     mBetCoinET.setSelection (mBetCoinET.getText ().toString ().trim ().length ());
                     return;
                 }
-                mOnDialogClickListener.onRightClicked (coin);
+                if (coin > 0) {
+                    mOnDialogClickListener.onRightClicked (coin);
+                }
                 dismiss ();
             }
         });
