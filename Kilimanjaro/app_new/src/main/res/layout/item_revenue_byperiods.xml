@@ -4,51 +4,62 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/color_bg"
-    android:paddingBottom="@dimen/mine_adapter_line_d">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_adapter_issue_byperiods"
-        android:layout_width="0dp"
-        android:layout_height="38dp"
-        android:layout_weight="3"
-        android:gravity="center_vertical"
-        android:text="23154"
-        android:textColor="@color/gray_xx"
-        android:textSize="12sp"/>
-
-    <RelativeLayout
-        android:layout_width="40dp"
-        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/tv_adapter_num_byperiods"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/shape_circle_main_str0"
-            android:gravity="center"
-            android:text="5"
-            android:textColor="@color/white"
+            android:id="@+id/tv_adapter_issue_byperiods"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="3"
+            android:gravity="center_vertical"
+            android:text="23154"
+            android:textColor="@color/gray_xx"
             android:textSize="12sp"/>
-    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_adapter_betcoin_byperiods"
-        android:layout_width="0dp"
-        android:layout_height="38dp"
-        android:layout_weight="4"
-        android:gravity="center_vertical"
-        android:text="23154"
-        android:textColor="@color/gray_xx"
-        android:textSize="12sp"/>
+        <RelativeLayout
+            android:layout_width="40dp"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_adapter_revenue_byperiods"
-        android:layout_width="0dp"
-        android:layout_height="38dp"
-        android:layout_weight="5"
-        android:gravity="center_vertical"
-        android:text="23154"
-        android:textColor="@color/gray_xx"
-        android:textSize="12sp"/>
+            <TextView
+                android:id="@+id/tv_adapter_num_byperiods"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/shape_circle_main_str0"
+                android:gravity="center"
+                android:text="5"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_adapter_betcoin_byperiods"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="4"
+            android:gravity="center_vertical"
+            android:text="23154"
+            android:textColor="@color/gray_xx"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/tv_adapter_revenue_byperiods"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="5"
+            android:gravity="center_vertical"
+            android:text="23154"
+            android:textColor="@color/gray_xx"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/gray_line"/>
 </LinearLayout>

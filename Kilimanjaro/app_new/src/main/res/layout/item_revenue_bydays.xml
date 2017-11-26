@@ -4,26 +4,35 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/color_bg"
-    android:paddingBottom="@dimen/mine_adapter_line_d">
+    android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_adapter_time_bydays"
-        android:layout_width="0dp"
-        android:layout_height="38dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:text="2016-07-22"
-        android:textColor="@color/gray_xx"
-        android:textSize="12sp"/>
+        <TextView
+            android:id="@+id/tv_adapter_time_bydays"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="2016-07-22"
+            android:textColor="@color/gray_xx"
+            android:textSize="12sp"/>
 
-    <TextView
-        android:id="@+id/tv_adapter_revenue_bydays"
-        android:layout_width="0dp"
-        android:layout_height="38dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:text="23154"
-        android:textColor="@color/gray_xx"
-        android:textSize="12sp"/>
+        <TextView
+            android:id="@+id/tv_adapter_revenue_bydays"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="23154"
+            android:textColor="@color/gray_xx"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/gray_line"/>
 </LinearLayout>

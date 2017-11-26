@@ -118,7 +118,7 @@ public class RevenueActivity extends BaseActivity {
                 if (mPeriodsDataList != null && mPeriodsDataList.length() > 0) {
                     JSONObject jsonObject = mPeriodsDataList.optJSONObject(mPeriodsDataList.length() - 1);
                     mLotteryId = jsonObject.optInt("lotteryId");
-                    getRevenueByDays();
+                    getRevenueByPeriods();
                 }
             }
         });

@@ -15,8 +15,7 @@
     <string name="app_updateapp_must">发现新的版本，请先更新！</string>
     <string name="app_updateapp_">发现新的版本，是否更新？</string>
     <string name="app_call_phone">确定要拨打：%s?</string>
-    <string name="app_no_data">未查到相关数据！</string>
-    <string name="app_no_more_data">已无更多数据！</string>
+    <string name="app_no_data">没有数据！</string>
 
     <!--返回键双击提醒-->
     <string name="app_back_hint">再按一次退出程序</string>

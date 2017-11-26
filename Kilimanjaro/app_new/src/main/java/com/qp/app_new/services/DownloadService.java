@@ -202,7 +202,7 @@ public class DownloadService extends IntentService {
                             }
 
                             installAPKIntent.setDataAndType(Uri.fromFile(mApkFile), "application/vnd.android.package-archive");
-                            LogUtil.e(TAG, "install>>>>>>>" + mApkFile.getName() + "\n------" + mApkFile.toString());
+//                            LogUtil.e(TAG, "install>>>>>>>" + mApkFile.getName() + "\n------" + mApkFile.toString());
 
                             installAPKIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             installAPKIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
