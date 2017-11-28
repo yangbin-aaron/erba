@@ -1,6 +1,7 @@
 package com.qp.app_new.activitys;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
@@ -18,22 +19,23 @@ public class SplashActivity extends Activity {
     private final Long SPLASH_DELAY = 2 * 1000L;// 欢迎界面停留时间
 
     @Override
-    protected void onCreate (Bundle savedInstanceState) {
-        super.onCreate (savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);// 强制为竖屏
         // 全屏
 //        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView (R.layout.activity_splash);
-        NetWorkManager.getInstance ().getSysInfo ();
-        skipActivity ();
+        setContentView(R.layout.activity_splash);
+        NetWorkManager.getInstance().getSysInfo();
+        skipActivity();
     }
 
-    private void skipActivity () {
-        new Handler ().postDelayed (new Runnable () {
+    private void skipActivity() {
+        new Handler().postDelayed(new Runnable() {
 
             @Override
-            public void run () {
-                ActivityStartUtils.startMainActivity (SplashActivity.this);
-                finish ();
+            public void run() {
+                ActivityStartUtils.startMainActivity(SplashActivity.this);
+                finish();
             }
         }, SPLASH_DELAY);
     }
@@ -46,11 +48,11 @@ public class SplashActivity extends Activity {
      * @return
      */
     @Override
-    public boolean onKeyDown (int keyCode, KeyEvent event) {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             return true;
         }
-        return super.onKeyDown (keyCode, event);
+        return super.onKeyDown(keyCode, event);
     }
 
 //    @Override
