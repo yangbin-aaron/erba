@@ -63,7 +63,7 @@ public class LotteryDetailActivity extends BaseActivity {
         ((TextView) findViewById (R.id.tv_time)).setText (StringUtil.getShowTime14 (mLotteryJSONObject.optString ("lotteryTime")));
 
         String text = getString (R.string.lottery_d_ys_id, mGameJSONObject.optString ("referName"))
-                + getString (R.string.lottery_d_ys_id1, mLotteryJSONObject.optInt ("referLotteryId"));
+                + getString (R.string.lottery_d_ys_id1, mLotteryJSONObject.optInt ("lotteryId"));
         ((TextView) findViewById (R.id.tv_hint)).setText (text);
 
         if (mLotteryJSONObject.optInt ("betNum") > 0) {
