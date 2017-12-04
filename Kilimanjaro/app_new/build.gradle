@@ -40,9 +40,9 @@ android {
 
         play {
             dimension "package"
-            applicationId "com.qp.app_new"
-            versionCode 106
-            versionName "1.0.6"
+            applicationId "com.play28.app_new"
+            versionCode 101
+            versionName "1.0.1"
             manifestPlaceholders = [
                     UMENG_APPKEY: "57babcbc67e58ef2bd0021ef"
             ]

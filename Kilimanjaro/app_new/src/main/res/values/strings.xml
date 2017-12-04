@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Play28</string>
+    <string name="app_name">蝙蝠28</string>
 
     <!--APP-->
     <string name="have_not_net">网络异常!</string>
@@ -91,17 +91,17 @@
     <string name="kefu_qq">客服QQ</string>
     <string name="kefu_qq_">客服QQ：%s</string>
     <string name="call_kefu_qq">确定进入客服QQ:%s？</string>
-    <string name="kefu_qq_num_default">121965871</string>
-    <string name="kefu_worktime_default">06:00-22:00</string>
+    <string name="kefu_qq_num_default">3211111180</string>
+    <string name="kefu_worktime_default">09:00-24:00</string>
     <string name="kefu_wx">微信号</string>
     <string name="kefu_wx_">微信号：%s</string>
-    <string name="kefu_wx_default">121965871</string>
+    <string name="kefu_wx_default">bianfukefu</string>
     <string name="kefu_phone">客服电话</string>
     <string name="kefu_phone_">客服电话：%s</string>
-    <string name="kefu_phone_default">13530155972</string>
+    <string name="kefu_phone_default">15700719140</string>
     <string name="update_app">检测更新</string>
     <string name="update_app_newest">已经是最新版本!</string>
-    <string name="call_phone_default">13537683844</string>
+    <string name="call_phone_default">15700719140</string>
 
     <!--修改密码-->
     <string name="old_pwd">原密码</string>

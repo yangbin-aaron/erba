@@ -10,7 +10,7 @@ public class ApiConfig {
 
 
     private static final String SCHEME_HOST_DEV = "http://api28dev.chenfu3991.com";// dev域名
-    private static final String SCHEME_HOST_PRO = "http://api28dev.chenfu3991.com";// pro
+    private static final String SCHEME_HOST_PRO = "http://api28pro.chenfu3991.com";// pro
 
     public static String getFullUrl(String url) {
         if (App.IS_DEV) {
