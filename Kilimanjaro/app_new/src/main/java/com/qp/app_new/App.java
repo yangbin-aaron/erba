@@ -23,7 +23,7 @@ import java.io.File;
  * Created by Aaron on 17/11/7.
  */
 
-public class App extends Application {
+public class App extends Application {// 签名密码 123456p
     public static Context mContext;
     public static final boolean IS_DEV = false;// 是否是测试环境
     public boolean haveNewVersion = false;
