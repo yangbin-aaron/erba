@@ -162,7 +162,7 @@ public class GameActivity extends BaseActivity implements HallLotteryAdapter.OnI
     }
 
     private void getAllData () {
-        getGameCoin ();
+//        getGameCoin ();
         getHistoryLotteryList ();
         getNoLotteryList ();
     }

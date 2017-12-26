@@ -172,14 +172,24 @@ public class BetDandianActivity extends BaseActivity implements View.OnClickList
                 mAdapter.setJSONArray(mOddsJSONArray);
                 break;
             case R.id.btn_betting:
-                DialogHelp.createOkDialog(this, getString(R.string.betting_confirm_bet, mBetCoin), new NormalDialogListener1() {
-                    @Override
-                    public void onOkClickListener() {
-                        bet();
-                    }
-                }).show();
+                compareGameCoin();
                 break;
         }
+    }
+
+    private void compareGameCoin() {
+        long gameCoin = AppPrefs.getInstance().getGameCoin();
+        if (gameCoin < mBetCoin) {// 余额不足，请充值
+            DialogHelp.showMessageDialog(this, getString(R.string.coin_nohave_residual));
+            return;
+        }
+        DialogHelp.createOkDialog(this, getString(R.string.betting_confirm_bet, mBetCoin), new NormalDialogListener1() {
+            @Override
+            public void onOkClickListener() {
+                bet();
+            }
+        }).show();
+
     }
 
     private void bet() {
